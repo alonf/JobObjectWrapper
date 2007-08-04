@@ -1,3 +1,19 @@
+
+/*******************************************************************************************************  
+*
+* AssemblyInfo.cpp
+*
+* Copyright 2007 The JobObjectWrapper Team  
+* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
+*
+* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
+* have received a copy of the license along with the source code.  If not, an online copy
+* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
+*   
+*  Notes :
+*      - First release by Alon Fliess
+********************************************************************************************************/
+
 #include "stdafx.h"
 
 using namespace System;
@@ -14,9 +30,9 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyTitleAttribute("JobObjectWrapper")];
 [assembly:AssemblyDescriptionAttribute(".NET Wrapper for Win32 Job Object")];
 [assembly:AssemblyConfigurationAttribute("")];
-[assembly:AssemblyCompanyAttribute("Alon Fliess")];
+[assembly:AssemblyCompanyAttribute("JobObjectWrapper Team")];
 [assembly:AssemblyProductAttribute("JobManagement")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c) Alon Fliess 2007")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c) JobObjectWrapper Team 2007")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 
