@@ -34,8 +34,8 @@ namespace ConsoleApplicationTestJob
             jo.Events.OnJobMemoryLimit += new JobManagement.jobEventHandler<JobManagement.JobMemoryLimitEventArgs>(Events_OnJobMemoryLimit);
             jo.Events.OnNewProcess += new JobManagement.jobEventHandler<JobManagement.NewProcessEventArgs>(Events_OnNewProcess);
             jo.Events.OnProcessMemoryLimit += new JobManagement.jobEventHandler<JobManagement.ProcessMemoryLimitEventArgs>(Events_OnProcessMemoryLimit);
-            jo.Limits.ActiveProcessLimit = 4;
-            jo.Limits.ProcessMemoryLimit = new IntPtr(20000000);
+            jo.Limits.ActiveProcessLimit = 6;
+            jo.Limits.ProcessMemoryLimit = new IntPtr(40000000);
             Console.WriteLine("{0}", jo.Limits.ProcessMemoryLimit);
             jo.Limits.PerProcessUserTimeLimit = TimeSpan.FromMinutes(10); //TimeSpan.FromMilliseconds(100);
             System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo("whoami.exe");
