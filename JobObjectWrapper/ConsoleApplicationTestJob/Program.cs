@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Security.Principal;
 
 namespace ConsoleApplicationTestJob
 {
@@ -25,6 +26,9 @@ namespace ConsoleApplicationTestJob
         static void Main(string[] args)
         {
             JobManagement.JobObject jo = new JobManagement.JobObject("Hello");
+
+            jo.Limits.RunJobProcessesAs(WindowsIdentity.GetCurrent().Token);
+
             jo.Events.OnAbnormalExitProcess += new JobManagement.jobEventHandler<JobManagement.AbnormalExitProcessEventArgs>(Events_OnAbnormalExitProcess);
             jo.Events.OnActiveProcessLimit += new JobManagement.jobEventHandler<JobManagement.ActiveProcessLimitEventArgs>(Events_OnActiveProcessLimit);
             jo.Events.OnActiveProcessZero += new JobManagement.jobEventHandler<JobManagement.ActiveProcessZeroEventArgs>(Events_OnActiveProcessZero);
