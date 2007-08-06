@@ -465,6 +465,7 @@ namespace JobManagement
 	void JobLimits::RunJobProcessesAs(System::IntPtr hToken)
 	{
 		JOBOBJECT_SECURITY_LIMIT_INFORMATION securityLimitInformation;
+		::ZeroMemory(&securityLimitInformation, sizeof(securityLimitInformation));
 		securityLimitInformation.JobToken = hToken.ToPointer();
 		SetSecurityLimitInformation(true, securityLimitInformation, JOB_OBJECT_SECURITY_ONLY_TOKEN);
 	}
