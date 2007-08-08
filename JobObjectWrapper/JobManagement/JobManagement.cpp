@@ -26,8 +26,12 @@
 #include "util.h"
 #include "JobException.h"
 
+using namespace System::Timers;
+
 namespace JobManagement 
 {
+#define TIMER_INVOKED_TERMINATION 9
+
 	//Throw exception if the host process is in a Job itself
 	void JobObject::ProbeForRunningInJob()
 	{
@@ -55,6 +59,24 @@ namespace JobManagement
 		_limits = gcnew JobLimits(this);
 
 		//Dont shutdown all process when the Job Management object gets disposed
+		IsTerminateJobProcessesOnDispose = false;
+	}
+
+	void JobObject::OpenJob(bool inheritHandle)
+	{
+		ProbeForRunningInJob();
+
+		MarshalingContext x;
+
+		LPCWSTR pName = MarshalingContext::Managed2NativeString(_name);
+		_hJob = ::OpenJobObjectW(JOB_OBJECT_ALL_ACCESS, inheritHandle, pName);
+		if (_hJob == NULL)
+		{
+			throw gcnew JobException(true);
+		}
+
+		_limits = gcnew JobLimits(this);
+
 		IsTerminateJobProcessesOnDispose = false;
 	}
 
@@ -470,6 +492,58 @@ namespace JobManagement
 		{
 			CloseActivationService();
 			return false;
+		}
+	}
+
+	void JobObject::CreateAbsoluteTimer()
+	{
+		msclr::lock l(this);
+
+		if (_liveTimer != nullptr)
+		{
+			throw gcnew JobException(L"A Timer already been set, first clear the current timer, before setting a new one.");
+		}
+
+		System::TimeSpan subDate = _jobObjectLiveAbsolutTime.Subtract(System::DateTime::Now);
+		if (subDate.Milliseconds < 0.0)
+			throw gcnew System::TimeoutException("Invokation time accured in the past");
+		_liveTimer = gcnew System::Timers::Timer(subDate.TotalMilliseconds);
+		_liveTimer->AutoReset = FALSE;
+		_liveTimer->Elapsed += gcnew System::Timers::ElapsedEventHandler(this, &JobObject::OnTimedEvent);
+		_liveTimer->Start();
+	}
+
+	void JobObject::OnTimedEvent( System::Object^ /*source*/, System::Timers::ElapsedEventArgs^ /*e*/ )
+	{
+		if (_isTimerKillProcesses)
+			this->TerminateAllProcesses(TIMER_INVOKED_TERMINATION);
+		this->~JobObject();
+	}
+
+	void JobObject::SetAbsoluteTimer(System::DateTime liveDateTime, bool isTerminateAllProcessesUnderJob)
+	{
+		_isTimerKillProcesses = isTerminateAllProcessesUnderJob;
+		_jobObjectLiveAbsolutTime = liveDateTime;
+		CreateAbsoluteTimer();
+	}
+
+	void JobObject::SetAbsoluteTimer(System::TimeSpan liveTimeSpan, bool isTerminateAllProcessesUnderJob)
+	{
+		_isTimerKillProcesses = isTerminateAllProcessesUnderJob;
+		_jobObjectLiveAbsolutTime = System::DateTime::Now.Add(liveTimeSpan);
+		CreateAbsoluteTimer();
+	}
+
+	void JobObject::ClearAbsoluteTimer()
+	{
+		msclr::lock l(this);
+
+		if (_liveTimer != nullptr)
+		{
+			_liveTimer->Stop();
+			_liveTimer->Close();
+			delete _liveTimer;
+			_liveTimer = nullptr;
 		}
 	}
 }

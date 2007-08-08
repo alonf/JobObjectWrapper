@@ -35,6 +35,9 @@ namespace JobManagement
 		//Create new Job object. The ctor creates the Win32 Jobobject with a name
 		JobObject(System::String ^name) : _name(name) {CreateJob();}
 
+		//Open an existing Job Object. The ctor open an existing job that has the same name
+		JobObject(System::String ^name, bool inheritHandle) : _name(name) {OpenJob(inheritHandle);}
+
 		//Dispose the job
 		~JobObject();
 
@@ -49,6 +52,13 @@ namespace JobManagement
 
 		//Terminate all process in the job. You may create new process
 		void TerminateAllProcesses(unsigned int exitCode);
+
+		//sets the job object with an absolute timer
+		void SetAbsoluteTimer(System::DateTime absoluteDateTime, bool isTerminateAllProcessesUnderJob);
+		void SetAbsoluteTimer(System::TimeSpan liveTimeSpan, bool isTerminateAllProcessesUnderJob);
+
+		//Clear absolute timer
+		void ClearAbsoluteTimer();
 
 		//Return a limit object that can query & set limits on the job
 		property JobLimits ^Limits
@@ -186,15 +196,29 @@ namespace JobManagement
 
 		//called by the ctor to create the underlying Win32 job object
 		void CreateJob(); 
+		//called by the ctor to open an existing Win32 job object
+		void OpenJob(bool inheritHandle);
+
+		//called by SetLiveTimer for setting the timer
+		void CreateAbsoluteTimer();
+		// Specify what you want to happen when the Elapsed event is 
+		// raised.
+		void OnTimedEvent( Object^ /*source*/, System::Timers::ElapsedEventArgs^ /*e*/ );
+
 		HANDLE _hJob;
+		bool _isTimerKillProcesses;
 		System::String ^_name;
 		JobLimits ^_limits;
 		JobEvents ^_events;
+		System::Timers::Timer ^_liveTimer;
+		System::TimeSpan _jobObjectLiveTimeSpan;
+		System::DateTime _jobObjectLiveAbsolutTime;
 
 		ref class InJobProcessActivationServiceClient
 		{
 		public:
 			InJobProcessActivationServiceClient(JobObject ^job) : _job(job) {CreateActivationService();}
+		
 			void CreateActivationService();
 			void CloseActivationService();
 			System::Diagnostics::Process ^CreateChildProcess(System::Diagnostics::ProcessStartInfo ^startupInfo);
