@@ -27,7 +27,10 @@ namespace ConsoleApplicationTestJob
         {
             JobManagement.JobObject jo = new JobManagement.JobObject("Hello");
 
-            jo.Limits.RunJobProcessesAs(WindowsIdentity.GetCurrent().Token);
+            //IntPtr token = WindowsIdentity.GetCurrent().Token;
+
+            //jo.Limits.RunJobProcessesAs(token);
+
 
             jo.Events.OnAbnormalExitProcess += new JobManagement.jobEventHandler<JobManagement.AbnormalExitProcessEventArgs>(Events_OnAbnormalExitProcess);
             jo.Events.OnActiveProcessLimit += new JobManagement.jobEventHandler<JobManagement.ActiveProcessLimitEventArgs>(Events_OnActiveProcessLimit);
