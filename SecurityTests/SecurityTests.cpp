@@ -20,7 +20,9 @@ int main(array<System::String ^> ^args)
 
 
 	/*jo.Limits->RunJobProcessesAs(IntPtr(hRestrictedToken));*/
-	JobObject jo(L"Hello", false);
+	JobObject jo(L"Hello");
+
+	JobObject joByHandle(jo.Handle);
 
 	//System::Diagnostics::ProcessStartInfo ^si = gcnew ::Diagnostics::ProcessStartInfo(L"notepad.exe");
  //   si->RedirectStandardOutput = true;
@@ -30,11 +32,11 @@ int main(array<System::String ^> ^args)
 
 	////jo.TerminateAllProcesses(8);
 
-	jo.SetAbsoluteTimer(System::DateTime(2007, 8, 8, 17, 30, 0), true);
+	jo.SetAbsoluteTimer(System::DateTime(2007, 8, 10, 17, 30, 0));
 
 	jo.ClearAbsoluteTimer();
 
-	jo.SetAbsoluteTimer(System::TimeSpan(0, 0, 10), true);
+	joByHandle.SetAbsoluteTimer(System::TimeSpan(0, 0, 10));
 
 	System::Console::ReadKey();
 
