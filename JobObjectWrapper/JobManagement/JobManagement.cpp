@@ -11,7 +11,7 @@
 * of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
 *   
 *  Notes :
-*      - First release by Alon Fliess
+*      - First release by Alon Fliess & Aaron Etchin
 ********************************************************************************************************/
 
 
@@ -43,6 +43,7 @@ namespace JobManagement
 			throw gcnew JobException(L"The management process is running inside a Job, it will not be able to assign child processes to a new Job.");
 	}
 
+	//called by the ctor
 	void JobObject::CreateJob()
 	{
 		ProbeForRunningInJob();
@@ -51,6 +52,52 @@ namespace JobManagement
 
 		LPCWSTR pName = MarshalingContext::Managed2NativeString(_name);
 		_hJob = ::CreateJobObjectW(NULL, pName);
+
+		InitializeJobObjectWrapper();
+	}
+
+	// From Ntdef.h
+	typedef struct UNICODE_STRING_t {
+		USHORT Length;
+		USHORT MaximumLength;
+		PWSTR Buffer;
+		wchar_t  block[1024];
+	} UNICODE_STRING;
+
+	JobObject::JobObject(System::IntPtr hJob)
+	{
+		ProbeForRunningInJob();
+
+		_hJob = hJob.ToPointer();
+
+		SetProcessNameByHandle();
+
+		InitializeJobObjectWrapper();
+	}
+
+	//Set the process name by its handle. Called by ctor
+	void JobObject::SetProcessNameByHandle()
+	{	
+		UNICODE_STRING objectName;
+		objectName.Length = objectName.MaximumLength = 1024;
+	
+		unsigned int hr =
+			NtQueryObject(_hJob, 1 /* ObjectNameInformation */, &objectName, 1024, System::IntPtr::Zero);
+
+		/*
+		//Currently we provide the full name but heuristically we can cut only the win32 name: 
+		//we have to take into consideration session, local, global, private namespaces
+		//Something like this, but more complicated:		
+		System::String ^name = gcnew System::String(objectName.Buffer, 0, objectName.Length);
+		_name = name->Substring(name->LastIndexOf("\\") + 1); */
+
+		_name = gcnew System::String(objectName.Buffer, 0, objectName.Length);
+
+	}
+
+	//called by the ctor
+	void JobObject::InitializeJobObjectWrapper()
+	{
 		if (_hJob == NULL)
 		{
 			throw gcnew JobException(true);
@@ -59,25 +106,7 @@ namespace JobManagement
 		_limits = gcnew JobLimits(this);
 
 		//Dont shutdown all process when the Job Management object gets disposed
-		IsTerminateJobProcessesOnDispose = false;
-	}
-
-	void JobObject::OpenJob(bool inheritHandle)
-	{
-		ProbeForRunningInJob();
-
-		MarshalingContext x;
-
-		LPCWSTR pName = MarshalingContext::Managed2NativeString(_name);
-		_hJob = ::OpenJobObjectW(JOB_OBJECT_ALL_ACCESS, inheritHandle, pName);
-		if (_hJob == NULL)
-		{
-			throw gcnew JobException(true);
-		}
-
-		_limits = gcnew JobLimits(this);
-
-		IsTerminateJobProcessesOnDispose = false;
+		IsTerminateJobProcessesOnDispose = true;
 	}
 
 	JobObject::~JobObject()
@@ -495,43 +524,43 @@ namespace JobManagement
 		}
 	}
 
-	void JobObject::CreateAbsoluteTimer()
+	void JobObject::OnTimedEvent( System::Object^ /*source*/, System::Timers::ElapsedEventArgs^ /*e*/ )
+	{
+		this->TerminateAllProcesses(TIMER_INVOKED_TERMINATION);
+	}
+
+	void JobObject::SetAbsoluteTimer(System::DateTime toLiveDateTime)
 	{
 		msclr::lock l(this);
 
-		if (_liveTimer != nullptr)
-		{
-			throw gcnew JobException(L"A Timer already been set, first clear the current timer, before setting a new one.");
-		}
-
-		System::TimeSpan subDate = _jobObjectLiveAbsolutTime.Subtract(System::DateTime::Now);
+		System::TimeSpan subDate = toLiveDateTime.Subtract(System::DateTime::Now);
 		if (subDate.Milliseconds < 0.0)
 			throw gcnew System::TimeoutException("Invokation time accured in the past");
+
+		if (_liveTimer != nullptr)
+		{
+			ChangeAbsoluteTimer(subDate);
+			return;
+		}
+
 		_liveTimer = gcnew System::Timers::Timer(subDate.TotalMilliseconds);
 		_liveTimer->AutoReset = FALSE;
 		_liveTimer->Elapsed += gcnew System::Timers::ElapsedEventHandler(this, &JobObject::OnTimedEvent);
 		_liveTimer->Start();
 	}
 
-	void JobObject::OnTimedEvent( System::Object^ /*source*/, System::Timers::ElapsedEventArgs^ /*e*/ )
+	void JobObject::SetAbsoluteTimer(System::TimeSpan liveTimeSpan)
 	{
-		if (_isTimerKillProcesses)
-			this->TerminateAllProcesses(TIMER_INVOKED_TERMINATION);
-		this->~JobObject();
+		SetAbsoluteTimer(System::DateTime::Now.Add(liveTimeSpan));
 	}
 
-	void JobObject::SetAbsoluteTimer(System::DateTime liveDateTime, bool isTerminateAllProcessesUnderJob)
+	void JobObject::ChangeAbsoluteTimer(System::TimeSpan timerTimeSpan)
 	{
-		_isTimerKillProcesses = isTerminateAllProcessesUnderJob;
-		_jobObjectLiveAbsolutTime = liveDateTime;
-		CreateAbsoluteTimer();
-	}
+		msclr::lock l(this);
 
-	void JobObject::SetAbsoluteTimer(System::TimeSpan liveTimeSpan, bool isTerminateAllProcessesUnderJob)
-	{
-		_isTimerKillProcesses = isTerminateAllProcessesUnderJob;
-		_jobObjectLiveAbsolutTime = System::DateTime::Now.Add(liveTimeSpan);
-		CreateAbsoluteTimer();
+		_liveTimer->Stop();
+		_liveTimer->Interval = timerTimeSpan.TotalMilliseconds;
+		_liveTimer->Start();
 	}
 
 	void JobObject::ClearAbsoluteTimer()

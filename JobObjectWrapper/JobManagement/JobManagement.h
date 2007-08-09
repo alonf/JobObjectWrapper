@@ -35,8 +35,8 @@ namespace JobManagement
 		//Create new Job object. The ctor creates the Win32 Jobobject with a name
 		JobObject(System::String ^name) : _name(name) {CreateJob();}
 
-		//Open an existing Job Object. The ctor open an existing job that has the same name
-		JobObject(System::String ^name, bool inheritHandle) : _name(name) {OpenJob(inheritHandle);}
+		//Open an existing Job Object from handle
+		JobObject(System::IntPtr hJob);
 
 		//Dispose the job
 		~JobObject();
@@ -54,8 +54,8 @@ namespace JobManagement
 		void TerminateAllProcesses(unsigned int exitCode);
 
 		//sets the job object with an absolute timer
-		void SetAbsoluteTimer(System::DateTime absoluteDateTime, bool isTerminateAllProcessesUnderJob);
-		void SetAbsoluteTimer(System::TimeSpan liveTimeSpan, bool isTerminateAllProcessesUnderJob);
+		void SetAbsoluteTimer(System::DateTime absoluteDateTime);
+		void SetAbsoluteTimer(System::TimeSpan liveTimeSpan);
 
 		//Clear absolute timer
 		void ClearAbsoluteTimer();
@@ -193,26 +193,30 @@ namespace JobManagement
 		array<System::Diagnostics::Process ^>^ ConvertBasicProcessIdListToProcessArray(JOBOBJECT_BASIC_PROCESS_ID_LIST *pBasicProcessIdList);
 		array<unsigned int>^ ConvertBasicProcessIdListToIdArray(JOBOBJECT_BASIC_PROCESS_ID_LIST *pBasicProcessIdList);
 
-
 		//called by the ctor to create the underlying Win32 job object
-		void CreateJob(); 
-		//called by the ctor to open an existing Win32 job object
-		void OpenJob(bool inheritHandle);
+		void CreateJob();
 
-		//called by SetLiveTimer for setting the timer
-		void CreateAbsoluteTimer();
+		//called by the ctor to wrap the Win32 handle
+		void InitializeJobObjectWrapper();
+
+		//Set the process name by its handle. Called by ctor
+		void SetProcessNameByHandle();
+
+		//called by create absolute timer
+		void ChangeAbsoluteTimer(System::TimeSpan timerTimeSpan);
+
 		// Specify what you want to happen when the Elapsed event is 
 		// raised.
 		void OnTimedEvent( Object^ /*source*/, System::Timers::ElapsedEventArgs^ /*e*/ );
 
+		[System::Runtime::InteropServices::DllImportAttribute(L"ntdll.dll", CharSet=System::Runtime::InteropServices::CharSet::Unicode)]
+		static  unsigned int NtQueryObject(HANDLE hObj, int objInfoClass, void* pObjInfo, unsigned int objInfoLength, System::IntPtr dummy);
+
 		HANDLE _hJob;
-		bool _isTimerKillProcesses;
 		System::String ^_name;
 		JobLimits ^_limits;
 		JobEvents ^_events;
 		System::Timers::Timer ^_liveTimer;
-		System::TimeSpan _jobObjectLiveTimeSpan;
-		System::DateTime _jobObjectLiveAbsolutTime;
 
 		ref class InJobProcessActivationServiceClient
 		{
