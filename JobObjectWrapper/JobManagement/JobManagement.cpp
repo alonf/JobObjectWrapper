@@ -537,7 +537,7 @@ namespace JobManagement
 
 		System::TimeSpan subDate = toLiveDateTime.Subtract(System::DateTime::Now);
 		if (subDate.Milliseconds < 0.0)
-			throw gcnew System::TimeoutException("Invokation time accured in the past");
+			throw gcnew System::TimeoutException("Invocation time occured in the past");
 
 		if (_liveTimer != nullptr)
 		{
