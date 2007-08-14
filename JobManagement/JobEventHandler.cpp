@@ -16,6 +16,7 @@
 
 #include "StdAfx.h"
 #include <windows.h>
+#include <psapi.h>
 #include "JobEventHandler.h"
 #include "JobManagement.h"
 #include "JobException.h"
@@ -81,6 +82,47 @@ namespace JobManagement
 	unsigned int JobProcessEventArgs::TheProcessId::get()
 	{
 		return MessageSpecificValue;
+	}
+
+	System::String ^JobProcessEventArgs::Win32Name::get()
+	{
+		try
+		{
+			return System::IO::Path::GetFileNameWithoutExtension(Win32Path);
+		}
+		catch(...)
+		{
+			return TheProcessId.ToString();
+		}
+	}
+
+	System::String ^JobProcessEventArgs::Win32Path::get()
+	{
+		HANDLE hProcess = ::OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, TheProcessId);
+		if (hProcess == nullptr)
+			throw gcnew JobException(true);
+
+		try
+		{
+			HMODULE hMod;
+			DWORD cbNeeded;
+			WCHAR szProcessName[1024];
+
+			if ( !::EnumProcessModules( hProcess, &hMod, sizeof(hMod), 
+				 &cbNeeded) )
+				 throw gcnew JobException(true);
+			
+			if (::GetModuleBaseName( hProcess, hMod, szProcessName, 
+								   sizeof(szProcessName)/sizeof(WCHAR) ) == 0)
+				throw gcnew JobException(true);
+			
+			
+			return gcnew System::String(szProcessName);
+		}
+		finally
+		{
+			::CloseHandle(hProcess);
+		}
 	}
 	
 	//AbnormalExitProcessEventArgs 

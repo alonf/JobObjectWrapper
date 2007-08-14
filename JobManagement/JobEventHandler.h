@@ -59,6 +59,8 @@ namespace JobManagement
 	public:
 		property System::Diagnostics::Process ^TheProcess { System::Diagnostics::Process ^get(); }
 		property unsigned int TheProcessId { unsigned int get(); }
+		property System::String ^Win32Name { System::String ^get(); }
+		property System::String ^Win32Path { System::String ^get(); }
 
 	internal:
 		JobProcessEventArgs(unsigned int processId) : JobEventArgs(processId), _process(TryGetProcess(processId)) {} 
