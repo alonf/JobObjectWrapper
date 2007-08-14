@@ -25,6 +25,8 @@
 #include "IOCounters.h"
 #include "util.h"
 #include "JobException.h"
+#include <aclapi.h>
+
 
 using namespace System::Timers;
 
@@ -103,7 +105,7 @@ namespace JobManagement
 			throw gcnew JobException(true);
 		}
 
-		_limits = gcnew JobLimits(this);
+			_limits = gcnew JobLimits(this);
 
 		//Dont shutdown all process when the Job Management object gets disposed
 		IsTerminateJobProcessesOnDispose = true;
