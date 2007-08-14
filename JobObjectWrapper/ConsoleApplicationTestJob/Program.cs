@@ -26,10 +26,24 @@ namespace ConsoleApplicationTestJob
         static void Main(string[] args)
         {
             JobManagement.JobObject jo = new JobManagement.JobObject("Hello");
+            try
+            {
+                jo.Limits.RunJobProcessesAs(WindowsIdentity.GetCurrent().Token);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-            //IntPtr token = WindowsIdentity.GetCurrent().Token;
-
-            //jo.Limits.RunJobProcessesAs(token);
+            try
+            {
+                jo.Limits.IsAdminProcessAllow = false;
+                jo.CreateProcessSecured(new System.Diagnostics.ProcessStartInfo("calc.exe"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
 
             jo.Events.OnAbnormalExitProcess += new JobManagement.jobEventHandler<JobManagement.AbnormalExitProcessEventArgs>(Events_OnAbnormalExitProcess);
