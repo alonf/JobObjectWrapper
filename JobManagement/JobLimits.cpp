@@ -464,10 +464,34 @@ namespace JobManagement
 
 	void JobLimits::RunJobProcessesAs(System::IntPtr hToken)
 	{
-		JOBOBJECT_SECURITY_LIMIT_INFORMATION securityLimitInformation;
-		::ZeroMemory(&securityLimitInformation, sizeof(securityLimitInformation));
-		securityLimitInformation.JobToken = hToken.ToPointer();
-		SetSecurityLimitInformation(true, securityLimitInformation, JOB_OBJECT_SECURITY_ONLY_TOKEN);
+		HANDLE hProcessToken;
+
+		if (!::OpenProcessToken(::GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hProcessToken))
+			throw gcnew JobException(true);
+
+		try
+		{
+			//Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeCreateTokenPrivilege", true);
+			Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeAssignPrimaryTokenPrivilege", true);
+
+
+			JOBOBJECT_SECURITY_LIMIT_INFORMATION securityLimitInformation;
+			::ZeroMemory(&securityLimitInformation, sizeof(securityLimitInformation));
+			securityLimitInformation.JobToken = hToken.ToPointer();
+			SetSecurityLimitInformation(true, securityLimitInformation, JOB_OBJECT_SECURITY_ONLY_TOKEN);
+		}
+		finally
+		{
+			try
+			{
+				//Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeCreateTokenPrivilege", false);
+				Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeAssignPrimaryTokenPrivilege", false);
+			}
+			finally
+			{
+				::CloseHandle(hProcessToken);
+			}
+		}
 	}
 
 	//Prevents any process in the job from using a token that was not created with the CreateRestrictedToken function.
