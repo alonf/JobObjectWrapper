@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CAFF6A01-8EBF-4040-9A42-E950BCBEE0F5}</ProjectGuid>
+    <ProjectGuid>{32D55A47-1F54-4A6C-9B23-C89F28076530}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EndOfJobTime</RootNamespace>
-    <AssemblyName>EndOfJobTime</AssemblyName>
+    <RootNamespace>NumOfMaxProcessesReached</RootNamespace>
+    <AssemblyName>NumOfMaxProcessesReached</AssemblyName>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>

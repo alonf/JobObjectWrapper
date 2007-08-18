@@ -20,6 +20,8 @@
 
 namespace JobManagement 
 {
+	using namespace Security;
+
 	ref class JobObject;
 
 	public ref class JobLimits sealed
