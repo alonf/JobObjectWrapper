@@ -24,47 +24,59 @@ namespace JobManagement
 
 	ref class JobObject;
 
+	/************************************************************************
+	* JobLimits is a sealed class that wraps the Win32 Job Object Limits    *
+	* which define the limits for the job and its processes. The limits are *
+	* the boundaries for the processes running under the job				*
+	*************************************************************************/
 	public ref class JobLimits sealed
 	{
 	public:
 		JobLimits(JobObject ^job) : _job(job) {}
 
+		// The time limit for a process to run under
 		property System::Nullable<System::TimeSpan> PerProcessUserTimeLimit
 		{
 			System::Nullable<System::TimeSpan> get();
 			void set(System::Nullable<System::TimeSpan> value);
 		}
 
+		// The time limit for a job to run under
 		property System::Nullable<System::TimeSpan> PerJobUserTimeLimit
 		{
 			System::Nullable<System::TimeSpan> get();
 			void set(System::Nullable<System::TimeSpan> value);
 		}
 
+		// The minimum size of a working-set
 		property System::Nullable<System::IntPtr> MinimumWorkingSetSize
 		{
 			System::Nullable<System::IntPtr> get();
 			void set(System::Nullable<System::IntPtr> value);
 		}
 
+		// The maximum size of a working-set
 		property System::Nullable<System::IntPtr> MaximumWorkingSetSize
 		{
 			System::Nullable<System::IntPtr> get();
 			void set(System::Nullable<System::IntPtr> value);
 		}
 
+		// The maximum number of active processes
 		property System::Nullable<unsigned int> ActiveProcessLimit
 		{
 			System::Nullable<unsigned int> get();
 			void set(System::Nullable<unsigned int> value);
 		}
 
+		// The processesor affinity
 		property System::Nullable<System::IntPtr> Affinity
 		{
 			System::Nullable<System::IntPtr> get();
 			void set(System::Nullable<System::IntPtr> value);
 		}
 
+		// The process priority class
 		property System::Nullable<System::Diagnostics::ProcessPriorityClass> PriorityClass
 		{
 			System::Nullable<System::Diagnostics::ProcessPriorityClass> get();
