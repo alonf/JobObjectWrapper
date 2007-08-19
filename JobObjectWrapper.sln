@@ -7,10 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JobManagement", "JobManagem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplicationTestJob", "ConsoleApplicationTestJob\ConsoleApplicationTestJob.csproj", "{7A2E87B8-B42E-469C-BB7C-6CD132F402E5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SecurityTests", "SecurityTests\SecurityTests.vcproj", "{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMemoryLimit", "TestMemoryLimit\TestMemoryLimit.csproj", "{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndOfProcessTime", "Examples\EndOfProcessTime\EndOfProcessTime.csproj", "{C935D2E3-37E2-4906-9D5A-47B56F3BC5A8}"
@@ -25,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndOfJobMemory", "Examples\
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -38,29 +34,26 @@ Global
 		SccProjectUniqueName3 = ConsoleApplicationTestJob\\ConsoleApplicationTestJob.csproj
 		SccProjectName3 = ConsoleApplicationTestJob
 		SccLocalPath3 = ConsoleApplicationTestJob
-		SccProjectUniqueName4 = SecurityTests\\SecurityTests.vcproj
-		SccProjectName4 = SecurityTests
-		SccLocalPath4 = SecurityTests
-		SccProjectUniqueName5 = Examples\\EndOfProcessTime\\EndOfProcessTime.csproj
+		SccProjectUniqueName4 = Examples\\EndOfProcessTime\\EndOfProcessTime.csproj
+		SccProjectTopLevelParentUniqueName4 = JobObjectWrapper.sln
+		SccProjectName4 = Examples/EndOfProcessTime
+		SccLocalPath4 = Examples\\EndOfProcessTime
+		SccProjectUniqueName5 = Examples\\EndOfJobTime\\EndOfJobTime.csproj
 		SccProjectTopLevelParentUniqueName5 = JobObjectWrapper.sln
-		SccProjectName5 = Examples/EndOfProcessTime
-		SccLocalPath5 = Examples\\EndOfProcessTime
-		SccProjectUniqueName6 = Examples\\EndOfJobTime\\EndOfJobTime.csproj
+		SccProjectName5 = Examples/EndOfJobTime
+		SccLocalPath5 = Examples\\EndOfJobTime
+		SccProjectUniqueName6 = Examples\\EndOfJobMemory\\EndOfJobMemory.csproj
 		SccProjectTopLevelParentUniqueName6 = JobObjectWrapper.sln
-		SccProjectName6 = Examples/EndOfJobTime
-		SccLocalPath6 = Examples\\EndOfJobTime
-		SccProjectUniqueName7 = Examples\\EndOfJobMemory\\EndOfJobMemory.csproj
+		SccProjectName6 = Examples/EndOfJobMemory
+		SccLocalPath6 = Examples\\EndOfJobMemory
+		SccProjectUniqueName7 = Examples\\NumOfMaxProcessesReached\\NumOfMaxProcessesReached.csproj
 		SccProjectTopLevelParentUniqueName7 = JobObjectWrapper.sln
-		SccProjectName7 = Examples/EndOfJobMemory
-		SccLocalPath7 = Examples\\EndOfJobMemory
-		SccProjectUniqueName8 = Examples\\NumOfMaxProcessesReached\\NumOfMaxProcessesReached.csproj
+		SccProjectName7 = Examples/NumOfMaxProcessesReached
+		SccLocalPath7 = Examples\\NumOfMaxProcessesReached
+		SccProjectUniqueName8 = Examples\\EndOfProcessMemory\\EndOfProcessMemory.csproj
 		SccProjectTopLevelParentUniqueName8 = JobObjectWrapper.sln
-		SccProjectName8 = Examples/NumOfMaxProcessesReached
-		SccLocalPath8 = Examples\\NumOfMaxProcessesReached
-		SccProjectUniqueName9 = Examples\\EndOfProcessMemory\\EndOfProcessMemory.csproj
-		SccProjectTopLevelParentUniqueName9 = JobObjectWrapper.sln
-		SccProjectName9 = Examples/EndOfProcessMemory
-		SccLocalPath9 = Examples\\EndOfProcessMemory
+		SccProjectName8 = Examples/EndOfProcessMemory
+		SccLocalPath8 = Examples\\EndOfProcessMemory
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,34 +116,6 @@ Global
 		{7A2E87B8-B42E-469C-BB7C-6CD132F402E5}.Release|x64.Build.0 = Release|x64
 		{7A2E87B8-B42E-469C-BB7C-6CD132F402E5}.Release|x86.ActiveCfg = Release|x86
 		{7A2E87B8-B42E-469C-BB7C-6CD132F402E5}.Release|x86.Build.0 = Release|x86
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Debug|Win32.ActiveCfg = Debug|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Debug|Win32.Build.0 = Debug|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Debug|x64.ActiveCfg = Debug|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Debug|x86.ActiveCfg = Debug|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Release|Any CPU.ActiveCfg = Release|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Release|Win32.ActiveCfg = Release|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Release|Win32.Build.0 = Release|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Release|x64.ActiveCfg = Release|Win32
-		{5D580E80-A1E6-4045-9ACE-6532ACA3FA4C}.Release|x86.ActiveCfg = Release|Win32
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Release|Mixed Platforms.Build.0 = Release|x86
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Release|Win32.ActiveCfg = Release|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Release|x64.ActiveCfg = Release|Any CPU
-		{B3C3740E-1C7A-4B47-955B-CE8CF1C96788}.Release|x86.ActiveCfg = Release|Any CPU
 		{C935D2E3-37E2-4906-9D5A-47B56F3BC5A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C935D2E3-37E2-4906-9D5A-47B56F3BC5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C935D2E3-37E2-4906-9D5A-47B56F3BC5A8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
