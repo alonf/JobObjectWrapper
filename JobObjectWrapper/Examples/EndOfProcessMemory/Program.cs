@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace EndOfProcessMemory
 {
+    /// <summary>
+    /// Demonstrating the Process Memory Limit usage
+    /// </summary>
     class Program
     {
         static bool _isStop = false;
@@ -35,6 +38,11 @@ namespace EndOfProcessMemory
             }
         }
 
+        /// <summary>
+        /// The event handler for the OnProcessMemoryLimit event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         static void Events_OnProcessMemoryLimit(object sender, ProcessMemoryLimitEventArgs args)
         {
             _isStop = true;
