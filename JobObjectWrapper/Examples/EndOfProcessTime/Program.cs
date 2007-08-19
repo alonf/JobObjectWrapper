@@ -6,6 +6,7 @@ using JobManagement;
 
 namespace EndOfProcessTime
 {
+    // Demonstrating the process time limit usage
     class Program
     {
         static System.Threading.ManualResetEvent finishEvent = new System.Threading.ManualResetEvent(false);
@@ -35,6 +36,11 @@ namespace EndOfProcessTime
             }
         }
 
+        /// <summary>
+        /// The event handler for the OnEndOfProcessTime event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         static void Events_OnEndOfProcessTime(object sender, EndOfProcessTimeEventArgs args)
         {
             Console.WriteLine("Process {0} has reached its time limit", args.Win32Name);
