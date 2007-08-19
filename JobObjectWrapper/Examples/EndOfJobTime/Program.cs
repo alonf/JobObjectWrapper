@@ -40,7 +40,7 @@ namespace EndOfJobTime
         }
 
         /// <summary>
-        /// The event handler for the end of job time event
+        /// The event handler for the OnEndOfJobTime event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
