@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace EndOfJobTime
 {
+    /// <summary>
+    /// This project demonstrates the usage of the job time limit
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -36,6 +39,11 @@ namespace EndOfJobTime
             }
         }
 
+        /// <summary>
+        /// The event handler for the end of job time event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         static void Events_OnEndOfJobTime(object sender, EndOfJobTimeEventArgs args)
         {
             Console.WriteLine("Job has reached it time limit");
