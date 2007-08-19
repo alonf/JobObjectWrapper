@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace NumOfMaxProcessesReached
 {
+    /// <summary>
+    /// Demonstrate the number of active processes limit usage
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -36,6 +39,11 @@ namespace NumOfMaxProcessesReached
             }
         }
 
+        /// <summary>
+        /// The event handler for the OnActiveProcessLimit event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         static void Events_OnActiveProcessLimit(object sender, ActiveProcessLimitEventArgs args)
         {
             Console.WriteLine("\nLimit of active processes reached");
