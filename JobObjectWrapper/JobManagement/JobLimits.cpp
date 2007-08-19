@@ -54,6 +54,8 @@ namespace JobManagement
 		_managed2NativeTable[managedValue] = nativeValue;
 	}
 
+
+	// Converting the enummed priority class to the system priority class
 	static JobLimits::ProcessPriorityClassConverter::ProcessPriorityClassConverter()
 	{
 		_native2ManagedTable = gcnew System::Collections::Generic::Dictionary<DWORD, System::Diagnostics::ProcessPriorityClass>();
