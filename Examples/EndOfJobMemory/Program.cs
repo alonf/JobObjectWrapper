@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace EndOfJobMemory
 {
+    /// <summary>
+    /// This project demonstrates the Job Memory limit usage
+    /// </summary>
     class Program
     {
         static bool _isStop = false;
@@ -34,6 +37,11 @@ namespace EndOfJobMemory
             { }
         }
 
+        /// <summary>
+        /// The events which fires when a job reaches its memory limit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         static void Events_OnJobMemoryLimit(object sender, JobMemoryLimitEventArgs args)
         {
             _isStop = true;
