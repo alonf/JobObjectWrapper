@@ -111,12 +111,17 @@ namespace JobManagement
 			void set(bool value);
 		}
 
-		//Causes all processes associated with the job to terminate when the last handle to the job is closed.
-		property bool IsKillOnJobClose
-		{
-			bool get();
-			void set(bool value);
-		}
+		/********************************************************************************************
+		* This limit was exposed in Win2k but was not supported by Win2k. Apparently it is not		*
+		* supported also in later version of windows. Latest windows version check is Windows Vista	*
+		* ////Causes all processes associated with the job to terminate when the last handle to the *
+		* job is closed.																			*
+		* //property bool IsKillOnJobClose															*
+		* //{																						*
+		* //	bool get();																			*
+		* //	void set(bool value);																*
+		* //}																						*
+		*********************************************************************************************/
 
 		//specifies the limit for the virtual memory that can be committed by a process
 		property System::Nullable<System::IntPtr> ProcessMemoryLimit
