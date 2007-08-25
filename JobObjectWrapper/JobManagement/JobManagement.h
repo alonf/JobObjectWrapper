@@ -36,11 +36,11 @@ namespace JobManagement
 	/// <summary>
     /// This is the .Net wrapper class for the Win32 class
     /// Usage Example:
-    /// <example><![CDATA[
+    /// <example>
     ///  using (JobObject jo = new JobObject("JobMemoryLimitExample"))
     ///  {
     ///     jo.Limits.JobMemoryLimit = new IntPtr(30000000);
-    ///     jo.Events.OnJobMemoryLimit += new jobEventHandler<JobMemoryLimitEventArgs>(Events_OnJobMemoryLimit);
+    ///     jo.Events.OnJobMemoryLimit += new jobEventHandler&lt;JobMemoryLimitEventArgs&gt;(Events_OnJobMemoryLimit);
     ///
     ///     while (!_isStop)
     ///     {
@@ -50,7 +50,7 @@ namespace JobManagement
     ///        Thread.Sleep(100);
     ///     }
     ///  }
-    /// ]]></example>
+    /// </example>
     /// </summary>
 	public ref class JobObject
 	{
@@ -76,23 +76,60 @@ namespace JobManagement
         /// <param name="hJob">The Win32 job object handle</param>
 		JobObject(System::IntPtr hJob);
 
-		//Dispose the job
+		/// <summary>
+		/// Dispose the job, this also closes the native job handle
+		/// </summary>
 		~JobObject();
 
-		//Create a process in a Job Object sandbox, If the newly created process creates a child process before entering the job, the child process will not be part of the job.
+		/// <summary>
+		/// Create a process in a Job Object sandbox.
+		/// </summary>
+		/// <remarks> If the newly created process creates a child process before entering the job, 
+		/// the child process will not be part of the job.</remarks>
+		/// <param name="startupInfo">The process startup information</param>
+		/// <returns>The newly create Process object</returns>
 		System::Diagnostics::Process ^CreateProcessMayBreakAway(System::Diagnostics::ProcessStartInfo ^startupInfo);
 
-		//Create a process in a Job Object sandbox, the method uses other process to create the child process
+		
+		/// <summary>
+		/// Create a process in a Job Object sandbox; the method uses other process to create the child process.
+		/// </summary>
+		/// <remarks>Usually creating a process in a job object is a three steps process. 
+		/// First we create the new process in a suspend state (using the CREATE_SUSPENDED flag), 
+		/// then we assign the process to the Job, and just after that we allow the process to run using ResumeThread.
+		/// The problem is that .Net currently does not enable creating processes in a suspend state. 
+		/// The chosen solution is to use a child activation service process running in the job. 
+		/// Any time we need to create a process in the Job we ask this child process to run the desired process, 
+		/// hence implying an execution in a Job. 
+		/// </remarks>
+		/// <param name="startupInfo">The process startup information</param>
+		/// <returns>The return value is a remoting Process proxy. 
+		/// If you close the activation service process, you lose the returned process. 
+		/// Usually you need this object if you redirect standard input, output or error.</returns>
 		System::Diagnostics::Process ^CreateProcessSecured(System::Diagnostics::ProcessStartInfo ^startupInfo);
 
-		//Close the process creator helper process
+		/// <summary>
+		/// Shut down the process activation service. 
+		/// If you call again to the <see cref=" CreateProcessSecured "/> you get a new process activation service. 
+		/// </summary>
+		/// <remarks>By calling this method, you invalidate any Process remoting proxy that has returned 
+		/// from <see cref=" CreateProcessSecured "/> </remarks> 
 		void ShutDownInJobProcessActivationService();
 
-		//Terminate all process in the job. You may create new process
+		/// <summary>
+		/// Terminates all processes currently associated with the job.
+		/// </summary>
+		/// <remarks>
+		/// It is not possible for any of the processes associated with the job to postpone or handle the termination. 
+		/// It is as if TerminateProcess were called for each process associated with the job
+		/// </remarks>
+		/// <param name="exitCode">The exit code to be used by all processes and threads in the job object.</param>
+		/// <exception cref="JobException"/>
 		void TerminateAllProcesses(unsigned int exitCode);
 
 		//sets the job object with an absolute timer
 		void SetAbsoluteTimer(System::DateTime absoluteDateTime);
+
 		void SetAbsoluteTimer(System::TimeSpan liveTimeSpan);
 
 		//Clear absolute timer
@@ -135,19 +172,19 @@ namespace JobManagement
 		{
 			System::TimeSpan get();
 		}
-		
+
 		//The total amount of kernel-mode execution time for all active processes associated with the job, as well as all terminated processes no longer associated with the job, in 100-nanosecond ticks. 
 		property System::TimeSpan TotalKernelTime
 		{
 			System::TimeSpan get();
 		}
-		
+
 		//The total amount of user-mode execution time for all active processes associated with the job (as well as all terminated processes no longer associated with the job) since the last call that set a per-job user-mode time limit, in 100-nanosecond ticks. 
 		property System::TimeSpan ThisPeriodTotalUserTime
 		{
 			System::TimeSpan get();
 		}
-		
+
 		//The total amount of kernel-mode execution time for all active processes associated with the job (as well as all terminated processes no longer associated with the job) since the last call that set a per-job kernel-mode time limit, in 100-nanosecond ticks. 
 		//This member is set to zero on creation of the job, and each time a per-job kernel-mode time limit is established.
 		property System::TimeSpan ThisPeriodTotalKernelTime
@@ -190,7 +227,7 @@ namespace JobManagement
 		{
 			System::IntPtr get();
 		}
-		
+
 		//Contains basic accounting and I/O accounting information for a job object.
 		property JobIOCounters IOCounters
 		{
