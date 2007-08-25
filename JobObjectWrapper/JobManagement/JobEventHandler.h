@@ -12,6 +12,7 @@
 *   
 *  Notes :
 *      - First release by Alon Fliess
+*
 ********************************************************************************************************/
 
 #pragma once
@@ -29,10 +30,8 @@ namespace JobManagement
 
 	public ref class JobEventArgs abstract : public System::EventArgs
 	{
-	public:
-		JobEventArgs(unsigned int messageSpecificValue) : _messageSpecificValue(messageSpecificValue) {}
-
 	protected:
+		JobEventArgs(unsigned int messageSpecificValue) : _messageSpecificValue(messageSpecificValue) {}
 		property unsigned int MessageSpecificValue { unsigned int get() { return _messageSpecificValue; } }
 
 	private:
@@ -72,6 +71,7 @@ namespace JobManagement
 	
 	public enum class ExitReasonIds 
 	{ 
+		NoError = 0,
 		Unknown = -1,
 		AccessViolation = STATUS_ACCESS_VIOLATION,
 		ArrayBoundsExeeded = STATUS_ARRAY_BOUNDS_EXCEEDED,
