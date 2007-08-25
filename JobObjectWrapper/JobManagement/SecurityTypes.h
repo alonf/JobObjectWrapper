@@ -33,6 +33,7 @@ namespace JobManagement
 
 		public enum class SidGroupAttributes
 		{
+			None = 0,
 			Enabled = SE_GROUP_ENABLED,
 			EnabledByDefault = SE_GROUP_ENABLED_BY_DEFAULT,
 			LogonId = SE_GROUP_LOGON_ID,
