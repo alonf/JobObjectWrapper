@@ -54,8 +54,17 @@ namespace JobManagement
 
 		LPCWSTR pName = MarshalingContext::Managed2NativeString(_name);
 		_hJob = ::CreateJobObjectW(NULL, pName);
+		_isOpenedAsWin32SharedObject = (::GetLastError() == ERROR_ALREADY_EXISTS);
 
-		InitializeJobObjectWrapper();
+		try
+		{
+			InitializeJobObjectWrapper();
+		}
+		catch (...)
+		{
+			::CloseHandle(_hJob);
+			throw;
+		}
 	}
 
 	// From Ntdef.h
@@ -70,11 +79,28 @@ namespace JobManagement
 	{
 		ProbeForRunningInJob();
 
-		_hJob = hJob.ToPointer();
+		_isOpenedAsWin32SharedObject = true;
 
-		SetProcessNameByHandle();
+		HANDLE newHandle;
 
-		InitializeJobObjectWrapper();
+		//Keep the native object alive even if the source handle is closed. The dispose will close this handle.
+		BOOL bResult = ::DuplicateHandle(::GetCurrentProcess(), hJob.ToPointer(), ::GetCurrentProcess(), &newHandle, 0, FALSE, DUPLICATE_SAME_ACCESS);
+		if (!bResult)
+			throw gcnew JobException(true);
+
+		try
+		{
+			_hJob = newHandle;
+
+			SetProcessNameByHandle();
+
+			InitializeJobObjectWrapper();
+		}
+		catch (...)
+		{
+			::CloseHandle(_hJob);
+			throw;
+		}
 	}
 
 	//Set the process name by its handle. Called by ctor
@@ -105,18 +131,56 @@ namespace JobManagement
 			throw gcnew JobException(true);
 		}
 
-			_limits = gcnew JobLimits(this);
+		_limits = gcnew JobLimits(this);
 
 		//Dont shutdown all process when the Job Management object gets disposed
 		IsTerminateJobProcessesOnDispose = true;
 	}
 
+
+	//The Dispose enable more then one call. Only the first call Disposes the object. 
 	JobObject::~JobObject()
 	{
-		delete _events;
+		msclr::lock l(this);
 
-		if (IsTerminateJobProcessesOnDispose)
-			TerminateAllProcesses(0);
+		try
+		{
+			System::Exception ^exception = nullptr;
+			delete _events;
+	
+			try
+			{
+				ShutDownInJobProcessActivationService();
+			}
+			catch (System::Exception ^exp)
+			{
+				exception = exp;
+			}
+
+			try
+			{
+				if (IsTerminateJobProcessesOnDispose)
+					TerminateAllProcesses(0);
+			}
+			catch (System::Exception ^exp)
+			{
+				if (exception == nullptr)
+				{
+					exception = exp;
+				}
+				else
+				{
+					exception = gcnew JobException(L"Error shutting down Job Process Activation Service", exception);
+				}
+			}
+		}
+		finally
+		{
+			::CloseHandle(_hJob);
+			_events = nullptr;
+			_hJob = NULL;
+			IsTerminateJobProcessesOnDispose = false;
+		}
 	}
 
 	//Create a process in a Job Object sandbox
@@ -419,6 +483,11 @@ namespace JobManagement
 		return IsProcessInJob(System::Diagnostics::Process::GetCurrentProcess());
 	}
 
+	//Determines whether the Job was opened and not created 
+	bool JobObject::IsOpenedAsWin32SharedObject::get()
+	{
+		return _isOpenedAsWin32SharedObject;
+	}
 
 	//Determines whether the process is running in the job.
 	bool JobObject::IsProcessInJob(System::Diagnostics::Process ^process)
