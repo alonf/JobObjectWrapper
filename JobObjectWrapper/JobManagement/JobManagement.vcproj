@@ -48,6 +48,7 @@
 				PreprocessorDefinitions="WINVER=0x0501;_WIN32_WINNT=0x0501"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
+				GenerateXMLDocumentationFiles="true"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				EnablePREfast="true"
@@ -120,9 +121,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WINVER=0x0501;_WIN32_WINNT=0x0501"
+				PreprocessorDefinitions="WINVER=0x0501;_WIN32_WINNT=0x0501;CODE_ANALYSIS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
+				GenerateXMLDocumentationFiles="true"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				EnablePREfast="true"
@@ -157,6 +159,8 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
+				Rules="-Microsoft.Design#CA1002;-Microsoft.Globalization#CA1301;-Microsoft.Globalization#CA1302;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1306;-Microsoft.Globalization#CA1304;-Microsoft.Globalization#CA1305;-Microsoft.Globalization#CA1300;-Microsoft.Mobility#CA1600;-Microsoft.Mobility#CA1601;-Microsoft.Performance#CA1811;-Microsoft.Security#CA2116;-Microsoft.Security#CA2117;-Microsoft.Security#CA2105;-Microsoft.Security#CA2115;-Microsoft.Security#CA2104;-Microsoft.Security#CA2122;-Microsoft.Security#CA2114;-Microsoft.Security#CA2123;-Microsoft.Security#CA2111;-Microsoft.Security#CA2108;-Microsoft.Security#CA2107;-Microsoft.Security#CA2103;-Microsoft.Security#CA2100;-Microsoft.Security#CA2118;-Microsoft.Security#CA2109;-Microsoft.Security#CA2119;-Microsoft.Security#CA2106;-Microsoft.Security#CA2112;-Microsoft.Security#CA2110;-Microsoft.Security#CA2120;-Microsoft.Security#CA2101;-Microsoft.Security#CA2121;-Microsoft.Security#CA2126;-Microsoft.Security#CA2124"
+				EnableFxCop="true"
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
