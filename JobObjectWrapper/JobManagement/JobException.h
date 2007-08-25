@@ -19,17 +19,19 @@
 #include <Windows.h>
 namespace JobManagement 
 {
+	[System::Serializable]
 	public ref class JobException : public System::Exception
 	{
-	internal:
+	public:
 		JobException() {}
-		JobException(bool useCurrentWin32Error) : _win32Error(::GetLastError()), System::Exception(Win32ErrorMessage) {}
-		JobException(bool useCurrentWin32Error, System::Exception ^innerException) : _win32Error(::GetLastError()), System::Exception(Win32ErrorMessage, innerException) {}
+		JobException(bool useCurrentWin32Error) : _win32Error(useCurrentWin32Error ? ::GetLastError() : 0), System::Exception(Win32ErrorMessage) {}
+		JobException(bool useCurrentWin32Error, System::Exception ^innerException) : _win32Error(useCurrentWin32Error ? ::GetLastError() : 0), System::Exception(Win32ErrorMessage, innerException) {}
 		JobException(unsigned int win32Error) : _win32Error(win32Error), System::Exception(Win32ErrorMessage) {}
 		JobException(unsigned int win32Error, System::Exception ^innerException) : _win32Error(win32Error), System::Exception(Win32ErrorMessage, innerException) {}
 		JobException(System::String ^message) : System::Exception(message) {}
 		JobException(System::String ^message, System::Exception ^innerException)
 			: System::Exception(message, innerException) {}
+	protected:
 		JobException(System::Runtime::Serialization::SerializationInfo ^info,
 					 System::Runtime::Serialization::StreamingContext context)
 					 : System::Exception(info, context) {}
