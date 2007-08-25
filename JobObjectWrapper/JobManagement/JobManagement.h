@@ -12,6 +12,11 @@
 *   
 *  Notes :
 *      - First release by Alon Fliess
+*      - This is the main header file of the job object wrapper. 
+*        It includes the JobObject class declaration. 
+*        Three other classes that the JobObject expose are JobLimits, JobEvents, and JobIOCounters 
+*        that are declared in other files.  
+*
 ********************************************************************************************************/
 
 #pragma once
@@ -23,19 +28,52 @@
 
 namespace JobManagement 
 {
+	//Foreword declarations
 	ref class JobLimits;
 	value class JobIOCounters;
 
+
+	/// <summary>
+    /// This is the .Net wrapper class for the Win32 class
+    /// Usage Example:
+    /// <example><![CDATA[
+    ///  using (JobObject jo = new JobObject("JobMemoryLimitExample"))
+    ///  {
+    ///     jo.Limits.JobMemoryLimit = new IntPtr(30000000);
+    ///     jo.Events.OnJobMemoryLimit += new jobEventHandler<JobMemoryLimitEventArgs>(Events_OnJobMemoryLimit);
+    ///
+    ///     while (!_isStop)
+    ///     {
+    ///        ProcessStartInfo psi = new ProcessStartInfo("calc.exe");
+    ///        Process proc = jo.CreateProcessMayBreakAway(psi);
+    ///
+    ///        Thread.Sleep(100);
+    ///     }
+    ///  }
+    /// ]]></example>
+    /// </summary>
 	public ref class JobObject
 	{
 	public:
-		//Create new Job object. The ctor creates the Win32 Jobobject with empty name
+		/// <summary>
+        /// Create a Job Object wrapper with no Win32 object name
+        /// </summary>
 		JobObject() : _name(System::String::Empty) {CreateJob();}
 
-		//Create new Job object. The ctor creates the Win32 Jobobject with a name
-		JobObject(System::String ^name) : _name(name) {CreateJob();}
+		 /// <summary>
+        /// Create a Job Object wrapper with Win32 object name
+        /// </summary>
+        /// <param name="name">the name of the Job Object. This name can be use to share the same job object.</param>
+        JobObject(System::String ^name) : _name(name) {CreateJob();}
 
-		//Open an existing Job Object from handle
+		/// <summary>
+        /// Create a Job Object wrapper from WIn32 Job handle. 
+        /// Use this constractor for Interop scenario.
+        /// The Job Object wrapper duplicates the handle, and closes it 
+        /// on its dispose method.
+        /// The method tries to find the original job object name.
+        /// </summary>
+        /// <param name="hJob">The Win32 job object handle</param>
 		JobObject(System::IntPtr hJob);
 
 		//Dispose the job
@@ -177,6 +215,12 @@ namespace JobManagement
 
 		property bool IsTerminateJobProcessesOnDispose;
 
+		//Determines whether the Job was opened and not created 
+		property bool IsOpenedAsWin32SharedObject
+		{
+			bool get();
+		}
+
 	internal:
 		property HANDLE NativeHandle
 		{
@@ -217,6 +261,7 @@ namespace JobManagement
 		JobLimits ^_limits;
 		JobEvents ^_events;
 		System::Timers::Timer ^_liveTimer;
+		bool _isOpenedAsWin32SharedObject;
 
 		ref class InJobProcessActivationServiceClient
 		{
