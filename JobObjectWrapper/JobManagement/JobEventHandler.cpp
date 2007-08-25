@@ -227,6 +227,7 @@ namespace JobManagement
 	}
 
 
+	//Thsi method should not throw an exception
 	void JobEventHandler::ExitListeningThread()
 	{
 		::PostQueuedCompletionStatus(_hCompletionPort, 0, 1, 0);
@@ -259,6 +260,7 @@ namespace JobManagement
 		}
 	}
 
+	//Thsi method should not throw an exception
 	JobEventHandler::~JobEventHandler()
 	{
 		ExitListeningThread();
