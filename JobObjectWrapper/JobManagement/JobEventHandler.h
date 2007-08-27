@@ -97,7 +97,8 @@ namespace JobManagement
 		PrivilegedInstruction = STATUS_PRIVILEGED_INSTRUCTION,
 		RegNatConsumption = STATUS_REG_NAT_CONSUMPTION,
 		SingleStep = STATUS_SINGLE_STEP,
-		StackOverflow = STATUS_STACK_OVERFLOW
+		StackOverflow = STATUS_STACK_OVERFLOW,
+		Timeout = STATUS_TIMEOUT
 	};
 
 	//Indicates that a process associated with the job exited with an exit code that indicates an abnormal exit.

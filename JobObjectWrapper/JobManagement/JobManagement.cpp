@@ -20,19 +20,16 @@
 
 #include "JobManagement.h"
 #include <vcclr.h>
-#include <msclr\lock.h>
 #include "JobLimits.h"
 #include "IOCounters.h"
 #include "util.h"
+#include <msclr\lock.h>
 #include "JobException.h"
 #include <aclapi.h>
 
 
-using namespace System::Timers;
-
 namespace JobManagement 
 {
-#define TIMER_INVOKED_TERMINATION 9
 
 	//Throw exception if the host process is in a Job itself
 	void JobObject::ProbeForRunningInJob()
@@ -592,58 +589,6 @@ namespace JobManagement
 		{
 			CloseActivationService();
 			return false;
-		}
-	}
-
-	void JobObject::OnTimedEvent( System::Object^ /*source*/, System::Timers::ElapsedEventArgs^ /*e*/ )
-	{
-		this->TerminateAllProcesses(TIMER_INVOKED_TERMINATION);
-	}
-
-	void JobObject::SetAbsoluteTimer(System::DateTime toLiveDateTime)
-	{
-		msclr::lock l(this);
-
-		System::TimeSpan subDate = toLiveDateTime.Subtract(System::DateTime::Now);
-		if (subDate.Milliseconds < 0.0)
-			throw gcnew System::TimeoutException("Invocation time occured in the past");
-
-		if (_liveTimer != nullptr)
-		{
-			ChangeAbsoluteTimer(subDate);
-			return;
-		}
-
-		_liveTimer = gcnew System::Timers::Timer(subDate.TotalMilliseconds);
-		_liveTimer->AutoReset = FALSE;
-		_liveTimer->Elapsed += gcnew System::Timers::ElapsedEventHandler(this, &JobObject::OnTimedEvent);
-		_liveTimer->Start();
-	}
-
-	void JobObject::SetAbsoluteTimer(System::TimeSpan liveTimeSpan)
-	{
-		SetAbsoluteTimer(System::DateTime::Now.Add(liveTimeSpan));
-	}
-
-	void JobObject::ChangeAbsoluteTimer(System::TimeSpan timerTimeSpan)
-	{
-		msclr::lock l(this);
-
-		_liveTimer->Stop();
-		_liveTimer->Interval = timerTimeSpan.TotalMilliseconds;
-		_liveTimer->Start();
-	}
-
-	void JobObject::ClearAbsoluteTimer()
-	{
-		msclr::lock l(this);
-
-		if (_liveTimer != nullptr)
-		{
-			_liveTimer->Stop();
-			_liveTimer->Close();
-			delete _liveTimer;
-			_liveTimer = nullptr;
 		}
 	}
 }

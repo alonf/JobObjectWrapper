@@ -18,6 +18,7 @@
 #include "JobLimits.h"
 #include "JobManagement.h"
 #include "JobException.h"
+#include <msclr\lock.h>
 
 namespace JobManagement 
 {
@@ -696,5 +697,57 @@ namespace JobManagement
 	void JobLimits::UserHandleGrantAccess(System::IntPtr userHandle, bool bGrant)
 	{
 		::UserHandleGrantAccess(userHandle.ToPointer(), _job->NativeHandle, bGrant);
+	}
+
+	void JobLimits::OnTimedEvent( System::Object^ source, System::Timers::ElapsedEventArgs^ e)
+	{
+		_job->TerminateAllProcesses((unsigned int)ExitReasonIds::Timeout);
+	}
+
+	void JobLimits::SetAbsoluteTimer(System::DateTime toLiveDateTime)
+	{
+		msclr::lock l(this);
+
+		System::TimeSpan subDate = toLiveDateTime.Subtract(System::DateTime::Now);
+		if (subDate.Milliseconds < 0.0)
+			throw gcnew System::TimeoutException("Invocation time occured in the past");
+
+		if (_liveTimer != nullptr)
+		{
+			ChangeAbsoluteTimer(subDate);
+			return;
+		}
+
+		_liveTimer = gcnew System::Timers::Timer(subDate.TotalMilliseconds);
+		_liveTimer->AutoReset = FALSE;
+		_liveTimer->Elapsed += gcnew System::Timers::ElapsedEventHandler(this, &JobLimits::OnTimedEvent);
+		_liveTimer->Start();
+	}
+
+	void JobLimits::SetAbsoluteTimer(System::TimeSpan liveTimeSpan)
+	{
+		SetAbsoluteTimer(System::DateTime::Now.Add(liveTimeSpan));
+	}
+
+	void JobLimits::ChangeAbsoluteTimer(System::TimeSpan timerTimeSpan)
+	{
+		msclr::lock l(this);
+
+		_liveTimer->Stop();
+		_liveTimer->Interval = timerTimeSpan.TotalMilliseconds;
+		_liveTimer->Start();
+	}
+
+	void JobLimits::ClearAbsoluteTimer()
+	{
+		msclr::lock l(this);
+
+		if (_liveTimer != nullptr)
+		{
+			_liveTimer->Stop();
+			_liveTimer->Close();
+			delete _liveTimer;
+			_liveTimer = nullptr;
+		}
 	}
 }

@@ -127,14 +127,6 @@ namespace JobManagement
 		/// <exception cref="JobException"/>
 		void TerminateAllProcesses(unsigned int exitCode);
 
-		//sets the job object with an absolute timer
-		void SetAbsoluteTimer(System::DateTime absoluteDateTime);
-
-		void SetAbsoluteTimer(System::TimeSpan liveTimeSpan);
-
-		//Clear absolute timer
-		void ClearAbsoluteTimer();
-
 		//Return a limit object that can query & set limits on the job
 		property JobLimits ^Limits
 		{
@@ -283,13 +275,6 @@ namespace JobManagement
 		//Set the process name by its handle. Called by ctor
 		void SetProcessNameByHandle();
 
-		//called by create absolute timer
-		void ChangeAbsoluteTimer(System::TimeSpan timerTimeSpan);
-
-		// Specify what you want to happen when the Elapsed event is 
-		// raised.
-		void OnTimedEvent( Object^ /*source*/, System::Timers::ElapsedEventArgs^ /*e*/ );
-
 		[System::Runtime::InteropServices::DllImportAttribute(L"ntdll.dll", CharSet=System::Runtime::InteropServices::CharSet::Unicode)]
 		static  unsigned int NtQueryObject(HANDLE hObj, int objInfoClass, void* pObjInfo, unsigned int objInfoLength, System::IntPtr dummy);
 
@@ -297,7 +282,6 @@ namespace JobManagement
 		System::String ^_name;
 		JobLimits ^_limits;
 		JobEvents ^_events;
-		System::Timers::Timer ^_liveTimer;
 		bool _isOpenedAsWin32SharedObject;
 
 		ref class InJobProcessActivationServiceClient
