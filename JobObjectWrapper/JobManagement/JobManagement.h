@@ -35,7 +35,8 @@ namespace JobManagement
 
 
 	/// <summary>
-    /// This is the .Net wrapper class for the Win32 class
+    /// This is the .Net wrapper class for the Win32 Job Object mechanism
+	/// </summary>
     /// Usage Example:
     /// <example>
     ///  using (JobObject jo = new JobObject("JobMemoryLimitExample"))
@@ -52,7 +53,6 @@ namespace JobManagement
     ///     }
     ///  }
     /// </example>
-    /// </summary>
 	public ref class JobObject
 	{
 	public:
@@ -69,7 +69,7 @@ namespace JobManagement
 
 		/// <summary>
         /// Create a Job Object wrapper from WIn32 Job handle. 
-        /// Use this constractor for Interop scenario.
+        /// Use this constructor for Interop scenarios.
         /// The Job Object wrapper duplicates the handle, and closes it 
         /// on its dispose method.
         /// The method tries to find the original job object name.
@@ -142,118 +142,253 @@ namespace JobManagement
 			JobLimits ^get();
 		}
 
-		//Return an event object that can be use to connect to job related events
+		/// <summary>
+		/// This member exposes the various Job Object events.
+		/// </summary>
+		/// <remarks> The Job Object can raise events on many occasions such as: process related to the job exited or terminated,
+		/// a new process is born, a number of process limit has been reached, the number of processes in the job dropped to zero,
+		/// Job or process has reached its timeout limit or a memory limit has happened.
+		/// The first time a client is registered to an event, a new thread is created. 
+		/// All events will be invoked with this thread.
+		/// For those events that related to a process, the name and process id can be found in the event argument.
+		/// Be aware that in some cases, such as process creation or exit, this value may no longer be valid since a built-in race condition. 
+		/// </remarks>
+		/// <example>
+		/// C#: 
+		///
+		/// class Program
+		///	{
+        ///		static System.Threading.ManualResetEvent finishEvent = new System.Threading.ManualResetEvent(false);
+		///
+		/// 	static void Main(string[] args)
+        ///		{
+        ///			try
+        ///		    {
+        ///		        using (JobObject jo = new JobObject("EndOfProcessTimeExample"))
+        ///		        {
+        ///		            jo.Events.OnEndOfProcessTime += new jobEventHandler&lt;EndOfProcessTimeEventArgs&gt;(Events_OnEndOfProcessTime);
+        ///		            jo.Limits.PerProcessUserTimeLimit = TimeSpan.FromMilliseconds(100);
+		/// 
+        ///		            System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo("cmd.exe");
+        ///		            si.RedirectStandardInput = true;
+        ///		            si.UseShellExecute = false;
+        ///		            System.Diagnostics.Process p = jo.CreateProcessMayBreakAway(si);
+        ///             
+        ///		            p.StandardInput.WriteLine("@for /L %n in (1,1,1000000) do @echo %n");
+		/// 
+        ///		            finishEvent.WaitOne();
+        ///		        }
+        ///		    }
+        ///		    catch (Exception e)
+        ///		    {
+        ///		        Console.WriteLine(e.Message);
+        ///		    }
+        ///		}
+		/// 
+        ///		static void Events_OnEndOfProcessTime(object sender, EndOfProcessTimeEventArgs args)
+        ///		{
+        ///		    Console.WriteLine("Process {0} has reached its time limit", args.Win32Name);
+        ///		    finishEvent.Set();
+        ///		}
+		///	}
+		/// </example>
 		property JobEvents ^Events
 		{
 			JobEvents ^get();
 		}
 
-		//The underlying Win32 HANDLE
+		/// <summary>
+		/// The handle of the native Win32 Job Object. Do not close this handle. The handle will be closed on dispose.
+		/// </summary>
 		property System::IntPtr Handle
 		{
 			System::IntPtr get();
 		}
 
-		//True if the processes in the job reached the job timeout limit
+		/// <summary>
+		///	True if the processes in the job reached the job timeout limit
+		///	</summary>
+		///	<remarks> 
+		///	This refers only to the CPU based time limit and not to the absolute timer. The value will be reset when a new timeout limit will be set.
+		///	</remarks>
 		property bool IsJobTimeout
 		{
 			bool get();
 		}
 
-		//Wait for all processes to exit on Job timeout limit
-		void Join();
 
-		//Wait for all processes to exit on Job timeout limit
-		void Join(System::TimeSpan timeout);
+		/// <summary>
+		///	The thread will continue when the processes in the job reached the job timeout limit
+		///	</summary>
+		///	<remarks> 
+		///	This refers only to the CPU based time limit and not to the absolute timer. Thread will wait again when a new timeout limit will be set.
+		///	</remarks>
+		/// <exception cref="JobManagement::JobException"/>
+		void Join();		
+		
+		/// <summary>
+		///	The thread will continue when the processes in the job reached the job timeout limit, or when the supplied timeout parameter is reached
+		///	</summary>
+		///	<remarks> 
+		///	This refers only to the CPU based time limit and not to the absolute timer. Thread will wait again when a new timeout limit will be set.
+		///	</remarks>
+		/// <param name="timeout">The time-out interval. The function returns if the interval elapses, 
+		/// even if the processes in the job have not reached the timeout limit.</param>
+		/// <returns>
+		/// true when the processes in the job have reached the timeout limit.
+		/// false when a timeout interval has passed.
+		/// </returns>
+		/// <exception cref="JobManagement::JobException"/>
+		bool Join(System::TimeSpan timeout);
 
+		/// <summary>
+		/// Assigns a process to an existing job object.
+		/// </summary>
+		/// <param name="process">
+		/// the process to associate with the job object. The process must not already be assigned to a job. 
+		/// </param>
+		/// <exception cref="JobManagement::JobException"/>
 		void AssignProcessToJob(System::Diagnostics::Process ^process);
 
-		//The total amount of user-mode execution time for all active processes associated with the job, as well as all terminated processes no longer associated with the job, in 100-nanosecond ticks. 
+		//The total amount of user-mode execution time for all active processes associated with the job, as well as all terminated processes no longer associated with the job
 		property System::TimeSpan TotalUserTime
 		{
 			System::TimeSpan get();
 		}
 
-		//The total amount of kernel-mode execution time for all active processes associated with the job, as well as all terminated processes no longer associated with the job, in 100-nanosecond ticks. 
+		/// <summary>
+		/// The total amount of kernel-mode execution time for all active processes associated with the job, as well as all terminated processes no longer associated with the job, in 100-nanosecond ticks. 
+		/// </summary>
 		property System::TimeSpan TotalKernelTime
 		{
 			System::TimeSpan get();
 		}
 
-		//The total amount of user-mode execution time for all active processes associated with the job (as well as all terminated processes no longer associated with the job) since the last call that set a per-job user-mode time limit, in 100-nanosecond ticks. 
+		/// <summary>
+		/// The total amount of user-mode execution time for all active processes associated with the job (as well as all terminated processes no longer associated with the job) since the last call that set a per-job user-mode time limit
+		/// </summary>
 		property System::TimeSpan ThisPeriodTotalUserTime
 		{
 			System::TimeSpan get();
 		}
 
-		//The total amount of kernel-mode execution time for all active processes associated with the job (as well as all terminated processes no longer associated with the job) since the last call that set a per-job kernel-mode time limit, in 100-nanosecond ticks. 
-		//This member is set to zero on creation of the job, and each time a per-job kernel-mode time limit is established.
+		/// <summary>
+		/// The total amount of kernel-mode execution time for all active processes associated with the job (as well as all terminated processes no longer associated with the job) since the last call that set a per-job kernel-mode time limit
+		/// </summary>
+		/// <remarks>
+		/// This member is set to zero on creation of the job, and each time a per-job kernel-mode time limit is established.
+		/// </remarks>
 		property System::TimeSpan ThisPeriodTotalKernelTime
 		{
 			System::TimeSpan get();
 		}
 
-		//The total number of page faults encountered by all active processes associated with the job, as well as all terminated processes no longer associated with the job. 
+		/// <summary>
+		/// The total number of page faults encountered by all active processes associated with the job, as well as all terminated processes no longer associated with the job. 
+		/// </summary>
 		property unsigned int TotalPageFaultCount
 		{
 			unsigned int get();
 		}
 
-		//The total number of processes associated with the job during its lifetime, including those that have terminated. For example, when a process is associated with a job, but the association fails because of a limit violation, this value is incremented. 
+		/// <summary>
+		/// The total number of processes associated with the job during its lifetime, including those that have terminated. 
+		/// </summary>
+		/// <remarks>
+		/// when a process is associated with a job, but the association fails because of a limit violation, this value is incremented. 
+		/// </remarks>
 		property unsigned int TotalProcesses
 		{
 			unsigned int get();
 		}
 
-		//The total number of processes currently associated with the job. When a process is associated with a job, but the association fails because of a limit violation, this value is temporarily incremented. When the terminated process exits and all references to the process are released, this value is decremented. 
+		/// <summary>
+		/// The total number of processes currently associated with the job. 
+		/// </summary>
+		/// <remarks>
+		/// When a process is associated with a job, but the association fails because of a limit violation, this value is temporarily incremented. When the terminated process exits and all references to the process are released, this value is decremented. 
+		/// </remarks>
 		property unsigned int ActiveProcesses
 		{
 			unsigned int get();
 		}
 
-		//The total number of processes terminated because of a limit violation.
+		/// <summary>
+		/// The total number of processes terminated because of a limit violation.
+		/// </summary>
 		property unsigned int TotalTerminatedProcesses
 		{
 			unsigned int get();
 		}
 
-		//The peak memory used by any process ever associated with the job. 
+		/// <summary>
+		///  A high water mark, the peak memory used by any process ever associated with the job. 
+		/// </summary>
 		property System::IntPtr PeakProcessMemoryUsed 
 		{
 			System::IntPtr get();
 		}
 
-		//The peak memory usage of all processes currently associated with the job.
+		/// <summary>
+		/// The peak memory usage of all processes currently associated with the job.
+		/// </summary>
 		property System::IntPtr PeakJobMemoryUsed 
 		{
 			System::IntPtr get();
 		}
 
-		//Contains basic accounting and I/O accounting information for a job object.
+		/// <summary>
+		/// Contains basic accounting and I/O accounting information for a job object.
+		/// </summary>
+		/// <remarks>
+		/// Includes information for all processes that have ever been associated with the job, 
+		/// in addition to the information for all processes currently associated with the job. 
+		/// </remarks>
 		property JobIOCounters IOCounters
 		{
 			JobIOCounters get();
 		}
 
-		//return a list of processes in the job, this method returns only the processes that 
-		//calling to System::Diagnostics::Process::GetProcessById had not failed
+		/// <summary>
+		/// Return a list of processes in the job.
+		/// </summary>
+		/// <remarks>
+		/// This method returns only the processes that calling to System::Diagnostics::Process::GetProcessById had not failed
+		/// </remarks>
+		/// <returns>List of processes in the job</returns>
 		array<System::Diagnostics::Process ^>^ ConstructAssignedProcessList();
 
-		//return a list of processe ids in the job
+		/// <summary>
+		/// return a list of process ids in the job
+		/// </summary>
+		/// <remarks>
+		/// This information may not be valid, since a race-condition may occur. A returned process id may no longer be active.
+		/// </remarks>
+		/// <returns>List of process ids in the job</returns>
 		array<unsigned int>^ GetAssignedProcessList();
-		
-		//Determines whether the current process is running in the job.
+
+		/// <summary>
+		/// Determines whether the current process is running in the job.
+		/// </summary>
 		property bool IsCurrentProcessInJob
 		{
 			bool get();
 		}
 
-		//Determines whether the process is running in the job.
+		/// <summary>
+		/// Determines whether the calling process is running in the job.
+		/// </summary>
 		bool IsProcessInJob(System::Diagnostics::Process ^process);
 
-		property bool IsTerminateJobProcessesOnDispose;
-
-		//Determines whether the Job was opened and not created 
+	
+		/// <summary>
+		/// Determines whether the Job was opened and not created
+		/// </summary>
+		/// <remarks> 
+		/// There are two cases that this value is true. 
+		///		a)	The object was created with the constructor that gets a Win32 handle to an existing Job Object.
+		///		b)	The object was created with a constructor that takes a Job Object name, and the name was already in use.
+		/// </remarks>
 		property bool IsOpenedAsWin32SharedObject
 		{
 			bool get();
@@ -266,7 +401,7 @@ namespace JobManagement
 		}
 
 	private:
-		
+
 		//Throw exception if the host process is in a Job itself
 		void ProbeForRunningInJob();
 
@@ -297,13 +432,13 @@ namespace JobManagement
 		{
 		public:
 			InJobProcessActivationServiceClient(JobObject ^job) : _job(job) {CreateActivationService();}
-		
+
 			void CreateActivationService();
 			void CloseActivationService();
 			System::Diagnostics::Process ^CreateChildProcess(System::Diagnostics::ProcessStartInfo ^startupInfo);
 			property bool IsActivationServiceAlive {bool get();}
 			~InJobProcessActivationServiceClient();
-			
+
 		private:
 			System::Threading::EventWaitHandle ^_finishEvent; 
 			System::Diagnostics::Process ^_serviceProcess;

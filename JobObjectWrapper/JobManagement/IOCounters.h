@@ -19,6 +19,13 @@
 #include <Windows.h>
 namespace JobManagement 
 {
+	/// <summary>
+	/// Contains basic accounting and I/O accounting information for a job object.
+	/// </summary>
+	/// <remarks>
+	/// Includes information for all processes that have ever been associated with the job, 
+	/// in addition to the information for all processes currently associated with the job. 
+	/// </remarks>
 	public value class JobIOCounters
 	{
 	public:

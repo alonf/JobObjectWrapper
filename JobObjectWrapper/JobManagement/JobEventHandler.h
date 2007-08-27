@@ -182,6 +182,56 @@ namespace JobManagement
 		System::Collections::Generic::Dictionary<unsigned int, IEventEntry ^> _eventMap;
 	};
 
+		/// <summary>
+		/// This class exposes the various Job Object events.
+		/// </summary>
+		/// <remarks> The C++/CLI implementation uses templates and macros. In C# the code is much cleaner, the event args is based on generic delegate.
+		/// The Job Object can raise events on many occasions such as: process related to the job exited or terminated,
+		/// a new process is born, a number of process limit has been reached, the number of processes in the job dropped to zero,
+		/// Job or process has reached its timeout limit or a memory limit has happened.
+		/// The first time a client is registered to an event, a new thread is created. 
+		/// All events will be invoked with this thread.
+		/// For those events that related to a process, the name and process id can be found in the event argument.
+		/// Be aware that in some cases, such as process creation or exit, this value may no longer be valid since a built-in race condition. 
+		/// </remarks>
+		/// <example>
+		/// C#: 
+		/// class Program
+		///	{
+        ///		static System.Threading.ManualResetEvent finishEvent = new System.Threading.ManualResetEvent(false);
+		///
+		/// 	static void Main(string[] args)
+        ///		{
+        ///			try
+        ///		    {
+        ///		        using (JobObject jo = new JobObject("EndOfProcessTimeExample"))
+        ///		        {
+        ///		            jo.Events.OnEndOfProcessTime += new jobEventHandler&lt;EndOfProcessTimeEventArgs&gt;(Events_OnEndOfProcessTime);
+        ///		            jo.Limits.PerProcessUserTimeLimit = TimeSpan.FromMilliseconds(100);
+		/// 
+        ///		            System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo("cmd.exe");
+        ///		            si.RedirectStandardInput = true;
+        ///		            si.UseShellExecute = false;
+        ///		            System.Diagnostics.Process p = jo.CreateProcessMayBreakAway(si);
+        ///             
+        ///		            p.StandardInput.WriteLine("@for /L %n in (1,1,1000000) do @echo %n");
+		/// 
+        ///		            finishEvent.WaitOne();
+        ///		        }
+        ///		    }
+        ///		    catch (Exception e)
+        ///		    {
+        ///		        Console.WriteLine(e.Message);
+        ///		    }
+        ///		}
+		/// 
+        ///		static void Events_OnEndOfProcessTime(object sender, EndOfProcessTimeEventArgs args)
+        ///		{
+        ///		    Console.WriteLine("Process {0} has reached its time limit", args.Win32Name);
+        ///		    finishEvent.Set();
+        ///		}
+		///	}
+		/// </example>
 	public ref class JobEvents
 	{
 	public:
