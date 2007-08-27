@@ -24,11 +24,19 @@ namespace JobManagement
 
 	ref class JobObject;
 
-	/************************************************************************
-	* JobLimits is a sealed class that wraps the Win32 Job Object Limits    *
-	* which define the limits for the job and its processes. The limits are *
-	* the boundaries for the processes running under the job				*
-	*************************************************************************/
+	
+	/// <summary>
+	/// JobLimits is a sealed class that wraps the Win32 Job Object Limits    
+	/// which define the limits for the job and its processes. The limits are 
+	/// the boundaries for the processes running under the job.
+	/// Joblimits expands the Win32 limits with Absolute timer limit.
+	/// </summary>
+	///<remarks> You can limit processes in the Job in many areas, such as: 
+	/// time limit (CPU time and absolute time), Memory limits, force priority &amp; scheduling class, set the process working set,
+	/// and force several security related limits. 
+	/// Security limits are deprecated on Windows Vista &amp; Server 2008. 
+	/// We will try to find a solution on per process basis for those platforms</remarks>
+
 	public ref class JobLimits sealed
 	{
 	public:
