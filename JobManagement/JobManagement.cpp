@@ -129,9 +129,6 @@ namespace JobManagement
 		}
 
 		_limits = gcnew JobLimits(this);
-
-		//Dont shutdown all process when the Job Management object gets disposed
-		IsTerminateJobProcessesOnDispose = true;
 	}
 
 
@@ -156,7 +153,7 @@ namespace JobManagement
 
 			try
 			{
-				if (IsTerminateJobProcessesOnDispose)
+				if (_limits->IsTerminateJobProcessesOnDispose)
 					TerminateAllProcesses(0);
 			}
 			catch (System::Exception ^exp)
@@ -174,9 +171,9 @@ namespace JobManagement
 		finally
 		{
 			::CloseHandle(_hJob);
+			_limits = nullptr;
 			_events = nullptr;
 			_hJob = NULL;
-			IsTerminateJobProcessesOnDispose = false;
 		}
 	}
 
@@ -270,13 +267,17 @@ namespace JobManagement
 	}
 
 	//Wait for all processes to exit on Job timeout limit
-	void JobObject::Join(System::TimeSpan timeout)
+	bool JobObject::Join(System::TimeSpan timeout)
 	{
 		DWORD result = ::WaitForSingleObject(_hJob, (DWORD)(timeout.TotalMilliseconds));
 		if (result == WAIT_FAILED)
 		{
 			throw gcnew JobException(true);
 		}
+		if (result == WAIT_TIMEOUT)
+			return false;
+
+		return true;
 	}
 
 	void JobObject::AssignProcessToJob(System::Diagnostics::Process ^process)

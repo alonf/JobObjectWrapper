@@ -36,11 +36,14 @@ namespace JobManagement
 	/// and force several security related limits. 
 	/// Security limits are deprecated on Windows Vista &amp; Server 2008. 
 	/// We will try to find a solution on per process basis for those platforms</remarks>
-
 	public ref class JobLimits sealed
 	{
 	public:
-		JobLimits(JobObject ^job) : _job(job) {}
+		JobLimits(JobObject ^job) : _job(job) 
+		{
+			//Shutdown all process when the Job Management object gets disposed
+			IsTerminateJobProcessesOnDispose = true;
+		}
 
 		// The time limit for a process to run under
 		property System::Nullable<System::TimeSpan> PerProcessUserTimeLimit
@@ -223,6 +226,8 @@ namespace JobManagement
 		}
 
 		void UserHandleGrantAccess(System::IntPtr userHandle, bool bGrant);
+
+		property bool IsTerminateJobProcessesOnDispose;
 
 		//sets the job object with an absolute timer
 		void SetAbsoluteTimer(System::DateTime absoluteDateTime);
