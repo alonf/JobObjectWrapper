@@ -22,6 +22,7 @@
 #pragma once
 #include <windows.h>
 #include "JobEventHandler.h"
+#include "JobException.h"
 
 //Remove the unicode macro
 #undef CreateProcess
@@ -127,7 +128,15 @@ namespace JobManagement
 		/// <exception cref="JobException"/>
 		void TerminateAllProcesses(unsigned int exitCode);
 
-		//Return a limit object that can query & set limits on the job
+		
+		/// <summary>
+		/// Use Limits to access the Job Object limit facility.
+		/// </summary>
+		///<remarks> You can limit processes in the Job in many areas, such as: 
+		/// time limit (CPU time and absolute time), Memory limits, force priority and scheduling class, set the process working set,
+		/// and force several security related limits. 
+		/// Security limits are deprecated on Windows Vista and Server 2008. 
+		/// We will try to find a solution on per process basis for those platforms</remarks>
 		property JobLimits ^Limits
 		{
 			JobLimits ^get();
