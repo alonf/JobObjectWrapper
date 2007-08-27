@@ -216,7 +216,23 @@ namespace JobManagement
 
 		void UserHandleGrantAccess(System::IntPtr userHandle, bool bGrant);
 
+		//sets the job object with an absolute timer
+		void SetAbsoluteTimer(System::DateTime absoluteDateTime);
+
+		void SetAbsoluteTimer(System::TimeSpan liveTimeSpan);
+
+		//Clear absolute timer
+		void ClearAbsoluteTimer();
+
 	private:
+
+		//called by create absolute timer
+		void ChangeAbsoluteTimer(System::TimeSpan timerTimeSpan);
+
+		// Specify what you want to happen when the Elapsed event is 
+		// raised.
+		void OnTimedEvent( Object^ source, System::Timers::ElapsedEventArgs^ e);
+
 		JOBOBJECT_BASIC_LIMIT_INFORMATION QueryBasicInformation();
 		void SetBasicInformation(bool hasValue,  JOBOBJECT_BASIC_LIMIT_INFORMATION &basicLimitInformation, DWORD flag);
 		bool CheckBasicFlag(const JOBOBJECT_BASIC_LIMIT_INFORMATION &basicLimitInformation, DWORD flag);
@@ -254,5 +270,6 @@ namespace JobManagement
 		};
 
 		JobObject ^_job;
+		System::Timers::Timer ^_liveTimer;
 	};
 }
