@@ -250,7 +250,10 @@ namespace JobManagement
 		/// <exception cref="JobManagement::JobException"/>
 		void AssignProcessToJob(System::Diagnostics::Process ^process);
 
-		//The total amount of user-mode execution time for all active processes associated with the job, as well as all terminated processes no longer associated with the job
+		/// <summary>
+		/// The total amount of user-mode execution time for all active processes associated with the job, 
+		/// as well as all terminated processes no longer associated with the job
+		/// </summary>
 		property System::TimeSpan TotalUserTime
 		{
 			System::TimeSpan get();
@@ -353,7 +356,7 @@ namespace JobManagement
 		/// Return a list of processes in the job.
 		/// </summary>
 		/// <remarks>
-		/// This method returns only the processes that calling to System::Diagnostics::Process::GetProcessById had not failed
+		/// This method returns only the processes that calling to <see cref="System::Diagnostics::Process::GetProcessById(int)"/> had not failed
 		/// </remarks>
 		/// <returns>List of processes in the job</returns>
 		array<System::Diagnostics::Process ^>^ ConstructAssignedProcessList();

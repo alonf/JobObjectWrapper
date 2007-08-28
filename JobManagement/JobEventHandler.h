@@ -28,18 +28,35 @@ namespace JobManagement
 		void RemoveDelegate(System::MulticastDelegate ^del);
 	};
 
+	/// <summary>
+	/// The base class for all Job Object related event args
+	/// </summary>
 	public ref class JobEventArgs abstract : public System::EventArgs
 	{
 	protected:
+		/// <summary>
+		/// Initializes a new instance of JobEventArgs
+		/// </summary>
+		/// <param name="messageSpecificValue">A specific value related to the current event. 
+		/// Most of the time it is the related process id</param>
 		JobEventArgs(unsigned int messageSpecificValue) : _messageSpecificValue(messageSpecificValue) {}
+
+		/// <summary>
+		/// A specific value related to the current event. 
+		/// Most of the time it is the related process id
+		/// </summary>
+		/// <returns>A specific value related to the current event. 
+		/// Most of the time it is the related process id</returns>
 		property unsigned int MessageSpecificValue { unsigned int get() { return _messageSpecificValue; } }
 
 	private:
 		const unsigned int _messageSpecificValue;
 	};
 	
-	//Generic delegate for all Job Events
-	generic<typename TEventArgs> //where TEventArgs : JobEventArgs
+	/// <summary>
+	/// Generic delegate for all Job Events
+	/// </summary>
+	generic<typename TEventArgs> // where TEventArgs : JobEventArgs ^
 	public delegate void jobEventHandler(System::Object ^sender, TEventArgs args);
 	
 
@@ -53,12 +70,45 @@ namespace JobManagement
 		virtual void RemoveDelegate(System::MulticastDelegate ^del);
 	};
 
+	/// <summary>
+	/// a base class for all Job Object event args that has a process argument
+	/// </summary>
 	public ref class JobProcessEventArgs abstract : public JobEventArgs
 	{
 	public:
+		/// <summary>
+		/// The event related process. 
+		/// </summary>
+		/// <remarks>
+		/// Since a race-condition may occur, this value may be null, if the related process has been exited.
+		/// It also may refer to a <see cref="System::Diagnostics::Process"/> that 
+		/// is no longer valid.
+		/// In rare cases (depend on the operating system) the event may be raised by a process that is already gone,
+		/// and a new process with the same process id is currently running which has nothing to do with the event.
+		/// In those rare cases the <see cref="TheProcess"/> may hold the wrong instance.
+		/// </remarks>
+		/// <returns>The process that related to the current event</returns>
 		property System::Diagnostics::Process ^TheProcess { System::Diagnostics::Process ^get(); }
+
+		/// <summary>
+		/// The event related process id.
+		/// </summary>
+		/// <remarks>
+		/// Since a race-condition may occur, this value may be no longer in use (the process has gone).
+		/// In rare cases (depend on the operating system) the event may be raised by a process that is already gone,
+		/// and a new process with the same process id is currently running which has nothing to do with the event. 
+		/// </remarks>
+		/// <returns>The event related process id.</returns>
 		property unsigned int TheProcessId { unsigned int get(); }
+
+		/// <summary>
+		/// The best Win32 name that can be found. It may be the executable name, or the process id.
+		/// </summary>
 		property System::String ^Win32Name { System::String ^get(); }
+
+		/// <summary>
+		/// The full path of the process executable
+		/// </summary>
 		property System::String ^Win32Path { System::String ^get(); }
 
 	internal:
@@ -69,6 +119,9 @@ namespace JobManagement
 		System::Diagnostics::Process ^_process;
 	};
 	
+	/// <summary>
+	/// Exit codes that indicate an abnormal exit of a process in a job
+	/// </summary>
 	public enum class ExitReasonIds 
 	{ 
 		NoError = 0,
@@ -101,12 +154,28 @@ namespace JobManagement
 		Timeout = STATUS_TIMEOUT
 	};
 
-	//Indicates that a process associated with the job exited with an exit code that indicates an abnormal exit.
+	/// <summary>
+	/// This event argument is used to indicate that a process associated with the job abnormal terminated.
+	/// </summary>
 	public ref class AbnormalExitProcessEventArgs sealed : public JobProcessEventArgs
 	{
 	public:
+		/// <summary>
+		/// One of the <see cref="ExitReasonIds"/> values that points to the exit reason.
+		/// </summary>
+		/// <returns>The exit reason id</returns>
 		property ExitReasonIds ExitReasonId { ExitReasonIds get(); } 
+
+		/// <summary>
+		/// One of the <see cref="ExitReasonIds"/> names that points to the exit reason
+		/// </summary>
+		/// <returns>The exit reason name</returns>
 		property System::String ^ExitReasonMessage { System::String ^get(); }
+
+		/// <summary>
+		/// Initializes a new instance of AbnormalExitProcessEventArgs
+		/// </summary>
+		/// <param name="messageSpecificValue">The process that has abnormal terminated</param>
 		AbnormalExitProcessEventArgs(unsigned int messageSpecificValue) : JobProcessEventArgs(messageSpecificValue) {}	
 	
 	internal:
@@ -114,7 +183,8 @@ namespace JobManagement
 	};
 	typedef EventEntry<AbnormalExitProcessEventArgs> AbnormalExitProcessEventEntry;
 
-#define JOB_EVENT_ARG(NAME, EVENT) public ref class NAME##EventArgs sealed : public JobEventArgs \
+#define JOB_EVENT_ARG(NAME, EVENT) \
+	public ref class NAME##EventArgs sealed : public JobEventArgs \
 	{ \
 	public: \
 		NAME##EventArgs(unsigned int messageSpecificValue) : JobEventArgs(messageSpecificValue) {} \
@@ -132,28 +202,44 @@ namespace JobManagement
 	}; \
 	typedef EventEntry<NAME##EventArgs> NAME##EventEntry
 	
-	//Indicates that the active process limit has been exceeded. 
+	/// <summary>
+	/// Event argument for the event that indicates that the active process limit has been exceeded. 
+	/// </summary>
 	JOB_EVENT_ARG(ActiveProcessLimit, JOB_OBJECT_MSG_ACTIVE_PROCESS_LIMIT);
 
-	//Indicates that the active process count has been decremented to 0. For example, if the job currently has two active processes, the system sends this message after they both terminate. 
+	/// <summary>
+	/// Event argument for the event that indicates that the active process count has been decremented to 0. For example, if the job currently has two active processes, the system sends this message after they both terminate. 
+	/// </summary>
 	JOB_EVENT_ARG(ActiveProcessZero, JOB_OBJECT_MSG_ACTIVE_PROCESS_ZERO);
 
-	//Indicates that the JOB_OBJECT_POST_AT_END_OF_JOB option is in effect and the end-of-job time limit has been reached. Upon posting this message, the time limit is canceled and the job's processes can continue to run. 
+	/// <summary>
+	/// Event argument for the event that indicates that the JOB_OBJECT_POST_AT_END_OF_JOB option is in effect and the end-of-job time limit has been reached. Upon posting this message, the time limit is canceled and the job's processes can continue to run. 
+	/// </summary>
 	JOB_EVENT_ARG(EndOfJobTime, JOB_OBJECT_MSG_END_OF_JOB_TIME);
 	
-	//Indicates that a process has exceeded a per-process time limit. The system sends this message after the process termination has been requested. 
+	/// <summary>
+	/// Event argument for the event that indicates that a process has exceeded a per-process time limit. The system sends this message after the process termination has been requested. 
+	/// </summary>
 	JOB_PROCESS_EVENT_ARG(EndOfProcessTime, JOB_OBJECT_MSG_END_OF_PROCESS_TIME);
  
-	//Indicates that a process associated with the job has exited. 
+	/// <summary>
+	/// Event argument for the event that indicates that a process associated with the job has exited. 
+	/// </summary>
 	JOB_PROCESS_EVENT_ARG(ExitProcess,JOB_OBJECT_MSG_EXIT_PROCESS);
  
-	//Indicates that a process associated with the job caused the job to exceed the job-wide memory limit (if one is in effect). 
+	/// <summary>
+	/// Event argument for the event that indicates that a process associated with the job caused the job to exceed the job-wide memory limit (if one is in effect). 
+	/// </summary>
 	JOB_PROCESS_EVENT_ARG(JobMemoryLimit, JOB_OBJECT_MSG_JOB_MEMORY_LIMIT);
  
-	//Indicates that a process has been added to the job. Processes added to a job at the time a completion port is associated are also reported. 
+	/// <summary>
+	/// Event argument for the event that indicates that a process has been added to the job. Processes added to a job at the time a completion port is associated are also reported. 
+	/// </summary>
 	JOB_PROCESS_EVENT_ARG(NewProcess, JOB_OBJECT_MSG_NEW_PROCESS);
 
-	//Indicates that a process associated with the job has exceeded its memory limit (if one is in effect). 
+	/// <summary>
+	/// Event argument for the event that indicates that a process associated with the job has exceeded its memory limit (if one is in effect). 
+	/// </summary>
 	JOB_PROCESS_EVENT_ARG(ProcessMemoryLimit, JOB_OBJECT_MSG_PROCESS_MEMORY_LIMIT);
 	
 	
@@ -235,6 +321,11 @@ namespace JobManagement
 	public ref class JobEvents
 	{
 	public:
+
+		/// <summary>
+		/// Initializes a new instance of JobEvents
+		/// </summary>
+		/// <param name="job">The source (<see cref="JobObject"/>) of the event</param>
 		JobEvents(JobObject ^job) : _jobEventHandler(job) {}
 		
 #define EVENT_ENTRY(EVENT_ARG) \
@@ -251,31 +342,49 @@ namespace JobManagement
 			} \
 		} \
 
-		//Indicates that a process associated with the job exited with an exit code that indicates an abnormal exit.
+		/// <summary>
+		/// Indicates that a process associated with the job exited with an exit code that indicates an abnormal exit.
+		/// </summary>
 		EVENT_ENTRY(AbnormalExitProcess)
 
-		//Indicates that the active process limit has been exceeded. 
+		/// <summary>
+		/// Indicates that the active process limit has been exceeded. 
+		/// </summary>
 		EVENT_ENTRY(ActiveProcessLimit)
 
-		//Indicates that the active process count has been decremented to 0. For example, if the job currently has two active processes, the system sends this message after they both terminate. 
+		/// <summary>
+		/// Indicates that the active process count has been decremented to 0. For example, if the job currently has two active processes, the system sends this message after they both terminate. 
+		/// </summary>
 		EVENT_ENTRY(ActiveProcessZero);
 
-		//Indicates that the JOB_OBJECT_POST_AT_END_OF_JOB option is in effect and the end-of-job time limit has been reached. Upon posting this message, the time limit is canceled and the job's processes can continue to run. 
+		/// <summary>
+		/// Indicates that the JOB_OBJECT_POST_AT_END_OF_JOB option is in effect and the end-of-job time limit has been reached. Upon posting this message, the time limit is canceled and the job's processes can continue to run. 
+		/// </summary>
 		EVENT_ENTRY(EndOfJobTime)
 	
-		//Indicates that a process has exceeded a per-process time limit. The system sends this message after the process termination has been requested. 
+		/// <summary>
+		/// Indicates that a process has exceeded a per-process time limit. The system sends this message after the process termination has been requested. 
+		/// </summary>
 		EVENT_ENTRY(EndOfProcessTime)
  
-		//Indicates that a process associated with the job has exited. 
+		/// <summary>
+		/// Indicates that a process associated with the job has exited. 
+		/// </summary>
 		EVENT_ENTRY(ExitProcess)
  
-		//Indicates that a process associated with the job caused the job to exceed the job-wide memory limit (if one is in effect). 
+		/// <summary>
+		/// Indicates that a process associated with the job caused the job to exceed the job-wide memory limit (if one is in effect). 
+		/// </summary>
 		EVENT_ENTRY(JobMemoryLimit)
  
-		//Indicates that a process has been added to the job. Processes added to a job at the time a completion port is associated are also reported. 
+		/// <summary>
+		/// Indicates that a process has been added to the job. Processes added to a job at the time a completion port is associated are also reported. 
+		/// </summary>
 		EVENT_ENTRY(NewProcess)
 
-		//Indicates that a process associated with the job has exceeded its memory limit (if one is in effect). 
+		/// <summary>
+		/// Indicates that a process associated with the job has exceeded its memory limit (if one is in effect). 
+		/// </summary>
 		EVENT_ENTRY(ProcessMemoryLimit)
 	
 	private:
