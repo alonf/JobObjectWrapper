@@ -29,11 +29,34 @@ namespace JobManagement
 	public value class JobIOCounters
 	{
 	public:
+		/// <summary>
+		/// The number of read operations performed. 
+		/// </summary>
 		property System::UInt64 ReadOperationCount;
+
+		/// <summary>
+		/// The number of write operations performed.
+		/// </summary>
 		property System::UInt64 WriteOperationCount;
+
+		/// <summary>
+		/// The number of I/O operations performed, other than read and write operations.
+		/// </summary>
 		property System::UInt64 OtherOperationCount;
+
+		/// <summary>
+		/// The number of bytes read. 
+		/// </summary>
 		property System::UInt64 ReadTransferCount;
+
+		/// <summary>
+		/// The number of bytes written.
+		/// </summary>
 		property System::UInt64 WriteTransferCount;
+
+		/// <summary>
+		/// The number of bytes transferred during operations other than read and write operations. 
+		/// </summary>
 		property System::UInt64 OtherTransferCount;
 	internal:
 		JobIOCounters(const IO_COUNTERS& ioCounters);

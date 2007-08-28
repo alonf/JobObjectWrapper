@@ -41,81 +41,105 @@ namespace JobManagement
 	public:
 		JobLimits(JobObject ^job) : _job(job) 
 		{
-			//Shutdown all process when the Job Management object gets disposed
+			/// <summary>
+			/// Shutdown all process when the Job Management object gets disposed
+			/// </summary>
 			IsTerminateJobProcessesOnDispose = true;
 		}
 
-		// The time limit for a process to run under
+		/// <summary>
+		/// The time limit for a process to run under
+		/// </summary>
 		property System::Nullable<System::TimeSpan> PerProcessUserTimeLimit
 		{
 			System::Nullable<System::TimeSpan> get();
 			void set(System::Nullable<System::TimeSpan> value);
 		}
 
-		// The time limit for a job to run under
+		/// <summary>
+		/// The time limit for a job to run under
+		/// </summary>
 		property System::Nullable<System::TimeSpan> PerJobUserTimeLimit
 		{
 			System::Nullable<System::TimeSpan> get();
 			void set(System::Nullable<System::TimeSpan> value);
 		}
 
-		// The minimum size of a working-set
+		/// <summary>
+		/// The minimum size of a working-set
+		/// </summary>
 		property System::Nullable<System::IntPtr> MinimumWorkingSetSize
 		{
 			System::Nullable<System::IntPtr> get();
 			void set(System::Nullable<System::IntPtr> value);
 		}
 
-		// The maximum size of a working-set
+		/// <summary>
+		/// The maximum size of a working-set
+		/// </summary>
 		property System::Nullable<System::IntPtr> MaximumWorkingSetSize
 		{
 			System::Nullable<System::IntPtr> get();
 			void set(System::Nullable<System::IntPtr> value);
 		}
 
-		// The maximum number of active processes
+		/// <summary>
+		/// The maximum number of active processes
+		/// </summary>
 		property System::Nullable<unsigned int> ActiveProcessLimit
 		{
 			System::Nullable<unsigned int> get();
 			void set(System::Nullable<unsigned int> value);
 		}
 
-		// The processesor affinity
+		/// <summary>
+		/// The processesor affinity
+		/// </summary>
 		property System::Nullable<System::IntPtr> Affinity
 		{
 			System::Nullable<System::IntPtr> get();
 			void set(System::Nullable<System::IntPtr> value);
 		}
 
-		// The process priority class
+		/// <summary>
+		/// The process priority class
+		/// </summary>
 		property System::Nullable<System::Diagnostics::ProcessPriorityClass> PriorityClass
 		{
 			System::Nullable<System::Diagnostics::ProcessPriorityClass> get();
 			void set(System::Nullable<System::Diagnostics::ProcessPriorityClass> value);
 		}
 
-		//The Scheduling Class is a number from 0 to 9  
+		/// <summary>
+		///The Scheduling Class is a number from 0 to 9  
+		/// </summary>
 		property System::Nullable<unsigned char> SchedulingClass
 		{
 			System::Nullable<unsigned char> get();
 			void set(System::Nullable<unsigned char> value);
 		}
 
-		//Allow child process to use the CREATE_BREAKAWAY_FROM_JOB 
+		/// <summary>
+		///Allow child process to use the CREATE_BREAKAWAY_FROM_JOB 
+		/// </summary>
 		property bool CanChildProcessBreakAway
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Allows any process associated with the job to create child processes that are not associated with the job.
+		/// <summary>
+		///Allows any process associated with the job to create child processes that are not associated with the job.
+		/// </summary>
 		property bool IsChildProcessBreakAway
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Forces a call to the SetErrorMode function with the SEM_NOGPFAULTERRORBOX flag for each process associated with the job. 
+		/// <summary>
+		///Forces a call to the SetErrorMode function with the SEM_NOGPFAULTERRORBOX flag for each process associated with the job. 
+		/// </summary>
 		property bool IsDieOnUnhandledException
 		{
 			bool get();
@@ -124,7 +148,7 @@ namespace JobManagement
 
 		/********************************************************************************************
 		* This limit was exposed in Win2k but was not supported by Win2k. Apparently it is not		*
-		* supported also in later version of windows. Latest windows version check is Windows Vista	*
+		* supported also in later version of windows. Latest windows version checked is Vista		*
 		* ////Causes all processes associated with the job to terminate when the last handle to the *
 		* job is closed.																			*
 		* //property bool IsKillOnJobClose															*
@@ -134,14 +158,18 @@ namespace JobManagement
 		* //}																						*
 		*********************************************************************************************/
 
-		//specifies the limit for the virtual memory that can be committed by a process
+		/// <summary>
+		///specifies the limit for the virtual memory that can be committed by a process
+		/// </summary>
 		property System::Nullable<System::IntPtr> ProcessMemoryLimit
 		{
 			System::Nullable<System::IntPtr> get();
 			void set(System::Nullable<System::IntPtr> value);
 		}	
 
-		//specifies the limit for the virtual memory that can be committed for the job
+		/// <summary>
+		///specifies the limit for the virtual memory that can be committed for the job
+		/// </summary>
 		property System::Nullable<System::IntPtr> JobMemoryLimit
 		{
 			System::Nullable<System::IntPtr> get();
@@ -149,92 +177,136 @@ namespace JobManagement
 		}	
 
 
-		//Prevents processes associated with the job from creating desktops and switching desktops using the CreateDesktop and SwitchDesktop functions
+		/// <summary>
+		///Prevents processes associated with the job from creating desktops and switching desktops using the CreateDesktop and SwitchDesktop functions
+		/// </summary>
 		property bool IsDesktopCreationAndSwitchingEnabled
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Prevents processes associated with the job from calling the ChangeDisplaySettings function.
+		/// <summary>
+		///Prevents processes associated with the job from calling the ChangeDisplaySettings function.
+		/// </summary>
 		property bool IsLimitDisplaySettings
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Prevents processes associated with the job from calling the ExitWindows or ExitWindowsEx function.
+		/// <summary>
+		///Prevents processes associated with the job from calling the ExitWindows or ExitWindowsEx function.
+		/// </summary>
 		property bool CanCallExitWindows
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Prevents processes associated with the job from accessing global atoms. When this flag is used, each job has its own atom table
+		/// <summary>
+		///Prevents processes associated with the job from accessing global atoms. When this flag is used, each job has its own atom table
+		/// </summary>
 		property bool CanAccessAtomTable 
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Prevents processes associated with the job from using USER handles owned by processes not associated with the same job.
+		/// <summary>
+		///Prevents processes associated with the job from using USER handles owned by processes not associated with the same job.
+		/// </summary>
 		property bool CanUseOutOfJobUserHandles
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Prevents processes associated with the job from reading data from the clipboard.
+		/// <summary>
+		///Prevents processes associated with the job from reading data from the clipboard.
+		/// </summary>
 		property bool CanReadClipboard
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Prevents processes associated with the job from changing system parameters by using the SystemParametersInfo function
+		/// <summary>
+		///Prevents processes associated with the job from changing system parameters by using the SystemParametersInfo function
+		/// </summary>
 		property bool CanChangeUISystemParameters
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Prevents processes associated with the job from writing data to the clipboard.
+		/// <summary>
+		///Prevents processes associated with the job from writing data to the clipboard.
+		/// </summary>
 		property bool CanWriteClipboard
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Applies a filter to the token when a process impersonates a client
+		/// <summary>
+		///Applies a filter to the token when a process impersonates a client
+		/// </summary>
 		void FilterSecurityTokenAndPriviliges(HTokenGroup_t sidsToDisable, HPriviligesGroup_t privilegesToDelete, HTokenGroup_t restrictedSids);
 
-		//Prevents any process in the job from using a token that specifies the local administrators group.
+		/// <summary>
+		///Prevents any process in the job from using a token that specifies the local administrators group.
+		/// </summary>
 		property bool IsAdminProcessAllow
 		{
 			bool get();
 			void set(bool value);
 		}
 
-		//Forces processes in the job to run under a specific token
+		/// <summary>
+		///Forces processes in the job to run under a specific token
+		/// </summary>
 		void RunJobProcessesAs(System::IntPtr hToken);
 
-		//Prevents any process in the job from using a token that was not created with the CreateRestrictedToken function.
+		/// <summary>
+		///Prevents any process in the job from using a token that was not created with the CreateRestrictedToken function.
+		/// </summary>
 		property bool IsAllowOnlyRestrictedTokenProcesses
 		{
 			bool get();
 			void set(bool value);
 		}
 
+		/// <summary>
+		/// Grants or denies access to a handle to a User object to a job that has a user-interface restriction. 
+		/// When access is granted, all processes associated with the job can subsequently recognize and use the handle.
+		/// When access is denied, the processes can no longer use the handle
+		/// </summary>
+		/// <param name="userHandle"> A handle to a User object</param>
+		/// <param name="bGrant">If this parameter is true, all processes associated with the job can recognize and use the handle.
+		/// If the parameter is false, the processes cannot use the handle. </param>
 		void UserHandleGrantAccess(System::IntPtr userHandle, bool bGrant);
 
+		/// <summary>
+		/// When disposing the Job Object, this value determined whether to terminated all processes in the job
+		/// </summary>
 		property bool IsTerminateJobProcessesOnDispose;
 
-		//sets the job object with an absolute timer
+		/// <summary>
+		/// Set a system timer, that when it goes off, all the processes in the job are terminated
+		/// </summary>
+		/// <param name="absoluteDateTime">The specific time to kill all processes</param>
 		void SetAbsoluteTimer(System::DateTime absoluteDateTime);
 
+		/// <summary>
+		/// Set a system timer, that when it goes off, all the processes in the job are terminated
+		/// </summary>
+		/// <param name="liveTimeSpan">The relative time to kill all processes</param>
 		void SetAbsoluteTimer(System::TimeSpan liveTimeSpan);
 
-		//Clear absolute timer
+		/// <summary>
+		/// Stop the system timer and clear its values
+		/// </summary>
 		void ClearAbsoluteTimer();
 
 	private:
