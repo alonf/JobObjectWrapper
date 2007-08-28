@@ -27,7 +27,7 @@ using namespace System::Security::Permissions;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly:AssemblyTitleAttribute("JobObjectWrapper")];
+[assembly:AssemblyTitleAttribute("JobObjectWrapper Beta 1")];
 [assembly:AssemblyDescriptionAttribute(".NET Wrapper for Win32 Job Object")];
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("JobObjectWrapper Team")];
