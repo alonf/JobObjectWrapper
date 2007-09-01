@@ -24,9 +24,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ToDo.txt = ToDo.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillAllProcessesOnJobClose", "KillAllProcessesOnJobClose\KillAllProcessesOnJobClose.csproj", "{3D3A7A91-32BB-43BF-859E-769F733F05B2}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -59,6 +61,10 @@ Global
 		SccProjectTopLevelParentUniqueName8 = JobObjectWrapper.sln
 		SccProjectName8 = Examples/EndOfJobMemory
 		SccLocalPath8 = Examples\\EndOfJobMemory
+		SccProjectUniqueName9 = KillAllProcessesOnJobClose\\KillAllProcessesOnJobClose.csproj
+		SccProjectTopLevelParentUniqueName9 = JobObjectWrapper.sln
+		SccProjectName9 = KillAllProcessesOnJobClose
+		SccLocalPath9 = KillAllProcessesOnJobClose
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -191,6 +197,20 @@ Global
 		{54D7A119-2C07-481B-9662-BA9A65A4B766}.Release|Win32.ActiveCfg = Release|Any CPU
 		{54D7A119-2C07-481B-9662-BA9A65A4B766}.Release|x64.ActiveCfg = Release|Any CPU
 		{54D7A119-2C07-481B-9662-BA9A65A4B766}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|Win32.ActiveCfg = Release|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|x64.ActiveCfg = Release|Any CPU
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -201,5 +221,6 @@ Global
 		{32D55A47-1F54-4A6C-9B23-C89F28076530} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
 		{C1B24BBC-346E-4B59-8EC6-FE18375EBAF1} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
 		{54D7A119-2C07-481B-9662-BA9A65A4B766} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
+		{3D3A7A91-32BB-43BF-859E-769F733F05B2} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
 	EndGlobalSection
 EndGlobal
