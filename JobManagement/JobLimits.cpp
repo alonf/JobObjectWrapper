@@ -301,15 +301,15 @@ namespace JobManagement
 		SetExtendedFlag(JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION, value);
 	}
 
-	//bool JobLimits::IsKillOnJobClose::get()
-	//{
-	//	return CheckExtendedFlag(JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE);
-	//}
-	//	
-	//void JobLimits::IsKillOnJobClose::set(bool value)
-	//{
-	//	SetExtendedFlag(JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE, value);
-	//}
+	bool JobLimits::IsKillOnJobHandleClose::get()
+	{
+		return CheckExtendedFlag(JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE);
+	}
+		
+	void JobLimits::IsKillOnJobHandleClose::set(bool value)
+	{
+		SetExtendedFlag(JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE, value);
+	}
 
 	//specifies the limit for the virtual memory that can be committed by a process
 	System::Nullable<System::IntPtr> JobLimits::ProcessMemoryLimit::get()

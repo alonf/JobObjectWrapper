@@ -146,17 +146,23 @@ namespace JobManagement
 			void set(bool value);
 		}
 
-		/********************************************************************************************
-		* This limit was exposed in Win2k but was not supported by Win2k. Apparently it is not		*
-		* supported also in later version of windows. Latest windows version checked is Vista		*
-		* ////Causes all processes associated with the job to terminate when the last handle to the *
-		* job is closed.																			*
-		* //property bool IsKillOnJobClose															*
-		* //{																						*
-		* //	bool get();																			*
-		* //	void set(bool value);																*
-		* //}																						*
-		*********************************************************************************************/
+		/// <summary>
+		/// Causes all processes associated with the job to terminate when the last handle to the job is closed
+		/// </summary>
+		/// <remarks>
+		/// Use the <see cref="IsKillOnJobHandleClose"/> in cases when you share the job object handle 
+		/// with other processes. this will terminate all the processes assigned to the job only when the last handle is closed.
+		/// Using the <see cref="IsKillOnJobHandleClose"/> will shutdown all processes even on abnormal termination of
+		/// the process that hold the job handle.
+		/// You can also use the <see cref="IsTerminateJobProcessesOnDispose"/> for those cases that you want to be sure that all processes are closed 
+		/// when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
+		/// </remarks>
+		property bool IsKillOnJobHandleClose	
+		{								
+			bool get();					
+			void set(bool value);		
+		}								
+		
 
 		/// <summary>
 		///specifies the limit for the virtual memory that can be committed by a process
@@ -290,6 +296,14 @@ namespace JobManagement
 		/// <summary>
 		/// When disposing the Job Object, this value determined whether to terminated all processes in the job
 		/// </summary>
+		/// <remarks>
+		/// You can also use the <see cref="IsKillOnJobHandleClose"/>. In cases when you share the job object handle 
+		/// with other processes, you may want to terminate all the processes only when the last handle is closed.
+		/// Using the <see cref="IsKillOnJobHandleClose"/> will shutdown all processes even on abnormal termination of
+		/// the process that hold the job handle.
+		/// Use <see cref="IsTerminateJobProcessesOnDispose"/> in those cases that you want to be sure the all processes are closed 
+		/// when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
+		/// </remarks>
 		property bool IsTerminateJobProcessesOnDispose;
 
 		/// <summary>
