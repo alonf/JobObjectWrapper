@@ -110,11 +110,40 @@ namespace JobManagement
 		System::Diagnostics::Process ^CreateProcessSecured(System::Diagnostics::ProcessStartInfo ^startupInfo);
 
 		/// <summary>
+		/// Create a process in a Job Object sandbox.
+		/// </summary>
+		/// <remarks> If the newly created process creates a child process before entering the job, 
+		/// the child process will not be part of the job.</remarks>
+		/// <param name="fileName">The file name to run, Starting a process by specifying its file name is similar to typing 
+		/// the information in the Run dialog box of the Windows Start menu</param>
+		/// <returns>The newly create Process object</returns>
+		System::Diagnostics::Process ^CreateProcessMayBreakAway(System::String ^fileName);
+
+		
+		/// <summary>
+		/// Create a process in a Job Object sandbox; the method uses other process to create the child process.
+		/// </summary>
+		/// <remarks>Usually creating a process in a job object is a three steps process. 
+		/// First we create the new process in a suspend state (using the CREATE_SUSPENDED flag), 
+		/// then we assign the process to the Job, and just after that we allow the process to run using ResumeThread.
+		/// The problem is that .Net currently does not enable creating processes in a suspend state. 
+		/// The chosen solution is to use a child activation service process running in the job. 
+		/// Any time we need to create a process in the Job we ask this child process to run the desired process, 
+		/// hence implying an execution in a Job. 
+		/// </remarks>
+		/// <param name="fileName">The file name to run, Starting a process by specifying its file name is similar to typing 
+		/// the information in the Run dialog box of the Windows Start menu</param>
+		/// <returns>The return value is a remoting Process proxy. 
+		/// If you close the activation service process, you lose the returned process. 
+		/// Usually you need this object if you redirect standard input, output or error.</returns>
+		System::Diagnostics::Process ^CreateProcessSecured(System::String ^fileName);
+
+		/// <summary>
 		/// Shut down the process activation service. 
-		/// If you call again to the <see cref=" CreateProcessSecured "/> you get a new process activation service. 
+		/// If you call again to any of the CreateProcessSecured methods you get a new process activation service. 
 		/// </summary>
 		/// <remarks>By calling this method, you invalidate any Process remoting proxy that has returned 
-		/// from <see cref=" CreateProcessSecured "/> </remarks> 
+		/// from CreateProcessSecured.</remarks> 
 		void ShutDownInJobProcessActivationService();
 
 		/// <summary>

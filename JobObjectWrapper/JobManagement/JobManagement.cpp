@@ -201,6 +201,23 @@ namespace JobManagement
 		return _inJobProcessActivationServiceClient->CreateChildProcess(startupInfo);
 	}
 
+	//Create a process in a Job Object sandbox
+	System::Diagnostics::Process ^JobObject::CreateProcessMayBreakAway(System::String ^fileName)
+	{
+		System::Diagnostics::ProcessStartInfo startupInfo;
+		startupInfo.FileName = fileName;
+		startupInfo.UseShellExecute = true;
+		return CreateProcessMayBreakAway(%startupInfo);
+	}
+
+	System::Diagnostics::Process ^JobObject::CreateProcessSecured(System::String ^fileName)
+	{
+		System::Diagnostics::ProcessStartInfo startupInfo;
+		startupInfo.FileName = fileName;
+		startupInfo.UseShellExecute = true;
+		return CreateProcessSecured(%startupInfo);	
+	}
+
 	void JobObject::ShutDownInJobProcessActivationService()
 	{
 		msclr::lock l(this);
