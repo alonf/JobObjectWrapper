@@ -26,9 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillAllProcessesOnJobClose", "KillAllProcessesOnJobClose\KillAllProcessesOnJobClose.csproj", "{3D3A7A91-32BB-43BF-859E-769F733F05B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DieOnUnhandledException", "Examples\DieOnUnhandledException\DieOnUnhandledException.csproj", "{1E2B4794-6273-468C-9505-C752F0BA377D}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
+		SccNumberOfProjects = 11
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs04.codeplex.com/
 		SccLocalPath0 = .
@@ -65,6 +67,10 @@ Global
 		SccProjectTopLevelParentUniqueName9 = JobObjectWrapper.sln
 		SccProjectName9 = KillAllProcessesOnJobClose
 		SccLocalPath9 = KillAllProcessesOnJobClose
+		SccProjectUniqueName10 = Examples\\DieOnUnhandledException\\DieOnUnhandledException.csproj
+		SccProjectTopLevelParentUniqueName10 = JobObjectWrapper.sln
+		SccProjectName10 = Examples/DieOnUnhandledException
+		SccLocalPath10 = Examples\\DieOnUnhandledException
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +217,20 @@ Global
 		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|Win32.ActiveCfg = Release|Any CPU
 		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|x64.ActiveCfg = Release|Any CPU
 		{3D3A7A91-32BB-43BF-859E-769F733F05B2}.Release|x86.ActiveCfg = Release|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Release|Win32.ActiveCfg = Release|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Release|x64.ActiveCfg = Release|Any CPU
+		{1E2B4794-6273-468C-9505-C752F0BA377D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -222,5 +242,6 @@ Global
 		{C1B24BBC-346E-4B59-8EC6-FE18375EBAF1} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
 		{54D7A119-2C07-481B-9662-BA9A65A4B766} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
 		{3D3A7A91-32BB-43BF-859E-769F733F05B2} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
+		{1E2B4794-6273-468C-9505-C752F0BA377D} = {642E076D-2DD8-4C5F-A7C3-96A34E73BCFF}
 	EndGlobalSection
 EndGlobal
