@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1255"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="8.00"
 	Name="JobManagement"
 	ProjectGUID="{0E50E067-74E6-41E9-8E69-B485813CA7D8}"
 	RootNamespace="JobManagement"
@@ -10,7 +10,6 @@
 	SccLocalPath="SAK"
 	SccProvider="SAK"
 	Keyword="ManagedCProj"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -69,8 +68,6 @@
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -90,6 +87,9 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -143,8 +143,6 @@
 				AdditionalDependencies="$(NoInherit) user32.lib psapi.lib advapi32.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -168,6 +166,9 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -176,20 +177,18 @@
 		<AssemblyReference
 			RelativePath="System.dll"
 			AssemblyName="System, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
-			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
 			RelativePath="System.Data.dll"
 			AssemblyName="System.Data, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=x86"
-			MinFrameworkVersion="131072"
 		/>
 		<AssemblyReference
 			RelativePath="System.XML.dll"
 			AssemblyName="System.Xml, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
-			MinFrameworkVersion="131072"
 		/>
 		<ProjectReference
 			ReferencedProjectIdentifier="{1208C948-CD63-45A9-8031-3D7EF416E623}"
+			RelativePathToProject=".\InJobProcessCreator\InJobProcessCreator.csproj"
 		/>
 	</References>
 	<Files>
