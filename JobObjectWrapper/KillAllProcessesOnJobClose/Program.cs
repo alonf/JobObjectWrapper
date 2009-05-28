@@ -22,7 +22,6 @@ namespace KillAllProcessesOnJobClose
 
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
-
             }
         }
     }
