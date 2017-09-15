@@ -192,7 +192,6 @@
     <ClCompile Include="JobException.cpp" />
     <ClCompile Include="JobLimits.cpp" />
     <ClCompile Include="JobManagement.cpp" />
-    <ClCompile Include="SecurityTypeConvertors.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -208,7 +207,6 @@
     <ClInclude Include="JobLimits.h" />
     <ClInclude Include="JobManagement.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SecurityTypes.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>

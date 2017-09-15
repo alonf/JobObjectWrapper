@@ -1,86 +1,6 @@
 <?xml version="1.0"?><doc>
 <members>
-<member name="T:JobManagement.JobException" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="19">
-<summary>
-This exception class is used to inform the caller of most of the Job Object wrapper errors.
-</summary>
-<remarks> 
-If the error occurred by Win32 the Win32 GetLastError() code can be found in <see cref="P:JobManagement.JobException.Win32LastError"/> 
-and the text FormatMessage message can be found in <see cref="P:JobManagement.JobException.Win32ErrorMessage"/>
-</remarks>
-</member>
-<member name="M:JobManagement.JobException.#ctor" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="30">
-<summary>
-Initializes a new instance of JobException
-</summary>
-</member>
-<member name="M:JobManagement.JobException.#ctor(System.Boolean)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="35">
-<summary>
-Initializes a new instance of JobException
-</summary>
-<param name="useCurrentWin32Error">true value will peek the current Win32 error.</param>
-</member>
-<member name="M:JobManagement.JobException.#ctor(System.Boolean,System.Exception)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="41">
-<summary>
-Initializes a new instance of JobException
-</summary>
-<param name="useCurrentWin32Error">true value will peek the current Win32 error.</param>
-<param name="innerException">The exception that is the cause of the current exception, or a null reference
-(Nothing in Visual Basic) if no inner exception is specified.
-</param>
-</member>
-<member name="M:JobManagement.JobException.#ctor(System.UInt32)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="50">
-<summary>
-Initializes a new instance of JobException
-</summary>
-<param name="win32Error">The win32 error that is the cause of the current exception</param>
-</member>
-<member name="M:JobManagement.JobException.#ctor(System.UInt32,System.Exception)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="56">
-<summary>
-Initializes a new instance of JobException
-</summary>
-<param name="win32Error">The win32 error that is the cause of the current exception</param>
-<param name="innerException">The exception that is the cause of the current exception, or a null reference
-(Nothing in Visual Basic) if no inner exception is specified.
-</param>
-</member>
-<member name="M:JobManagement.JobException.#ctor(System.String)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="65">
-<summary>
-Initializes a new instance of JobException
-</summary>
-<param name="message">The message that describes the error.</param>
-</member>
-<member name="M:JobManagement.JobException.#ctor(System.String,System.Exception)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="71">
-<summary>
-Initializes a new instance of JobException
-</summary>
-<param name="message">The message that describes the error.</param>
-<param name="innerException">The exception that is the cause of the current exception, or a null reference
-(Nothing in Visual Basic) if no inner exception is specified.
-</param>
-</member>
-<member name="M:JobManagement.JobException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="82">
-<summary>
-Initializes a new instance of JobException
-</summary>
-<param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized
-object data about the exception being thrown.</param>
-<param name="context"> The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual
-information about the source or destination.</param>
-</member>
-<member name="P:JobManagement.JobException.Win32LastError" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="93">
-<summary>
-The win32 error that is the cause of the current exception
-</summary>
-<returns></returns>
-</member>
-<member name="P:JobManagement.JobException.Win32ErrorMessage" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="98">
-<summary>
-The win32 error message describing the cause of the current exception.
-</summary>
-<returns>The win32 error message describing the cause of the current exception.</returns>
-</member>
-<member name="T:JobManagement.JobLimits" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="25">
+<member name="T:JobManagement.JobLimits" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="24">
 <summary>
 JobLimits is a sealed class that wraps the Win32 Job Object Limits    
 which define the limits for the job and its processes. The limits are 
@@ -93,62 +13,62 @@ and force several security related limits.
 Security limits are deprecated on Windows Vista &amp; Server 2008. 
 We will try to find a solution on per process basis for those platforms</remarks>
 </member>
-<member name="P:JobManagement.JobLimits.PerProcessUserTimeLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="47">
+<member name="P:JobManagement.JobLimits.PerProcessUserTimeLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="46">
 <summary>
 The time limit for a process to run under
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.PerJobUserTimeLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="56">
+<member name="P:JobManagement.JobLimits.PerJobUserTimeLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="55">
 <summary>
 The time limit for a job to run under
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.MinimumWorkingSetSize" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="65">
+<member name="P:JobManagement.JobLimits.MinimumWorkingSetSize" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="64">
 <summary>
 The minimum size of a working-set
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.MaximumWorkingSetSize" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="74">
+<member name="P:JobManagement.JobLimits.MaximumWorkingSetSize" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="73">
 <summary>
 The maximum size of a working-set
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.ActiveProcessLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="83">
+<member name="P:JobManagement.JobLimits.ActiveProcessLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="82">
 <summary>
 The maximum number of active processes
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.Affinity" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="92">
+<member name="P:JobManagement.JobLimits.Affinity" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="91">
 <summary>
 The processesor affinity
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.PriorityClass" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="101">
+<member name="P:JobManagement.JobLimits.PriorityClass" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="100">
 <summary>
 The process priority class
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.SchedulingClass" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="110">
+<member name="P:JobManagement.JobLimits.SchedulingClass" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="109">
 <summary>
 The Scheduling Class is a number from 0 to 9  
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.CanChildProcessBreakAway" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="119">
+<member name="P:JobManagement.JobLimits.CanChildProcessBreakAway" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="118">
 <summary>
 Allow child process to use the CREATE_BREAKAWAY_FROM_JOB 
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.IsChildProcessBreakAway" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="128">
+<member name="P:JobManagement.JobLimits.IsChildProcessBreakAway" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="127">
 <summary>
 Allows any process associated with the job to create child processes that are not associated with the job.
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.IsDieOnUnhandledException" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="137">
+<member name="P:JobManagement.JobLimits.IsDieOnUnhandledException" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="136">
 <summary>
 Forces a call to the SetErrorMode function with the SEM_NOGPFAULTERRORBOX flag for each process associated with the job. 
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.IsKillOnJobHandleClose" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="146">
+<member name="P:JobManagement.JobLimits.IsKillOnJobHandleClose" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="145">
 <summary>
 Causes all processes associated with the job to terminate when the last handle to the job is closed
 </summary>
@@ -161,57 +81,57 @@ You can also use the <see cref="P:JobManagement.JobLimits.IsTerminateJobProcesse
 when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
 </remarks>
 </member>
-<member name="P:JobManagement.JobLimits.ProcessMemoryLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="164">
+<member name="P:JobManagement.JobLimits.ProcessMemoryLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="163">
 <summary>
 specifies the limit for the virtual memory that can be committed by a process
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.JobMemoryLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="173">
+<member name="P:JobManagement.JobLimits.JobMemoryLimit" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="172">
 <summary>
 specifies the limit for the virtual memory that can be committed for the job
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.IsDesktopCreationAndSwitchingEnabled" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="183">
+<member name="P:JobManagement.JobLimits.IsDesktopCreationAndSwitchingEnabled" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="182">
 <summary>
 Prevents processes associated with the job from creating desktops and switching desktops using the CreateDesktop and SwitchDesktop functions
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.IsLimitDisplaySettings" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="192">
+<member name="P:JobManagement.JobLimits.IsLimitDisplaySettings" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="191">
 <summary>
 Prevents processes associated with the job from calling the ChangeDisplaySettings function.
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.CanCallExitWindows" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="201">
+<member name="P:JobManagement.JobLimits.CanCallExitWindows" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="200">
 <summary>
 Prevents processes associated with the job from calling the ExitWindows or ExitWindowsEx function.
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.CanAccessAtomTable" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="210">
+<member name="P:JobManagement.JobLimits.CanAccessAtomTable" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="209">
 <summary>
 Prevents processes associated with the job from accessing global atoms. When this flag is used, each job has its own atom table
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.CanUseOutOfJobUserHandles" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="219">
+<member name="P:JobManagement.JobLimits.CanUseOutOfJobUserHandles" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="218">
 <summary>
 Prevents processes associated with the job from using USER handles owned by processes not associated with the same job.
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.CanReadClipboard" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="228">
+<member name="P:JobManagement.JobLimits.CanReadClipboard" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="227">
 <summary>
 Prevents processes associated with the job from reading data from the clipboard.
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.CanChangeUISystemParameters" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="237">
+<member name="P:JobManagement.JobLimits.CanChangeUISystemParameters" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="236">
 <summary>
 Prevents processes associated with the job from changing system parameters by using the SystemParametersInfo function
 </summary>
 </member>
-<member name="P:JobManagement.JobLimits.CanWriteClipboard" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="246">
+<member name="P:JobManagement.JobLimits.CanWriteClipboard" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="245">
 <summary>
 Prevents processes associated with the job from writing data to the clipboard.
 </summary>
 </member>
-<member name="M:JobManagement.JobLimits.UserHandleGrantAccess(System.IntPtr,System.Boolean)" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="256">
+<member name="M:JobManagement.JobLimits.UserHandleGrantAccess(System.IntPtr,System.Boolean)" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="255">
 <summary>
 Grants or denies access to a handle to a User object to a job that has a user-interface restriction. 
 When access is granted, all processes associated with the job can subsequently recognize and use the handle.
@@ -221,7 +141,7 @@ When access is denied, the processes can no longer use the handle
 <param name="bGrant">If this parameter is true, all processes associated with the job can recognize and use the handle.
 If the parameter is false, the processes cannot use the handle. </param>
 </member>
-<member name="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="266">
+<member name="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="265">
 <summary>
 When disposing the Job Object, this value determined whether to terminated all processes in the job
 </summary>
@@ -234,19 +154,19 @@ Use <see cref="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose"/> in 
 when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
 </remarks>
 </member>
-<member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.DateTime)" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="279">
+<member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.DateTime)" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="278">
 <summary>
 Set a system timer, that when it goes off, all the processes in the job are terminated
 </summary>
 <param name="absoluteDateTime">The specific time to kill all processes</param>
 </member>
-<member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.TimeSpan)" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="285">
+<member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.TimeSpan)" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="284">
 <summary>
 Set a system timer, that when it goes off, all the processes in the job are terminated
 </summary>
 <param name="liveTimeSpan">The relative time to kill all processes</param>
 </member>
-<member name="M:JobManagement.JobLimits.ClearAbsoluteTimer" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="291">
+<member name="M:JobManagement.JobLimits.ClearAbsoluteTimer" decl="true" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\joblimits.h" line="290">
 <summary>
 Stop the system timer and clear its values
 </summary>
@@ -486,6 +406,86 @@ Indicates that a process has been added to the job. Processes added to a job at 
 <summary>
 Indicates that a process associated with the job has exceeded its memory limit (if one is in effect). 
 </summary>
+</member>
+<member name="T:JobManagement.JobException" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="19">
+<summary>
+This exception class is used to inform the caller of most of the Job Object wrapper errors.
+</summary>
+<remarks> 
+If the error occurred by Win32 the Win32 GetLastError() code can be found in <see cref="P:JobManagement.JobException.Win32LastError"/> 
+and the text FormatMessage message can be found in <see cref="P:JobManagement.JobException.Win32ErrorMessage"/>
+</remarks>
+</member>
+<member name="M:JobManagement.JobException.#ctor" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="30">
+<summary>
+Initializes a new instance of JobException
+</summary>
+</member>
+<member name="M:JobManagement.JobException.#ctor(System.Boolean)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="35">
+<summary>
+Initializes a new instance of JobException
+</summary>
+<param name="useCurrentWin32Error">true value will peek the current Win32 error.</param>
+</member>
+<member name="M:JobManagement.JobException.#ctor(System.Boolean,System.Exception)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="41">
+<summary>
+Initializes a new instance of JobException
+</summary>
+<param name="useCurrentWin32Error">true value will peek the current Win32 error.</param>
+<param name="innerException">The exception that is the cause of the current exception, or a null reference
+(Nothing in Visual Basic) if no inner exception is specified.
+</param>
+</member>
+<member name="M:JobManagement.JobException.#ctor(System.UInt32)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="50">
+<summary>
+Initializes a new instance of JobException
+</summary>
+<param name="win32Error">The win32 error that is the cause of the current exception</param>
+</member>
+<member name="M:JobManagement.JobException.#ctor(System.UInt32,System.Exception)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="56">
+<summary>
+Initializes a new instance of JobException
+</summary>
+<param name="win32Error">The win32 error that is the cause of the current exception</param>
+<param name="innerException">The exception that is the cause of the current exception, or a null reference
+(Nothing in Visual Basic) if no inner exception is specified.
+</param>
+</member>
+<member name="M:JobManagement.JobException.#ctor(System.String)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="65">
+<summary>
+Initializes a new instance of JobException
+</summary>
+<param name="message">The message that describes the error.</param>
+</member>
+<member name="M:JobManagement.JobException.#ctor(System.String,System.Exception)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="71">
+<summary>
+Initializes a new instance of JobException
+</summary>
+<param name="message">The message that describes the error.</param>
+<param name="innerException">The exception that is the cause of the current exception, or a null reference
+(Nothing in Visual Basic) if no inner exception is specified.
+</param>
+</member>
+<member name="M:JobManagement.JobException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="82">
+<summary>
+Initializes a new instance of JobException
+</summary>
+<param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized
+object data about the exception being thrown.</param>
+<param name="context"> The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual
+information about the source or destination.</param>
+</member>
+<member name="P:JobManagement.JobException.Win32LastError" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="93">
+<summary>
+The win32 error that is the cause of the current exception
+</summary>
+<returns></returns>
+</member>
+<member name="P:JobManagement.JobException.Win32ErrorMessage" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobexception.h" line="98">
+<summary>
+The win32 error message describing the cause of the current exception.
+</summary>
+<returns>The win32 error message describing the cause of the current exception.</returns>
 </member>
 <member name="T:JobManagement.JobObject" decl="false" source="c:\users\alon\source\repos\jobobjectwrapper\jobmanagement\jobmanagement.h" line="36">
 <summary>

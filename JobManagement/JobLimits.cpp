@@ -14,6 +14,7 @@
 #include "JobLimits.h"
 #include "JobManagement.h"
 #include "JobException.h"
+#include "Util.h"
 #include <msclr\lock.h>
 
 namespace JobManagement 

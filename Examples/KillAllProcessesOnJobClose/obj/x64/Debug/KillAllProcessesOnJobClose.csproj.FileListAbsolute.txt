@@ -1,0 +1,12 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\KillAllProcessesOnJobClose.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\KillAllProcessesOnJobClose.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\KillAllProcessesOnJobClose.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\bin\x64\Debug\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\obj\x64\Debug\KillAllProcessesOnJobClose.csprojResolveAssemblyReference.cache
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\obj\x64\Debug\KillAllProcessesOnJobClose.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\KillAllProcessesOnJobClose\obj\x64\Debug\KillAllProcessesOnJobClose.pdb

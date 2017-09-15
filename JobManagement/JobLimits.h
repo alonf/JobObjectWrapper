@@ -13,11 +13,10 @@
 
 #pragma once
 #include <windows.h>
-#include "SecurityTypes.h"
+
 
 namespace JobManagement 
 {
-	using namespace Security;
 
 	ref class JobObject;
 
