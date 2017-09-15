@@ -1,67 +1,44 @@
-﻿
-/*******************************************************************************************************  
+﻿/*******************************************************************************************************  
+*   JobObjectWrapper, ConsoleApplicationTestJob
 *
-* ConsoleApplicationTestJob
+* Program.cs
+* 
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
-*
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess
+* This program is licensed under the MIT License.  
+* 
+* Alon Fliess
 ********************************************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Principal;
 
 namespace ConsoleApplicationTestJob
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             JobManagement.JobObject jo = new JobManagement.JobObject("Hello");
-            try
-            {
-                jo.Limits.RunJobProcessesAs(WindowsIdentity.GetCurrent().Token);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            try
-            {
-                jo.Limits.IsAdminProcessAllow = false;
-                jo.CreateProcessSecured(new System.Diagnostics.ProcessStartInfo("calc.exe"));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-
-            jo.Events.OnAbnormalExitProcess += new JobManagement.jobEventHandler<JobManagement.AbnormalExitProcessEventArgs>(Events_OnAbnormalExitProcess);
-            jo.Events.OnActiveProcessLimit += new JobManagement.jobEventHandler<JobManagement.ActiveProcessLimitEventArgs>(Events_OnActiveProcessLimit);
-            jo.Events.OnActiveProcessZero += new JobManagement.jobEventHandler<JobManagement.ActiveProcessZeroEventArgs>(Events_OnActiveProcessZero);
-            jo.Events.OnEndOfJobTime += new JobManagement.jobEventHandler<JobManagement.EndOfJobTimeEventArgs>(Events_OnEndOfJobTime);
-            jo.Events.OnEndOfProcessTime += new JobManagement.jobEventHandler<JobManagement.EndOfProcessTimeEventArgs>(Events_OnEndOfProcessTime);
-            jo.Events.OnExitProcess += new JobManagement.jobEventHandler<JobManagement.ExitProcessEventArgs>(Events_OnExitProcess);
-            jo.Events.OnJobMemoryLimit += new JobManagement.jobEventHandler<JobManagement.JobMemoryLimitEventArgs>(Events_OnJobMemoryLimit);
-            jo.Events.OnNewProcess += new JobManagement.jobEventHandler<JobManagement.NewProcessEventArgs>(Events_OnNewProcess);
-            jo.Events.OnProcessMemoryLimit += new JobManagement.jobEventHandler<JobManagement.ProcessMemoryLimitEventArgs>(Events_OnProcessMemoryLimit);
+           
+            jo.Events.OnAbnormalExitProcess += Events_OnAbnormalExitProcess;
+            jo.Events.OnActiveProcessLimit += Events_OnActiveProcessLimit;
+            jo.Events.OnActiveProcessZero += Events_OnActiveProcessZero;
+            jo.Events.OnEndOfJobTime += Events_OnEndOfJobTime;
+            jo.Events.OnEndOfProcessTime += Events_OnEndOfProcessTime;
+            jo.Events.OnExitProcess += Events_OnExitProcess;
+            jo.Events.OnJobMemoryLimit += Events_OnJobMemoryLimit;
+            jo.Events.OnNewProcess += Events_OnNewProcess;
+            jo.Events.OnProcessMemoryLimit += Events_OnProcessMemoryLimit;
             jo.Limits.ActiveProcessLimit = 6;
             jo.Limits.ProcessMemoryLimit = new IntPtr(40000000);
             Console.WriteLine("{0}", jo.Limits.ProcessMemoryLimit);
             jo.Limits.PerProcessUserTimeLimit = TimeSpan.FromMinutes(10); //TimeSpan.FromMilliseconds(100);
-            System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo("whoami.exe");
-            si.RedirectStandardOutput = true;
-            si.UseShellExecute = false;
+            System.Diagnostics.ProcessStartInfo si =
+                new System.Diagnostics.ProcessStartInfo("whoami.exe")
+                {
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false
+                };
             System.Diagnostics.Process p = jo.CreateProcessSecured(si);
             while (!p.StandardOutput.EndOfStream)
             {
@@ -86,12 +63,12 @@ namespace ConsoleApplicationTestJob
             jo.CreateProcessSecured(si);
             jo.ShutDownInJobProcessActivationService();
 
-            si.FileName = "calc.exe";
+            si.FileName = "notepad.exe";
             si.RedirectStandardOutput = false;
             si.RedirectStandardInput = false;
             si.CreateNoWindow = true;
             si.UseShellExecute = true;
-            p = jo.CreateProcessSecured(si);
+            jo.CreateProcessSecured(si);
 
             foreach (System.Diagnostics.Process process in jo.ConstructAssignedProcessList())
             {
@@ -103,27 +80,27 @@ namespace ConsoleApplicationTestJob
 
         static void Events_OnProcessMemoryLimit(object sender, JobManagement.ProcessMemoryLimitEventArgs args)
         {
-            Console.WriteLine("Process {0} has reached the per process memory limit", args.TheProcess == null ? args.TheProcessId.ToString() : args.TheProcess.ProcessName);
+            Console.WriteLine($"Process {args.TheProcess?.ProcessName ?? args.TheProcessId.ToString()} has reached the per process memory limit");
         }
 
         static void Events_OnNewProcess(object sender, JobManagement.NewProcessEventArgs args)
         {
-            Console.WriteLine("Process {0} has been created", args.TheProcess == null ? args.TheProcessId.ToString() : args.TheProcess.ProcessName);
+            Console.WriteLine($"Process {args.TheProcess?.ProcessName ?? args.TheProcessId.ToString()} has been created");
         }
 
         static void Events_OnJobMemoryLimit(object sender, JobManagement.JobMemoryLimitEventArgs args)
         {
-            Console.WriteLine("Process {0} has reached the job memory limit", args.TheProcess == null ? args.TheProcessId.ToString() : args.TheProcess.ProcessName);
+            Console.WriteLine($"Process {args.TheProcess?.ProcessName ?? args.TheProcessId.ToString()} has reached the job memory limit");
         }
 
         static void Events_OnExitProcess(object sender, JobManagement.ExitProcessEventArgs args)
         {
-            Console.WriteLine("Process {0} has exited", args.TheProcess == null ? args.TheProcessId.ToString() : args.TheProcess.ProcessName);
+            Console.WriteLine($"Process {args.TheProcess?.ProcessName ?? args.TheProcessId.ToString()} has exited");
         }
 
         static void Events_OnEndOfProcessTime(object sender, JobManagement.EndOfProcessTimeEventArgs args)
         {
-            Console.WriteLine("Process {0} has been reached process end of time", args.TheProcess == null ? args.TheProcessId.ToString() : args.TheProcess.ProcessName);
+            Console.WriteLine($"Process {args.TheProcess?.ProcessName ?? args.TheProcessId.ToString()} has been reached process end of time");
         }
 
         static void Events_OnEndOfJobTime(object sender, JobManagement.EndOfJobTimeEventArgs args)
@@ -143,7 +120,7 @@ namespace ConsoleApplicationTestJob
 
         static void Events_OnAbnormalExitProcess(object sender, JobManagement.AbnormalExitProcessEventArgs args)
         {
-            Console.WriteLine("Process {0} has abnormaly exited with exit id: {1} - Message: {2}", args.TheProcess == null ? args.TheProcessId.ToString() : args.TheProcess.ProcessName, args.ExitReasonId, args.ExitReasonMessage);
+            Console.WriteLine($"Process {args.TheProcess?.ProcessName ?? args.TheProcessId.ToString()} has abnormaly exited with exit id: {args.ExitReasonId} - Message: {args.ExitReasonMessage}");
         }
     }
 }

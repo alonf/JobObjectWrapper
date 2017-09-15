@@ -1,0 +1,11 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\EndOfProcessTime.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\EndOfProcessTime.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\EndOfProcessTime.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Debug\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\obj\x86\Debug\EndOfProcessTime.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\obj\x86\Debug\EndOfProcessTime.pdb

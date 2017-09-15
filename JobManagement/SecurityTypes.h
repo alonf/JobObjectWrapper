@@ -1,17 +1,13 @@
-
-/*******************************************************************************************************  
+/*******************************************************************************************************
+*   JobObjectWrapper
 *
-* SecurityTypes
+*  SecurityTypes.h
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess
+* This program is licensed under the MIT License.
+*
+* Alon Fliess
 ********************************************************************************************************/
 
 #pragma once
@@ -31,7 +27,7 @@ namespace JobManagement
 							  bool bEnablePrivilege);   // to enable or disable privilege 
 		};
 
-		public enum class SidGroupAttributes
+		public enum class SidGroupAttributes : unsigned int
 		{
 			None = 0,
 			Enabled = SE_GROUP_ENABLED,
@@ -65,7 +61,7 @@ namespace JobManagement
 		typedef Converter<TOKEN_GROUPS, HTokenGroup_t, SidAndAttributesGroupConverterHelper> SidAndAttributesGroupConverter;
 
 		[System::Flags]
-		public enum class PriviligesAttributes
+		public enum class PriviligesAttributes : unsigned int
 		{
 			Enabled = SE_PRIVILEGE_ENABLED,
 			EnabledByDefault = SE_PRIVILEGE_ENABLED_BY_DEFAULT,

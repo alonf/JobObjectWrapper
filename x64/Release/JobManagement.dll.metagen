@@ -1,0 +1,351 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly JobManagement, Version=0.1.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly InJobProcessCreator, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Struct JobManagement.JobIOCounters: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Properties:
+    UInt64 OtherTransferCount 'get set' : 
+    UInt64 WriteTransferCount 'get set' : 
+    UInt64 ReadTransferCount 'get set' : 
+    UInt64 OtherOperationCount 'get set' : 
+    UInt64 WriteOperationCount 'get set' : 
+    UInt64 ReadOperationCount 'get set' : 
+  Methods:
+    get_ReadOperationCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_ReadOperationCount(UInt64): PrivateScope, Public, HideBySig, SpecialName
+    get_WriteOperationCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_WriteOperationCount(UInt64): PrivateScope, Public, HideBySig, SpecialName
+    get_OtherOperationCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_OtherOperationCount(UInt64): PrivateScope, Public, HideBySig, SpecialName
+    get_ReadTransferCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_ReadTransferCount(UInt64): PrivateScope, Public, HideBySig, SpecialName
+    get_WriteTransferCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_WriteTransferCount(UInt64): PrivateScope, Public, HideBySig, SpecialName
+    get_OtherTransferCount(): PrivateScope, Public, HideBySig, SpecialName
+    set_OtherTransferCount(UInt64): PrivateScope, Public, HideBySig, SpecialName
+Class JobManagement.JobEventArgs: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+  :System.EventArgs
+Class JobManagement.jobEventHandler`1[TEventArgs]: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  Type parameter: TEventArgs
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(Object, TEventArgs): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(Object, TEventArgs, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class JobManagement.JobProcessEventArgs: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+  :JobManagement.JobEventArgs
+  Properties:
+    System.String Win32Path 'get ' : 
+    System.String Win32Name 'get ' : 
+    UInt32 TheProcessId 'get ' : 
+    System.Diagnostics.Process TheProcess 'get ' : 
+  Methods:
+    get_TheProcess(): PrivateScope, Public, HideBySig, SpecialName
+    get_TheProcessId(): PrivateScope, Public, HideBySig, SpecialName
+    get_Win32Name(): PrivateScope, Public, HideBySig, SpecialName
+    get_Win32Path(): PrivateScope, Public, HideBySig, SpecialName
+Class JobManagement.AbnormalExitProcessEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobProcessEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String ExitReasonMessage 'get ' : 
+    JobManagement.ExitReasonIds ExitReasonId 'get ' : 
+  Methods:
+    get_ExitReasonId(): PrivateScope, Public, HideBySig, SpecialName
+    get_ExitReasonMessage(): PrivateScope, Public, HideBySig, SpecialName
+Class JobManagement.ActiveProcessLimitEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.ActiveProcessZeroEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.EndOfJobTimeEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.EndOfProcessTimeEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobProcessEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.ExitProcessEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobProcessEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.JobMemoryLimitEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobProcessEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.NewProcessEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobProcessEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.ProcessMemoryLimitEventArgs: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :JobManagement.JobProcessEventArgs
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class JobManagement.JobEvents: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(JobManagement.JobObject): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Events:
+    JobManagement.jobEventHandler`1[JobManagement.ProcessMemoryLimitEventArgs] OnProcessMemoryLimit: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.NewProcessEventArgs] OnNewProcess: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.JobMemoryLimitEventArgs] OnJobMemoryLimit: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.ExitProcessEventArgs] OnExitProcess: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.EndOfProcessTimeEventArgs] OnEndOfProcessTime: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.EndOfJobTimeEventArgs] OnEndOfJobTime: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.ActiveProcessZeroEventArgs] OnActiveProcessZero: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.ActiveProcessLimitEventArgs] OnActiveProcessLimit: SpecialName
+    JobManagement.jobEventHandler`1[JobManagement.AbnormalExitProcessEventArgs] OnAbnormalExitProcess: SpecialName
+  Methods:
+    add_OnAbnormalExitProcess(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnAbnormalExitProcess(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnActiveProcessLimit(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnActiveProcessLimit(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnActiveProcessZero(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnActiveProcessZero(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnEndOfJobTime(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnEndOfJobTime(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnEndOfProcessTime(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnEndOfProcessTime(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnExitProcess(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnExitProcess(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnJobMemoryLimit(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnJobMemoryLimit(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnNewProcess(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnNewProcess(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    add_OnProcessMemoryLimit(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    remove_OnProcessMemoryLimit(jobEventHandler`1): PrivateScope, Public, HideBySig, SpecialName
+    ~JobEvents(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class JobManagement.JobException: AutoLayout, AnsiClass, Class, Public, Serializable, BeforeFieldInit
+  :System.Exception
+    Void .ctor(System.String, System.Exception): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(UInt32, System.Exception): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(UInt32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Boolean, System.Exception): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Boolean): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String Win32ErrorMessage 'get ' : 
+    System.Nullable`1[System.UInt32] Win32LastError 'get ' : 
+  Methods:
+    get_Win32LastError(): PrivateScope, Public, HideBySig, SpecialName
+    get_Win32ErrorMessage(): PrivateScope, Public, HideBySig, SpecialName
+Class JobManagement.JobObject: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(IntPtr): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Boolean IsOpenedAsWin32SharedObject 'get ' : 
+    Boolean IsCurrentProcessInJob 'get ' : 
+    JobManagement.JobIOCounters IOCounters 'get ' : 
+    IntPtr PeakJobMemoryUsed 'get ' : 
+    IntPtr PeakProcessMemoryUsed 'get ' : 
+    UInt32 TotalTerminatedProcesses 'get ' : 
+    UInt32 ActiveProcesses 'get ' : 
+    UInt32 TotalProcesses 'get ' : 
+    UInt32 TotalPageFaultCount 'get ' : 
+    System.TimeSpan ThisPeriodTotalKernelTime 'get ' : 
+    System.TimeSpan ThisPeriodTotalUserTime 'get ' : 
+    System.TimeSpan TotalKernelTime 'get ' : 
+    System.TimeSpan TotalUserTime 'get ' : 
+    Boolean IsJobTimeout 'get ' : 
+    IntPtr Handle 'get ' : 
+    JobManagement.JobEvents Events 'get ' : 
+    JobManagement.JobLimits Limits 'get ' : 
+  Methods:
+    CreateProcessMayBreakAway(String): PrivateScope, Public, HideBySig
+    CreateProcessMayBreakAway(ProcessStartInfo): PrivateScope, Public, HideBySig
+    CreateProcessSecured(String): PrivateScope, Public, HideBySig
+    CreateProcessSecured(ProcessStartInfo): PrivateScope, Public, HideBySig
+    ShutDownInJobProcessActivationService(): PrivateScope, Public, HideBySig
+    TerminateAllProcesses(UInt32): PrivateScope, Public, HideBySig
+    get_Limits(): PrivateScope, Public, HideBySig, SpecialName
+    get_Events(): PrivateScope, Public, HideBySig, SpecialName
+    get_Handle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsJobTimeout(): PrivateScope, Public, HideBySig, SpecialName
+    Join(TimeSpan): PrivateScope, Public, HideBySig
+    Join(): PrivateScope, Public, HideBySig
+    AssignProcessToJob(Process): PrivateScope, Public, HideBySig
+    get_TotalUserTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_TotalKernelTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_ThisPeriodTotalUserTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_ThisPeriodTotalKernelTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_TotalPageFaultCount(): PrivateScope, Public, HideBySig, SpecialName
+    get_TotalProcesses(): PrivateScope, Public, HideBySig, SpecialName
+    get_ActiveProcesses(): PrivateScope, Public, HideBySig, SpecialName
+    get_TotalTerminatedProcesses(): PrivateScope, Public, HideBySig, SpecialName
+    get_PeakProcessMemoryUsed(): PrivateScope, Public, HideBySig, SpecialName
+    get_PeakJobMemoryUsed(): PrivateScope, Public, HideBySig, SpecialName
+    get_IOCounters(): PrivateScope, Public, HideBySig, SpecialName
+    ConstructAssignedProcessList(): PrivateScope, Public, HideBySig
+    GetAssignedProcessList(): PrivateScope, Public, HideBySig
+    get_IsCurrentProcessInJob(): PrivateScope, Public, HideBySig, SpecialName
+    IsProcessInJob(Process): PrivateScope, Public, HideBySig
+    get_IsOpenedAsWin32SharedObject(): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct JobManagement.ExitReasonIds: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int64 value__ : Public, SpecialName, RTSpecialName
+    JobManagement.ExitReasonIds NoError = 0 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds Unknown = -1 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds AccessViolation = 3221225477 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds ArrayBoundsExeeded = 3221225612 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds BreakPoint = 2147483651 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds ControlCExit = 3221225786 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds DataTypeMisalignmnt = 2147483650 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatDenormalOperand = 3221225613 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatDivideByZero = 3221225614 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatInexactResult = 3221225615 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatInvalidOperation = 3221225616 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatMultipleFaults = 3221226164 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatMultipleTraps = 3221226165 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatOverflow = 3221225617 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatStackCheck = 3221225618 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds FloatUnderflow = 3221225619 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds GuardPageViolation = 2147483649 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds IllegalInstruction = 3221225501 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds InPageError = 3221225478 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds InvalidDisposition = 3221225510 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds IntegerDivideByZero = 3221225620 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds IntegerOverflow = 3221225621 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds NoncontinuableException = 3221225509 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds PrivilegedInstruction = 3221225622 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds RegNatConsumption = 3221226185 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds SingleStep = 2147483652 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds StackOverflow = 3221225725 : Public, Static, Literal, HasDefault
+    JobManagement.ExitReasonIds Timeout = 258 : Public, Static, Literal, HasDefault
+Class JobManagement.Security.Util: AutoLayout, AnsiClass, Class, Public, Abstract, Sealed, BeforeFieldInit
+  Methods:
+    SetPrivilege(IntPtr, String, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+Struct JobManagement.Security.SidAndAttributes: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(_SID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    JobManagement.Security.SidGroupAttributes Attributes 'get set' : 
+    IntPtr Sid 'get set' : 
+  Methods:
+    get_Sid(): PrivateScope, Public, HideBySig, SpecialName
+    set_Sid(IntPtr): PrivateScope, Public, HideBySig, SpecialName
+    get_Attributes(): PrivateScope, Public, HideBySig, SpecialName
+    set_Attributes(SidGroupAttributes): PrivateScope, Public, HideBySig, SpecialName
+    op_Implicit(_SID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName
+Struct JobManagement.Security.LuidAndAttributes: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(_LUID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    JobManagement.Security.PriviligesAttributes LuidPriviligesAttributes 'get set' : 
+    Int64 Luid 'get set' : 
+  Methods:
+    get_Luid(): PrivateScope, Public, HideBySig, SpecialName
+    set_Luid(Int64): PrivateScope, Public, HideBySig, SpecialName
+    get_LuidPriviligesAttributes(): PrivateScope, Public, HideBySig, SpecialName
+    set_LuidPriviligesAttributes(PriviligesAttributes): PrivateScope, Public, HideBySig, SpecialName
+    op_Implicit(_LUID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName
+Class JobManagement.JobLimits: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(JobManagement.JobObject): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Boolean IsTerminateJobProcessesOnDispose 'get set' : 
+    Boolean CanWriteClipboard 'get set' : 
+    Boolean CanChangeUISystemParameters 'get set' : 
+    Boolean CanReadClipboard 'get set' : 
+    Boolean CanUseOutOfJobUserHandles 'get set' : 
+    Boolean CanAccessAtomTable 'get set' : 
+    Boolean CanCallExitWindows 'get set' : 
+    Boolean IsLimitDisplaySettings 'get set' : 
+    Boolean IsDesktopCreationAndSwitchingEnabled 'get set' : 
+    System.Nullable`1[System.IntPtr] JobMemoryLimit 'get set' : 
+    System.Nullable`1[System.IntPtr] ProcessMemoryLimit 'get set' : 
+    Boolean IsKillOnJobHandleClose 'get set' : 
+    Boolean IsDieOnUnhandledException 'get set' : 
+    Boolean IsChildProcessBreakAway 'get set' : 
+    Boolean CanChildProcessBreakAway 'get set' : 
+    System.Nullable`1[System.Byte] SchedulingClass 'get set' : 
+    System.Nullable`1[System.Diagnostics.ProcessPriorityClass] PriorityClass 'get set' : 
+    System.Nullable`1[System.IntPtr] Affinity 'get set' : 
+    System.Nullable`1[System.UInt32] ActiveProcessLimit 'get set' : 
+    System.Nullable`1[System.IntPtr] MaximumWorkingSetSize 'get set' : 
+    System.Nullable`1[System.IntPtr] MinimumWorkingSetSize 'get set' : 
+    System.Nullable`1[System.TimeSpan] PerJobUserTimeLimit 'get set' : 
+    System.Nullable`1[System.TimeSpan] PerProcessUserTimeLimit 'get set' : 
+  Methods:
+    get_PerProcessUserTimeLimit(): PrivateScope, Public, HideBySig, SpecialName
+    set_PerProcessUserTimeLimit(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_PerJobUserTimeLimit(): PrivateScope, Public, HideBySig, SpecialName
+    set_PerJobUserTimeLimit(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_MinimumWorkingSetSize(): PrivateScope, Public, HideBySig, SpecialName
+    set_MinimumWorkingSetSize(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_MaximumWorkingSetSize(): PrivateScope, Public, HideBySig, SpecialName
+    set_MaximumWorkingSetSize(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_ActiveProcessLimit(): PrivateScope, Public, HideBySig, SpecialName
+    set_ActiveProcessLimit(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_Affinity(): PrivateScope, Public, HideBySig, SpecialName
+    set_Affinity(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_PriorityClass(): PrivateScope, Public, HideBySig, SpecialName
+    set_PriorityClass(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_SchedulingClass(): PrivateScope, Public, HideBySig, SpecialName
+    set_SchedulingClass(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_CanChildProcessBreakAway(): PrivateScope, Public, HideBySig, SpecialName
+    set_CanChildProcessBreakAway(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_IsChildProcessBreakAway(): PrivateScope, Public, HideBySig, SpecialName
+    set_IsChildProcessBreakAway(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_IsDieOnUnhandledException(): PrivateScope, Public, HideBySig, SpecialName
+    set_IsDieOnUnhandledException(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_IsKillOnJobHandleClose(): PrivateScope, Public, HideBySig, SpecialName
+    set_IsKillOnJobHandleClose(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_ProcessMemoryLimit(): PrivateScope, Public, HideBySig, SpecialName
+    set_ProcessMemoryLimit(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_JobMemoryLimit(): PrivateScope, Public, HideBySig, SpecialName
+    set_JobMemoryLimit(Nullable`1): PrivateScope, Public, HideBySig, SpecialName
+    get_IsDesktopCreationAndSwitchingEnabled(): PrivateScope, Public, HideBySig, SpecialName
+    set_IsDesktopCreationAndSwitchingEnabled(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_IsLimitDisplaySettings(): PrivateScope, Public, HideBySig, SpecialName
+    set_IsLimitDisplaySettings(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_CanCallExitWindows(): PrivateScope, Public, HideBySig, SpecialName
+    set_CanCallExitWindows(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_CanAccessAtomTable(): PrivateScope, Public, HideBySig, SpecialName
+    set_CanAccessAtomTable(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_CanUseOutOfJobUserHandles(): PrivateScope, Public, HideBySig, SpecialName
+    set_CanUseOutOfJobUserHandles(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_CanReadClipboard(): PrivateScope, Public, HideBySig, SpecialName
+    set_CanReadClipboard(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_CanChangeUISystemParameters(): PrivateScope, Public, HideBySig, SpecialName
+    set_CanChangeUISystemParameters(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_CanWriteClipboard(): PrivateScope, Public, HideBySig, SpecialName
+    set_CanWriteClipboard(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    UserHandleGrantAccess(IntPtr, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    get_IsTerminateJobProcessesOnDispose(): PrivateScope, Public, HideBySig, SpecialName
+    set_IsTerminateJobProcessesOnDispose(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    SetAbsoluteTimer(TimeSpan): PrivateScope, Public, HideBySig
+    SetAbsoluteTimer(DateTime): PrivateScope, Public, HideBySig
+    ClearAbsoluteTimer(): PrivateScope, Public, HideBySig
+Struct JobManagement.Security.SidGroupAttributes: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    UInt32 value__ : Public, SpecialName, RTSpecialName
+    JobManagement.Security.SidGroupAttributes None = 0 : Public, Static, Literal, HasDefault
+    JobManagement.Security.SidGroupAttributes Enabled = 4 : Public, Static, Literal, HasDefault
+    JobManagement.Security.SidGroupAttributes EnabledByDefault = 2 : Public, Static, Literal, HasDefault
+    JobManagement.Security.SidGroupAttributes LogonId = 3221225472 : Public, Static, Literal, HasDefault
+    JobManagement.Security.SidGroupAttributes Mandatory = 1 : Public, Static, Literal, HasDefault
+    JobManagement.Security.SidGroupAttributes Owner = 8 : Public, Static, Literal, HasDefault
+    JobManagement.Security.SidGroupAttributes Resource = 536870912 : Public, Static, Literal, HasDefault
+    JobManagement.Security.SidGroupAttributes UseForDenyOnly = 16 : Public, Static, Literal, HasDefault
+Struct JobManagement.Security.PriviligesAttributes: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    UInt32 value__ : Public, SpecialName, RTSpecialName
+    JobManagement.Security.PriviligesAttributes Enabled = 2 : Public, Static, Literal, HasDefault
+    JobManagement.Security.PriviligesAttributes EnabledByDefault = 1 : Public, Static, Literal, HasDefault
+    JobManagement.Security.PriviligesAttributes Removed = 4 : Public, Static, Literal, HasDefault
+    JobManagement.Security.PriviligesAttributes UsedForAccess = 2147483648 : Public, Static, Literal, HasDefault

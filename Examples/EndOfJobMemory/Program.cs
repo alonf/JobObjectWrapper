@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using JobManagement;
 using System.Threading;
 using System.Diagnostics;
@@ -12,27 +10,28 @@ namespace EndOfJobMemory
     /// </summary>
     class Program
     {
-        static bool _isStop = false;
+        private static bool _isStop;
 
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
-                using (JobObject jo = new JobObject("JobMemoryLimitExample"))
+                using (var jo = new JobObject("JobMemoryLimitExample"))
                 {
                     jo.Limits.JobMemoryLimit = new IntPtr(30000000);
-                    jo.Events.OnJobMemoryLimit += new jobEventHandler<JobMemoryLimitEventArgs>(Events_OnJobMemoryLimit);
+                    jo.Events.OnJobMemoryLimit += Events_OnJobMemoryLimit;
 
                     while (!_isStop)
                     {
-                        ProcessStartInfo psi = new ProcessStartInfo("calc.exe");
+                        ProcessStartInfo psi = new ProcessStartInfo("notepad.exe");
 
-                        Process proc = jo.CreateProcessMayBreakAway(psi);
+                        jo.CreateProcessMayBreakAway(psi);
 
                         Thread.Sleep(100);
                     }
                 }
             }
+            // ReSharper disable once EmptyGeneralCatchClause
             catch (Exception)
             { }
         }
@@ -45,7 +44,7 @@ namespace EndOfJobMemory
         static void Events_OnJobMemoryLimit(object sender, JobMemoryLimitEventArgs args)
         {
             _isStop = true;
-            (sender as JobObject).TerminateAllProcesses(8);
+            (sender as JobObject)?.TerminateAllProcesses(8);
             Console.WriteLine("Job has reacehed its memory limit");
         }
     }

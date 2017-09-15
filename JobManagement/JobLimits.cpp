@@ -1,17 +1,13 @@
-
-/*******************************************************************************************************  
+/*******************************************************************************************************
+*   JobObjectWrapper
 *
 * JobLimits.cpp
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess
+* This program is licensed under the MIT License.
+*
+* Alon Fliess
 ********************************************************************************************************/
 
 #include "StdAfx.h"
@@ -443,71 +439,6 @@ namespace JobManagement
 		SetUIRestrictionsFlag(JOB_OBJECT_UILIMIT_WRITECLIPBOARD, value);
 	}
 
-	void JobLimits::FilterSecurityTokenAndPriviliges(HTokenGroup_t sidsToDisable, HPriviligesGroup_t privilegesToDelete, HTokenGroup_t restrictedSids)
-	{
-		MarshalingContext x; //Do not delete this line
-
-		JOBOBJECT_SECURITY_LIMIT_INFORMATION securityLimitInformation;
-		securityLimitInformation.PrivilegesToDelete = PriviligesGroupConverter(privilegesToDelete);
-		securityLimitInformation.RestrictedSids = SidAndAttributesGroupConverter(restrictedSids);
-		securityLimitInformation.SidsToDisable = SidAndAttributesGroupConverter(sidsToDisable);
-		SetSecurityLimitInformation(true, securityLimitInformation, JOB_OBJECT_SECURITY_FILTER_TOKENS);
-	}
-
-	//Prevents any process in the job from using a token that specifies the local administrators group.
-	bool JobLimits::IsAdminProcessAllow::get()
-	{
-		return !CheckSecurityLimitFlag(JOB_OBJECT_SECURITY_NO_ADMIN);
-	}
-
-	void JobLimits::IsAdminProcessAllow::set(bool value)
-	{
-		SetSecurityLimitFlag(JOB_OBJECT_SECURITY_NO_ADMIN, !value);
-	}
-
-	void JobLimits::RunJobProcessesAs(System::IntPtr hToken)
-	{
-		HANDLE hProcessToken;
-
-		if (!::OpenProcessToken(::GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hProcessToken))
-			throw gcnew JobException(true);
-
-		try
-		{
-			//Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeCreateTokenPrivilege", true);
-			Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeAssignPrimaryTokenPrivilege", true);
-
-
-			JOBOBJECT_SECURITY_LIMIT_INFORMATION securityLimitInformation;
-			::ZeroMemory(&securityLimitInformation, sizeof(securityLimitInformation));
-			securityLimitInformation.JobToken = hToken.ToPointer();
-			SetSecurityLimitInformation(true, securityLimitInformation, JOB_OBJECT_SECURITY_ONLY_TOKEN);
-		}
-		finally
-		{
-			try
-			{
-				//Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeCreateTokenPrivilege", false);
-				Util::SetPrivilege(System::IntPtr(hProcessToken), L"SeAssignPrimaryTokenPrivilege", false);
-			}
-			finally
-			{
-				::CloseHandle(hProcessToken);
-			}
-		}
-	}
-
-	//Prevents any process in the job from using a token that was not created with the CreateRestrictedToken function.
-	bool JobLimits::IsAllowOnlyRestrictedTokenProcesses::get()
-	{
-		return CheckSecurityLimitFlag(JOB_OBJECT_SECURITY_RESTRICTED_TOKEN);
-	}
-	
-	void JobLimits::IsAllowOnlyRestrictedTokenProcesses::set(bool value)
-	{
-		SetSecurityLimitFlag(JOB_OBJECT_SECURITY_RESTRICTED_TOKEN, value);
-	}
-
 
 	//Helper methods for set/get limit information
 
@@ -631,68 +562,6 @@ namespace JobManagement
 	{
 		return (QueryBasicUIRestrictions().UIRestrictionsClass & flag) != 0;
 	}
-
-	JOBOBJECT_SECURITY_LIMIT_INFORMATION JobLimits::QuerySecurityLimitInformation()
-	{
-		JOBOBJECT_SECURITY_LIMIT_INFORMATION securityLimitInformation;
-		DWORD returnLength;
-
-		DWORD bResult = ::QueryInformationJobObject(_job->NativeHandle, JobObjectSecurityLimitInformation,
-							&securityLimitInformation, sizeof(securityLimitInformation), 
-							&returnLength);
-		if (bResult == 0)
-		{
-			throw gcnew JobException(true);
-		}
-
-		return securityLimitInformation;
-	}
-
-	void JobLimits::SetSecurityLimitInformation(bool hasValue,  JOBOBJECT_SECURITY_LIMIT_INFORMATION &securityLimitInformation, DWORD flag)
-	{
-		if (hasValue)
-		{
-			securityLimitInformation.SecurityLimitFlags |= flag;
-		}
-		else
-		{
-			securityLimitInformation.SecurityLimitFlags &= ~flag;
-		}
-
-		DWORD bResult = ::SetInformationJobObject(_job->NativeHandle, JobObjectSecurityLimitInformation,
-							&securityLimitInformation, sizeof(securityLimitInformation));
-		if (bResult == 0)
-		{
-			throw gcnew JobException(true);
-		}
-	}
-
-	void JobLimits::SetSecurityLimitFlag(DWORD flag, bool value)
-	{
-		JOBOBJECT_SECURITY_LIMIT_INFORMATION securityLimitInformation = QuerySecurityLimitInformation();
-
-		if (value)
-		{
-			securityLimitInformation.SecurityLimitFlags |= flag;
-		}
-		else
-		{
-			securityLimitInformation.SecurityLimitFlags &= ~flag;
-		}
-
-		DWORD bResult = ::SetInformationJobObject(_job->NativeHandle, JobObjectSecurityLimitInformation,
-							&securityLimitInformation, sizeof(securityLimitInformation));
-		if (bResult == 0)
-		{
-			throw gcnew JobException(true);
-		}		
-	}
-
-	bool JobLimits::CheckSecurityLimitFlag(DWORD flag)
-	{
-		return (QuerySecurityLimitInformation().SecurityLimitFlags & flag) != 0;
-	}
-
 
 	void JobLimits::UserHandleGrantAccess(System::IntPtr userHandle, bool bGrant)
 	{

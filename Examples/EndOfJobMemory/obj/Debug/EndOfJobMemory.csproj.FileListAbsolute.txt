@@ -1,0 +1,12 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\EndOfJobMemory.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\EndOfJobMemory.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\EndOfJobMemory.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\Debug\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\Debug\EndOfJobMemory.csprojResolveAssemblyReference.cache
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\Debug\EndOfJobMemory.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\Debug\EndOfJobMemory.pdb

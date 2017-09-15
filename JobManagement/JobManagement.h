@@ -1,17 +1,16 @@
 
-/*******************************************************************************************************  
+/*******************************************************************************************************
+*   JobObjectWrapper
 *
-* JobManagement.h
+* IOCounters.h
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
+* This program is licensed under the MIT License.
+*
+* Alon Fliess
 *   
 *  Notes :
-*      - First release by Alon Fliess
 *      - This is the main header file of the job object wrapper. 
 *        It includes the JobObject class declaration. 
 *        Three other classes that the JobObject expose are JobLimits, JobEvents, and JobIOCounters 

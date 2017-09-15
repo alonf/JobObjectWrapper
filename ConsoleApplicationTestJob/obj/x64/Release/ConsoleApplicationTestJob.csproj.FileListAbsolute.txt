@@ -1,0 +1,9 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\bin\x64\Release\ConsoleApplicationTestJob.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\bin\x64\Release\ConsoleApplicationTestJob.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\bin\x64\Release\ConsoleApplicationTestJob.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\bin\x64\Release\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\bin\x64\Release\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\bin\x64\Release\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\obj\x64\Release\ConsoleApplicationTestJob.csprojResolveAssemblyReference.cache
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\obj\x64\Release\ConsoleApplicationTestJob.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\ConsoleApplicationTestJob\obj\x64\Release\ConsoleApplicationTestJob.pdb

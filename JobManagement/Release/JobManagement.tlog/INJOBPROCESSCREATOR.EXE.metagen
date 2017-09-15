@@ -1,0 +1,23 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly InJobProcessCreator, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Runtime.Remoting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Struct InJobProcessCreator.ProcessStartInfoMessage: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, Serializable, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(System.Diagnostics.ProcessStartInfo): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    op_Implicit(ProcessStartInfoMessage): PrivateScope, Public, Static, HideBySig, SpecialName
+Class InJobProcessCreator.ProcessActivationService: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.MarshalByRefObject
+  Properties:
+    Boolean IsAlive 'get ' : 
+  Methods:
+    InitializeLifetimeService(): PrivateScope, Public, Virtual, HideBySig
+    CreateChildProcess(ProcessStartInfoMessage): PrivateScope, Public, HideBySig
+    get_IsAlive(): PrivateScope, Public, HideBySig, SpecialName
+    GetProcessActivationService(String): PrivateScope, Public, Static, HideBySig

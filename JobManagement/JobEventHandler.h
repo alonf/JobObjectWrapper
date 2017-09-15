@@ -1,18 +1,14 @@
 
-/*******************************************************************************************************  
+/*******************************************************************************************************
+*   JobObjectWrapper
 *
 * JobEventHandler.h
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess
+* This program is licensed under the MIT License.
 *
+* Alon Fliess
 ********************************************************************************************************/
 
 #pragma once
@@ -122,7 +118,7 @@ namespace JobManagement
 	/// <summary>
 	/// Exit codes that indicate an abnormal exit of a process in a job
 	/// </summary>
-	public enum class ExitReasonIds 
+	public enum class ExitReasonIds : long long int
 	{ 
 		NoError = 0,
 		Unknown = -1,

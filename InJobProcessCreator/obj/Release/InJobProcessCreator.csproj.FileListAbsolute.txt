@@ -1,0 +1,5 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\Release\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\Release\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\Release\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\Release\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\Release\InJobProcessCreator.pdb

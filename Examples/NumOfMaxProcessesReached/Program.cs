@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using JobManagement;
 using System.Threading;
 
@@ -11,23 +9,26 @@ namespace NumOfMaxProcessesReached
     /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
                 using (JobObject jo = new JobObject("ProcessLimitExample"))
                 {
                     jo.Limits.ActiveProcessLimit = 4;
-                    jo.Events.OnActiveProcessLimit += new jobEventHandler<ActiveProcessLimitEventArgs>(Events_OnActiveProcessLimit);
+                    jo.Events.OnActiveProcessLimit += Events_OnActiveProcessLimit;
 
                     while (true)
                     {
-                        System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo("cmd.exe");
-                        si.RedirectStandardInput = true;
-                        si.UseShellExecute = false;
+                        System.Diagnostics.ProcessStartInfo si =
+                            new System.Diagnostics.ProcessStartInfo("cmd.exe")
+                            {
+                                RedirectStandardInput = true,
+                                UseShellExecute = false
+                            };
                         System.Diagnostics.Process p = jo.CreateProcessMayBreakAway(si);
 
-                        Console.WriteLine("\nCreated process with id:{0} out of maximum {1} processes\n", p.Id, jo.Limits.ActiveProcessLimit);
+                        Console.WriteLine($"\nCreated process with id:{p.Id} out of maximum {jo.Limits.ActiveProcessLimit} processes");
                         Thread.Sleep(1500);
                     }
 

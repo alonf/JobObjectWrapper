@@ -1,7 +1,9 @@
-1) Finish XML Documentation to all public members
-2) Add implementation documentation
-3) Add more usage examples
-4) Add QA tests
-5) Write developer guide
-6) Add Job based management application. 
-7) Update the readme.txt file
+1) Add new Windows 8/8.1/10 JobObject Features
+JOBOBJECT_CPU_RATE_CONTROL_INFORMATION  https://msdn.microsoft.com/en-us/library/windows/desktop/hh448384(v=vs.85).aspx
+JOBOBJECT_IO_RATE_CONTROL_INFORMATION  https://msdn.microsoft.com/en-us/library/windows/desktop/mt280122(v=vs.85).aspx
+JOBOBJECT_LIMIT_VIOLATION_INFORMATION https://msdn.microsoft.com/en-us/library/windows/desktop/hh448385(v=vs.85).aspx
+JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 https://msdn.microsoft.com/en-us/library/windows/desktop/mt280123(v=vs.85).aspx
+JOBOBJECT_NET_RATE_CONTROL_INFORMATION  https://msdn.microsoft.com/en-us/library/windows/desktop/mt280124(v=vs.85).aspx
+JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION https://msdn.microsoft.com/en-us/library/windows/desktop/hh448386(v=vs.85).aspx
+JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 https://msdn.microsoft.com/en-us/library/windows/desktop/mt280125(v=vs.85).aspx
+

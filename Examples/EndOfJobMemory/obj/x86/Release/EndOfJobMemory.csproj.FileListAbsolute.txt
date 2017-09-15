@@ -1,0 +1,11 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\EndOfJobMemory.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\EndOfJobMemory.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\EndOfJobMemory.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\x86\Release\EndOfJobMemory.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\x86\Release\EndOfJobMemory.pdb

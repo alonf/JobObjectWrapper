@@ -1,0 +1,12 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\DieOnUnhandledException.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\DieOnUnhandledException.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\DieOnUnhandledException.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\bin\x64\Release\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\obj\x64\Release\DieOnUnhandledException.csprojResolveAssemblyReference.cache
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\obj\x64\Release\DieOnUnhandledException.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\DieOnUnhandledException\obj\x64\Release\DieOnUnhandledException.pdb

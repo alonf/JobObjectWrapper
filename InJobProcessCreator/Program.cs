@@ -1,24 +1,16 @@
-﻿
-/*******************************************************************************************************  
+﻿/*******************************************************************************************************  
+*   Program.cs
 *
-* Program.cs
+* IOCounters.h
+* 
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
-*
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess
+* This program is licensed under the MIT License.  
+* 
+* Alon Fliess
 ********************************************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels.Ipc;
-using System.Runtime.Remoting.Channels;
 using System.Threading;
 
 namespace InJobProcessCreator
@@ -53,12 +45,12 @@ namespace InJobProcessCreator
 
         private static void WaitForExitEvent(string finishEventName)
         {
-            ManualResetEvent.OpenExisting(finishEventName).WaitOne();
+            EventWaitHandle.OpenExisting(finishEventName).WaitOne();
         }
 
         private static void SetEvent(string readyEventName)
         {
-            bool bResult = ManualResetEvent.OpenExisting(readyEventName).Set();
+            bool bResult = EventWaitHandle.OpenExisting(readyEventName).Set();
             if (bResult == false)
                 throw new Exception("Can't set the ready event"); 
         }

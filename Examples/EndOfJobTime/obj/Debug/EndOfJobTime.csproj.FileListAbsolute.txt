@@ -1,0 +1,12 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\EndOfJobTime.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\EndOfJobTime.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\EndOfJobTime.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\bin\Debug\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\obj\Debug\EndOfJobTime.csprojResolveAssemblyReference.cache
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\obj\Debug\EndOfJobTime.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobTime\obj\Debug\EndOfJobTime.pdb

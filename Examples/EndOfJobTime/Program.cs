@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using JobManagement;
 using System.Threading;
 
@@ -11,20 +9,23 @@ namespace EndOfJobTime
     /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             try
             {
                 using (JobObject jo = new JobObject("EndOfJobTimeExample"))
                 {
-                    jo.Events.OnEndOfJobTime += new jobEventHandler<EndOfJobTimeEventArgs>(Events_OnEndOfJobTime);
+                    jo.Events.OnEndOfJobTime += Events_OnEndOfJobTime;
                     jo.Limits.PerJobUserTimeLimit = TimeSpan.FromMilliseconds(100);
                 
                     while (!jo.IsJobTimeout)
                     {
-                        System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo("cmd.exe");
-                        si.RedirectStandardInput = true;
-                        si.UseShellExecute = false;
+                        System.Diagnostics.ProcessStartInfo si =
+                            new System.Diagnostics.ProcessStartInfo("cmd.exe")
+                            {
+                                RedirectStandardInput = true,
+                                UseShellExecute = false
+                            };
                         System.Diagnostics.Process p = jo.CreateProcessMayBreakAway(si);
 
                         p.StandardInput.WriteLine("@for /L %n in (1,1,1000000) do @echo %n");

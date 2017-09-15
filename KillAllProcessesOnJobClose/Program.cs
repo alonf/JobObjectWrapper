@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using JobManagement;
 
 namespace KillAllProcessesOnJobClose
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             using (JobObject jo = new JobObject())
             {
@@ -16,7 +14,7 @@ namespace KillAllProcessesOnJobClose
                 for (int i = 0; i < 5; ++i)
                 {
                     jo.CreateProcessMayBreakAway("mspaint.exe");
-                    jo.CreateProcessMayBreakAway("calc.exe");
+                    jo.CreateProcessMayBreakAway("cmd.exe");
                     jo.CreateProcessMayBreakAway("notepad.exe"); ;
                 }
 

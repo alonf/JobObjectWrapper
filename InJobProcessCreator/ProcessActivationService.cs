@@ -1,21 +1,16 @@
-﻿
-/*******************************************************************************************************  
+﻿/*******************************************************************************************************  
+*   JobObjectWrapper
 *
 * ProcessActivationService.cs
+* 
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
-*
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess
+* This program is licensed under the MIT License.  
+* 
+* Alon Fliess
 ********************************************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.Specialized;
@@ -31,7 +26,7 @@ namespace InJobProcessCreator
     public unsafe struct ProcessStartInfoMessage
     {
         [DllImport("kernel32.dll")]
-        private unsafe extern static uint lstrlenW(void *p);
+        private static extern uint lstrlenW(void *p);
 
         public ProcessStartInfoMessage(ProcessStartInfo source)
         {
@@ -74,10 +69,12 @@ namespace InJobProcessCreator
 
         public static implicit operator ProcessStartInfo(ProcessStartInfoMessage msg)
         {
-            ProcessStartInfo processStartInfo = new ProcessStartInfo();
-            processStartInfo.Arguments = msg._arguments;
-            processStartInfo.CreateNoWindow = msg._createNoWindow;
-            processStartInfo.Domain = msg._domain;
+            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            {
+                Arguments = msg._arguments,
+                CreateNoWindow = msg._createNoWindow,
+                Domain = msg._domain
+            };
 
             //don't set environment variable if we are going to start the process
             //with ShellExecute
@@ -121,33 +118,30 @@ namespace InJobProcessCreator
             return processStartInfo;
         }
 
-        private string _arguments;
-        private bool _createNoWindow;
-        private string _domain;
-        private StringDictionary _environmentVariables;
-        private bool _errorDialog;
-        private IntPtr _errorDialogParentHandle;
-        private string _fileName;
-        private bool _loadUserProfile;
-        private byte[] _password;
-        private bool _redirectStandardError;
-        private bool _redirectStandardInput;
-        private bool _redirectStandardOutput;
-        private Encoding _standardErrorEncoding;
-        private Encoding _standardOutputEncoding;
-        private string _userName;
-        private bool _useShellExecute;
-        private string _verb;
-        private ProcessWindowStyle _windowStyle;
-        private string _workingDirectory;
+        private readonly string _arguments;
+        private readonly bool _createNoWindow;
+        private readonly string _domain;
+        private readonly StringDictionary _environmentVariables;
+        private readonly bool _errorDialog;
+        private readonly IntPtr _errorDialogParentHandle;
+        private readonly string _fileName;
+        private readonly bool _loadUserProfile;
+        private readonly byte[] _password;
+        private readonly bool _redirectStandardError;
+        private readonly bool _redirectStandardInput;
+        private readonly bool _redirectStandardOutput;
+        private readonly Encoding _standardErrorEncoding;
+        private readonly Encoding _standardOutputEncoding;
+        private readonly string _userName;
+        private readonly bool _useShellExecute;
+        private readonly string _verb;
+        private readonly ProcessWindowStyle _windowStyle;
+        private readonly string _workingDirectory;
 
     }
 
-    public unsafe class ProcessActivationService : MarshalByRefObject
+    public class ProcessActivationService : MarshalByRefObject
     {
-        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        static extern bool AssignProcessToJobObject(IntPtr hJob, IntPtr hProcess);
-
         //Make shure that clients can not use 'new'
         internal ProcessActivationService()
         {
@@ -164,13 +158,7 @@ namespace InJobProcessCreator
             return Process.Start(msg);
         }
 
-        public bool IsAlive
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool IsAlive => true;
 
         //client side
         public static ProcessActivationService GetProcessActivationService(string portName)

@@ -1,0 +1,12 @@
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\EndOfProcessTime.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\EndOfProcessTime.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\EndOfProcessTime.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\JobManagement.dll
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\InJobProcessCreator.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\JobManagement.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\JobManagement.xml
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\bin\x86\Release\InJobProcessCreator.exe.config
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\obj\x86\Release\EndOfProcessTime.csprojResolveAssemblyReference.cache
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\obj\x86\Release\EndOfProcessTime.exe
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessTime\obj\x86\Release\EndOfProcessTime.pdb

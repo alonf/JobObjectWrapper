@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using JobManagement;
 using System.Threading;
 
@@ -11,19 +9,22 @@ namespace EndOfProcessMemory
     /// </summary>
     class Program
     {
-        static bool _isStop = false;
-        static void Main(string[] args)
+        private static bool _isStop;
+        static void Main()
         {
             using (JobObject jo = new JobObject("ProcessMemoryLimitExample"))
             {
-                jo.Limits.ProcessMemoryLimit = new IntPtr(2150000);
-                jo.Events.OnProcessMemoryLimit += new jobEventHandler<ProcessMemoryLimitEventArgs>(Events_OnProcessMemoryLimit);
+                jo.Limits.ProcessMemoryLimit = new IntPtr(1<<22);
+                jo.Events.OnProcessMemoryLimit += Events_OnProcessMemoryLimit;
 
                 try 
                 {
-                    System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo("cmd.exe");
-                    si.RedirectStandardInput = true;
-                    si.UseShellExecute = false;
+                    System.Diagnostics.ProcessStartInfo si =
+                        new System.Diagnostics.ProcessStartInfo("cmd.exe")
+                        {
+                            RedirectStandardInput = true,
+                            UseShellExecute = false
+                        };
                     System.Diagnostics.Process p = jo.CreateProcessMayBreakAway(si);
                     p.StandardInput.WriteLine(@"cd\");
                     while (!_isStop)
@@ -32,7 +33,8 @@ namespace EndOfProcessMemory
                         Thread.Sleep(1500);
                     }
                 }
-                catch(Exception)
+                // ReSharper disable once EmptyGeneralCatchClause
+                catch
                 {
                 }
             }
@@ -43,7 +45,7 @@ namespace EndOfProcessMemory
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        static void Events_OnProcessMemoryLimit(object sender, ProcessMemoryLimitEventArgs args)
+        private static void Events_OnProcessMemoryLimit(object sender, ProcessMemoryLimitEventArgs args)
         {
             _isStop = true;
             Thread.Sleep(500);

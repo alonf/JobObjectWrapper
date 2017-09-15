@@ -1,17 +1,14 @@
 
-/*******************************************************************************************************  
+/*******************************************************************************************************
+*   JobObjectWrapper
 *
-* JobLimits.h
+* JobException.h
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess
+* This program is licensed under the MIT License.
+*
+* Alon Fliess
 ********************************************************************************************************/
 
 #pragma once
@@ -255,33 +252,6 @@ namespace JobManagement
 			void set(bool value);
 		}
 
-		/// <summary>
-		///Applies a filter to the token when a process impersonates a client
-		/// </summary>
-		void FilterSecurityTokenAndPriviliges(HTokenGroup_t sidsToDisable, HPriviligesGroup_t privilegesToDelete, HTokenGroup_t restrictedSids);
-
-		/// <summary>
-		///Prevents any process in the job from using a token that specifies the local administrators group.
-		/// </summary>
-		property bool IsAdminProcessAllow
-		{
-			bool get();
-			void set(bool value);
-		}
-
-		/// <summary>
-		///Forces processes in the job to run under a specific token
-		/// </summary>
-		void RunJobProcessesAs(System::IntPtr hToken);
-
-		/// <summary>
-		///Prevents any process in the job from using a token that was not created with the CreateRestrictedToken function.
-		/// </summary>
-		property bool IsAllowOnlyRestrictedTokenProcesses
-		{
-			bool get();
-			void set(bool value);
-		}
 
 		/// <summary>
 		/// Grants or denies access to a handle to a User object to a job that has a user-interface restriction. 
@@ -345,10 +315,6 @@ namespace JobManagement
 		JOBOBJECT_BASIC_UI_RESTRICTIONS QueryBasicUIRestrictions();
 		void SetUIRestrictionsFlag(DWORD flag, bool value);
 		bool CheckUIRestrictionsFlag(DWORD flag);
-		void SetSecurityLimitInformation(bool hasValue,  JOBOBJECT_SECURITY_LIMIT_INFORMATION &securityLimitInformation, DWORD flag);
-		JOBOBJECT_SECURITY_LIMIT_INFORMATION QuerySecurityLimitInformation();
-		void SetSecurityLimitFlag(DWORD flag, bool value);
-		bool CheckSecurityLimitFlag(DWORD flag);
 
 		ref class ProcessPriorityClassConverter
 		{

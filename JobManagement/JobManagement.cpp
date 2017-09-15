@@ -1,17 +1,14 @@
 
-/*******************************************************************************************************  
+/*******************************************************************************************************
+*   JobObjectWrapper
 *
 * JobManagement.cpp
 *
-* Copyright 2007 The JobObjectWrapper Team  
-* http://www.codeplex.com/JobObjectWrapper/Wiki/View.aspx?title=Team
+* http://https://github.com/alonf/JobObjectWrapper
 *
-* This program is licensed under the Microsoft Permissive License (Ms-PL).  You should 
-* have received a copy of the license along with the source code.  If not, an online copy
-* of the license can be found at http://www.codeplex.com/JobObjectWrapper/Project/License.aspx.
-*   
-*  Notes :
-*      - First release by Alon Fliess & Aaron Etchin
+* This program is licensed under the MIT License.
+*
+* Alon Fliess
 ********************************************************************************************************/
 
 
@@ -39,7 +36,12 @@ namespace JobManagement
 		::IsProcessInJob(::GetCurrentProcess(), NULL, &bInAnyJob);
 
 		if (bInAnyJob)
-			throw gcnew JobException(L"The management process is running inside a Job, it will not be able to assign child processes to a new Job.");
+		{
+			//before Windows 8.1, there were no nested job. 
+			//throw gcnew JobException(L"The management process is running inside a Job, it will not be able to assign child processes to a new Job.");
+
+			OutputDebugString(L"Running as nested Job");
+		}
 	}
 
 	//called by the ctor
@@ -395,7 +397,7 @@ namespace JobManagement
 
 	JOBOBJECT_BASIC_PROCESS_ID_LIST *JobObject::QueryJobObjectBasicProcessIdList(unsigned int numberOfEntries)
 	{
-		size_t dataSize = sizeof(JOBOBJECT_BASIC_PROCESS_ID_LIST) + sizeof(ULONG_PTR) * numberOfEntries;
+		DWORD dataSize = sizeof(JOBOBJECT_BASIC_PROCESS_ID_LIST) + sizeof(ULONG_PTR) * numberOfEntries;
 
 		JOBOBJECT_BASIC_PROCESS_ID_LIST *pBasicProcessIdList = reinterpret_cast<JOBOBJECT_BASIC_PROCESS_ID_LIST *>(::GlobalAlloc(GMEM_FIXED, dataSize)); 
 		
@@ -423,7 +425,7 @@ namespace JobManagement
 		{
 			try
 			{
-				System::Diagnostics::Process ^process = System::Diagnostics::Process::GetProcessById(pBasicProcessIdList->ProcessIdList[i]);
+				System::Diagnostics::Process ^process = System::Diagnostics::Process::GetProcessById((int)pBasicProcessIdList->ProcessIdList[i]);
 				processList.Add(process);
 			}
 			catch (...)
@@ -470,7 +472,7 @@ namespace JobManagement
 		System::Collections::Generic::List<unsigned int> processList;
 		for (unsigned int i = 0; i < pBasicProcessIdList->NumberOfProcessIdsInList; ++i)
 		{
-			processList.Add(pBasicProcessIdList->ProcessIdList[i]);
+			processList.Add((int)pBasicProcessIdList->ProcessIdList[i]);
 		}
 		return processList.ToArray();
 	}
