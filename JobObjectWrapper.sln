@@ -16,16 +16,34 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JobManagement", "JobManagement\JobManagement.vcxproj", "{0E50E067-74E6-41E9-8E69-B485813CA7D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplicationTestJob", "ConsoleApplicationTestJob\ConsoleApplicationTestJob.csproj", "{7A2E87B8-B42E-469C-BB7C-6CD132F402E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1208C948-CD63-45A9-8031-3D7EF416E623} = {1208C948-CD63-45A9-8031-3D7EF416E623}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndOfProcessTime", "Examples\EndOfProcessTime\EndOfProcessTime.csproj", "{C935D2E3-37E2-4906-9D5A-47B56F3BC5A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1208C948-CD63-45A9-8031-3D7EF416E623} = {1208C948-CD63-45A9-8031-3D7EF416E623}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndOfJobTime", "Examples\EndOfJobTime\EndOfJobTime.csproj", "{CAFF6A01-8EBF-4040-9A42-E950BCBEE0F5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1208C948-CD63-45A9-8031-3D7EF416E623} = {1208C948-CD63-45A9-8031-3D7EF416E623}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumOfMaxProcessesReached", "Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj", "{32D55A47-1F54-4A6C-9B23-C89F28076530}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1208C948-CD63-45A9-8031-3D7EF416E623} = {1208C948-CD63-45A9-8031-3D7EF416E623}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndOfProcessMemory", "Examples\EndOfProcessMemory\EndOfProcessMemory.csproj", "{C1B24BBC-346E-4B59-8EC6-FE18375EBAF1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1208C948-CD63-45A9-8031-3D7EF416E623} = {1208C948-CD63-45A9-8031-3D7EF416E623}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndOfJobMemory", "Examples\EndOfJobMemory\EndOfJobMemory.csproj", "{54D7A119-2C07-481B-9662-BA9A65A4B766}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1208C948-CD63-45A9-8031-3D7EF416E623} = {1208C948-CD63-45A9-8031-3D7EF416E623}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillAllProcessesOnJobClose", "KillAllProcessesOnJobClose\KillAllProcessesOnJobClose.csproj", "{3D3A7A91-32BB-43BF-859E-769F733F05B2}"
 EndProject
