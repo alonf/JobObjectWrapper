@@ -3,3 +3,4 @@ C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\x86\Release\
 C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\x86\Release\InJobProcessCreator.pdb
 C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\x86\Release\InJobProcessCreator.exe
 C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\x86\Release\InJobProcessCreator.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\x86\Release\InJobProcessCreator.csprojResolveAssemblyReference.cache
