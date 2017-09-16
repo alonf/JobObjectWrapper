@@ -22,12 +22,12 @@ using namespace System::Security::Permissions;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly:AssemblyTitleAttribute("JobObjectWrapper Beta 1")];
+[assembly:AssemblyTitleAttribute("JobObjectWrapper 2017")];
 [assembly:AssemblyDescriptionAttribute(".NET Wrapper for Win32 Job Object")];
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("JobObjectWrapper Team")];
 [assembly:AssemblyProductAttribute("JobManagement")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c) JobObjectWrapper Team 2007")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c) JobObjectWrapper Team 2017")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 

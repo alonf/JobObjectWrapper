@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>JobObjectWrapper</id>
-        <version>1.6.0</version>
+        <version>1.7.0</version>
         <title>.NET Job Object Wrapper</title>
         <authors>Alon Fliess</authors>
         <licenseUrl>https://github.com/alonf/JobObjectWrapper/blob/master/License.txt</licenseUrl>
@@ -46,19 +46,26 @@
         <file src="Examples\NumOfMaxProcessesReached\app.config" target="src\Examples\NumOfMaxProcessesReached\app.config"/>
         <file src="Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj" target="src\Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj"/>
         <file src="Examples\NumOfMaxProcessesReached\Program.cs" target="src\Examples\NumOfMaxProcessesReached\Program.cs"/>
-        <file src="x64\Release\InJobProcessCreator.exe" target="lib\net40"/>
-        <file src="x64\Release\InJobProcessCreator.exe.config" target="lib\net40"/>
-        <file src="x64\Release\InJobProcessCreator.pdb" target="lib\net40"/>
-        <file src="x64\Release\JobManagement.dll" target="native\x64"/>
-        <file src="x64\Release\JobManagement.dll.metagen" target="native\x64"/>
-        <file src="x64\Release\JobManagement.pdb" target="native\x64"/>
-        <file src="x64\Release\JobManagement.xml" target="native\x64"/>
+        <file src="x64\Release\InJobProcessCreator.exe" target="lib\x64\net40"/>
+        <file src="x64\Release\InJobProcessCreator.exe.config" target="lib\x64\net40"/>
+        <file src="x64\Release\InJobProcessCreator.pdb" target="lib\x64\net40"/>
+        <file src="x64\Release\JobManagement.dll" target="lib\x64\net40"/>
+        <file src="x64\Release\JobManagement.dll.metagen" target="lib\x64\net40"/>
+        <file src="x64\Release\JobManagement.pdb" target="lib\x64\net40"/>
+        <file src="x64\Release\JobManagement.xml" target="lib\x64\net40"/>
         <file src="Release\InJobProcessCreator.exe" target="lib\x86\net40"/>
         <file src="Release\InJobProcessCreator.exe.config" target="lib\x86\net40"/>
         <file src="Release\InJobProcessCreator.pdb" target="lib\x86\net40"/>
-        <file src="Release\JobManagement.dll" target="native\x86"/>
-        <file src="Release\JobManagement.dll.metagen" target="native\x86"/>
-        <file src="Release\JobManagement.pdb" target="native\x86"/>
-        <file src="Release\JobManagement.xml" target="native\x86"/>
+        <file src="Release\JobManagement.dll" target="lib\x86\net40"/>
+        <file src="Release\JobManagement.dll.metagen" target="lib\x86\net40"/>
+        <file src="Release\JobManagement.pdb" target="lib\x86\net40"/>
+        <file src="Release\JobManagement.xml" target="lib\x86\net40"/>
+        <file src="Release\InJobProcessCreator.exe" target="lib\net40"/>
+        <file src="Release\InJobProcessCreator.exe.config" target="lib\net40"/>
+        <file src="Release\InJobProcessCreator.pdb" target="lib\net40"/>
+        <file src="Release\JobManagement.dll" target="lib\net40"/>
+        <file src="Release\JobManagement.dll.metagen" target="lib\net40"/>
+        <file src="Release\JobManagement.pdb" target="lib\net40"/>
+        <file src="Release\JobManagement.xml" target="lib\net40"/>
     </files>
 </package>
