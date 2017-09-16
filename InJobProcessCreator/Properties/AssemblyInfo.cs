@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JobObjectWrapper Team")]
-[assembly: AssemblyCopyright("Copyright © The JobObjectWrapper Team 2007")]
+[assembly: AssemblyCopyright("Copyright © The JobObjectWrapper Team 2017")]
 [assembly: AssemblyProduct("InJobProcessCreator")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
