@@ -40,19 +40,19 @@
         <file src="Examples\NumOfMaxProcessesReached\app.config" target="src\Examples\NumOfMaxProcessesReached\app.config"/>
         <file src="Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj" target="src\Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj"/>
         <file src="Examples\NumOfMaxProcessesReached\Program.cs" target="src\Examples\NumOfMaxProcessesReached\Program.cs"/>
-        <file src="x64\Release\InJobProcessCreator.exe" target="Release\x64"/>
-        <file src="x64\Release\InJobProcessCreator.exe.config" target="Release\x64"/>
-        <file src="x64\Release\InJobProcessCreator.pdb" target="Release\x64"/>
-        <file src="x64\Release\JobManagement.dll" target="Release\x64"/>
-        <file src="x64\Release\JobManagement.dll.metagen" target="Release\x64"/>
-        <file src="x64\Release\JobManagement.pdb" target="Release\x64"/>
-        <file src="x64\Release\JobManagement.xml" target="Release\x64"/>
-        <file src="Release\InJobProcessCreator.exe" target="Release\x86"/>
-        <file src="Release\InJobProcessCreator.exe.config" target="Release\x86"/>
-        <file src="Release\InJobProcessCreator.pdb" target="Release\x86"/>
-        <file src="Release\JobManagement.dll" target="Release\x64"/>
-        <file src="Release\JobManagement.dll.metagen" target="Release\x86"/>
-        <file src="Release\JobManagement.pdb" target="Release\x86"/>
-        <file src="Release\JobManagement.xml" target="Release\x86"/>
+        <file src="x64\Release\InJobProcessCreator.exe" target="\runtimes\win10-x64\lib\net47"/>
+        <file src="x64\Release\InJobProcessCreator.exe.config" target="\runtimes\win10-x64\lib\net47"/>
+        <file src="x64\Release\InJobProcessCreator.pdb" target="\runtimes\win10-x64\lib\net47"/>
+        <file src="x64\Release\JobManagement.dll" target="\runtimes\win10-x64\lib\native"/>
+        <file src="x64\Release\JobManagement.dll.metagen" target="\runtimes\win10-x64\lib\native"/>
+        <file src="x64\Release\JobManagement.pdb" target="\runtimes\win10-x64\lib\native"/>
+        <file src="x64\Release\JobManagement.xml" target="\runtimes\win10-x64\lib\native"/>
+        <file src="Release\InJobProcessCreator.exe" target="\runtimes\win10-x86\lib\net47"/>
+        <file src="Release\InJobProcessCreator.exe.config" target="\runtimes\win10-x86\lib\net47"/>
+        <file src="Release\InJobProcessCreator.pdb" target="\runtimes\win10-x86\lib\net47"/>
+        <file src="Release\JobManagement.dll" target="\runtimes\win10-x86\lib\native"/>
+        <file src="Release\JobManagement.dll.metagen" target="\runtimes\win10-x86\lib\native"/>
+        <file src="Release\JobManagement.pdb" target="\runtimes\win10-x86\lib\native"/>
+        <file src="Release\JobManagement.xml" target="\runtimes\win10-x86\lib\native"/>
     </files>
 </package>
