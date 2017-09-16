@@ -2,74 +2,74 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\InJobProcessCreator.exe</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\InJobProcessCreator.exe</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\InJobProcessCreator.exe</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\InJobProcessCreator.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\InJobProcessCreator.exe.config</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\InJobProcessCreator.exe.config</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\InJobProcessCreator.exe.config</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\InJobProcessCreator.exe.config</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\InJobProcessCreator.exe.config</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\InJobProcessCreator.exe.config</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\InJobProcessCreator.exe.config</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\InJobProcessCreator.exe.config</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\InJobProcessCreator.pdb</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\InJobProcessCreator.pdb</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\InJobProcessCreator.pdb</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\InJobProcessCreator.pdb</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\InJobProcessCreator.pdb</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\InJobProcessCreator.pdb</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\InJobProcessCreator.pdb</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\InJobProcessCreator.pdb</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\JobManagement.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\JobManagement.dll</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\JobManagement.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\JobManagement.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\JobManagement.dll.metagen</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\JobManagement.dll.metagen</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\JobManagement.dll.metagen</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\JobManagement.dll.metagen</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\JobManagement.pdb</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\JobManagement.pdb</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\JobManagement.pdb</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\JobManagement.pdb</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x86\net40\JobManagement.xml</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\JobManagement.xml</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator.exe" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\lib\x64\net40\JobManagement.xml</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\JobManagement.xml</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
