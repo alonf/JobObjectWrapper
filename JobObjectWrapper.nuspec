@@ -40,7 +40,7 @@
         <file src="Examples\NumOfMaxProcessesReached\app.config" target="src\Examples\NumOfMaxProcessesReached\app.config" />
         <file src="Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj" target="src\Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj" />
         <file src="Examples\NumOfMaxProcessesReached\Program.cs" target="src\Examples\NumOfMaxProcessesReached\Program.cs" />
-        <file src="InJobProcessCreator.exe" target="Release\x64" />
+        <file src="x64\Release\InJobProcessCreator.exe" target="Release\x64" />
         <file src="x64\Release\InJobProcessCreator.exe.config" target="Release\x64" />
         <file src="x64\Release\InJobProcessCreator.pdb" target="Release\x64" />
         <file src="x64\Release\JobManagement.dll" target="Release\x64" />
