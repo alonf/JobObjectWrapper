@@ -41,18 +41,18 @@
         <file src="Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj" target="src\Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj" />
         <file src="Examples\NumOfMaxProcessesReached\Program.cs" target="src\Examples\NumOfMaxProcessesReached\Program.cs" />
         <file src="InJobProcessCreator.exe" target="Release\x64" />
-        <file src="InJobProcessCreator.exe.config" target="Release\x64" />
-        <file src="InJobProcessCreator.pdb" target="Release\x64" />
-        <file src="JobManagement.dll" target="Release\x64" />
-        <file src="JobManagement.dll.metagen" target="Release\x64" />
-        <file src="JobManagement.pdb" target="Release\x64" />
-        <file src="JobManagement.xml" target="Release\x64" />
-        <file src="InJobProcessCreator.exe" target="Release\x86" />
-        <file src="InJobProcessCreator.exe.config" target="Release\x86" />
-        <file src="InJobProcessCreator.pdb" target="Release\x86" />
-        <file src="JobManagement.dll" target="Release\x64" />
-        <file src="JobManagement.dll.metagen" target="Release\x86" />
-        <file src="JobManagement.pdb" target="Release\x86" />
-        <file src="JobManagement.xml" target="Release\x86" />
+        <file src="x64\Release\InJobProcessCreator.exe.config" target="Release\x64" />
+        <file src="x64\Release\InJobProcessCreator.pdb" target="Release\x64" />
+        <file src="x64\Release\JobManagement.dll" target="Release\x64" />
+        <file src="x64\Release\JobManagement.dll.metagen" target="Release\x64" />
+        <file src="x64\Release\JobManagement.pdb" target="Release\x64" />
+        <file src="x64\Release\JobManagement.xml" target="Release\x64" />
+        <!--<file src="Release\InJobProcessCreator.exe" target="Release\x86" />
+        <file src="Release\InJobProcessCreator.exe.config" target="Release\x86" />
+        <file src="Release\InJobProcessCreator.pdb" target="Release\x86" />
+        <file src="Release\JobManagement.dll" target="Release\x64" />
+        <file src="Release\JobManagement.dll.metagen" target="Release\x86" />
+        <file src="Release\JobManagement.pdb" target="Release\x86" />
+        <file src="Release\JobManagement.xml" target="Release\x86" />-->
     </files>
 </package>
