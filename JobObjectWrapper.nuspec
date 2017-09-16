@@ -67,5 +67,7 @@
         <file src="Release\JobManagement.dll.metagen" target="lib\net40"/>
         <file src="Release\JobManagement.pdb" target="lib\net40"/>
         <file src="Release\JobManagement.xml" target="lib\net40"/>-->
+
+      <file src="JobObjectWrapper.props" target="build\net40" />
     </files>
 </package>
