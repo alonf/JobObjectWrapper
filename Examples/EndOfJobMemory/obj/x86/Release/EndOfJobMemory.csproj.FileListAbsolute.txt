@@ -9,3 +9,4 @@ C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Rele
 C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\bin\x86\Release\InJobProcessCreator.exe.config
 C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\x86\Release\EndOfJobMemory.exe
 C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\x86\Release\EndOfJobMemory.pdb
+C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfJobMemory\obj\x86\Release\EndOfJobMemory.csprojResolveAssemblyReference.cache
