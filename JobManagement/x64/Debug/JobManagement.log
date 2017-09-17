@@ -1,0 +1,13 @@
+﻿  Stdafx.cpp
+  AssemblyInfo.cpp
+  IOCounters.cpp
+  JobEventHandler.cpp
+  JobException.cpp
+  JobLimits.cpp
+  JobManagement.cpp
+  Util.cpp
+  Compiling...
+  Generating Code...
+  .NETFramework,Version=4.0.AssemblyAttributes.cpp
+  JobManagement.vcxproj -> C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\x64\Debug\JobManagement.dll
+  JobManagement.vcxproj -> C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\x64\Debug\JobManagement.pdb (Full PDB)

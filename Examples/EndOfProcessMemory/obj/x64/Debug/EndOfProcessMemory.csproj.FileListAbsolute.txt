@@ -10,3 +10,15 @@ C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\
 C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\obj\x64\Debug\EndOfProcessMemory.csprojResolveAssemblyReference.cache
 C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\obj\x64\Debug\EndOfProcessMemory.exe
 C:\Users\alon\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\obj\x64\Debug\EndOfProcessMemory.pdb
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\EndOfProcessMemory.exe.config
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\EndOfProcessMemory.exe
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\EndOfProcessMemory.pdb
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\JobManagement.dll
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\InJobProcessCreator.exe
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\JobManagement.pdb
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\JobManagement.xml
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\InJobProcessCreator.pdb
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\bin\x64\Debug\InJobProcessCreator.exe.config
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\obj\x64\Debug\EndOfProcessMemory.csprojResolveAssemblyReference.cache
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\obj\x64\Debug\EndOfProcessMemory.exe
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\Examples\EndOfProcessMemory\obj\x64\Debug\EndOfProcessMemory.pdb

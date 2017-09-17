@@ -225,33 +225,6 @@ Struct JobManagement.ExitReasonIds: AutoLayout, AnsiClass, Class, Public, Sealed
     JobManagement.ExitReasonIds SingleStep = 2147483652 : Public, Static, Literal, HasDefault
     JobManagement.ExitReasonIds StackOverflow = 3221225725 : Public, Static, Literal, HasDefault
     JobManagement.ExitReasonIds Timeout = 258 : Public, Static, Literal, HasDefault
-Class JobManagement.Security.Util: AutoLayout, AnsiClass, Class, Public, Abstract, Sealed, BeforeFieldInit
-  Methods:
-    SetPrivilege(IntPtr, String, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
-Struct JobManagement.Security.SidAndAttributes: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
-  :System.ValueType
-    Void .ctor(_SID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    JobManagement.Security.SidGroupAttributes Attributes 'get set' : 
-    IntPtr Sid 'get set' : 
-  Methods:
-    get_Sid(): PrivateScope, Public, HideBySig, SpecialName
-    set_Sid(IntPtr): PrivateScope, Public, HideBySig, SpecialName
-    get_Attributes(): PrivateScope, Public, HideBySig, SpecialName
-    set_Attributes(SidGroupAttributes): PrivateScope, Public, HideBySig, SpecialName
-    op_Implicit(_SID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName
-Struct JobManagement.Security.LuidAndAttributes: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
-  :System.ValueType
-    Void .ctor(_LUID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Properties:
-    JobManagement.Security.PriviligesAttributes LuidPriviligesAttributes 'get set' : 
-    Int64 Luid 'get set' : 
-  Methods:
-    get_Luid(): PrivateScope, Public, HideBySig, SpecialName
-    set_Luid(Int64): PrivateScope, Public, HideBySig, SpecialName
-    get_LuidPriviligesAttributes(): PrivateScope, Public, HideBySig, SpecialName
-    set_LuidPriviligesAttributes(PriviligesAttributes): PrivateScope, Public, HideBySig, SpecialName
-    op_Implicit(_LUID_AND_ATTRIBUTES*): PrivateScope, Public, HideBySig, SpecialName
 Class JobManagement.JobLimits: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
     Void .ctor(JobManagement.JobObject): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Properties:
@@ -329,23 +302,3 @@ Class JobManagement.JobLimits: AutoLayout, AnsiClass, Class, Public, Sealed, Bef
     SetAbsoluteTimer(TimeSpan): PrivateScope, Public, HideBySig
     SetAbsoluteTimer(DateTime): PrivateScope, Public, HideBySig
     ClearAbsoluteTimer(): PrivateScope, Public, HideBySig
-Struct JobManagement.Security.SidGroupAttributes: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    UInt32 value__ : Public, SpecialName, RTSpecialName
-    JobManagement.Security.SidGroupAttributes None = 0 : Public, Static, Literal, HasDefault
-    JobManagement.Security.SidGroupAttributes Enabled = 4 : Public, Static, Literal, HasDefault
-    JobManagement.Security.SidGroupAttributes EnabledByDefault = 2 : Public, Static, Literal, HasDefault
-    JobManagement.Security.SidGroupAttributes LogonId = 3221225472 : Public, Static, Literal, HasDefault
-    JobManagement.Security.SidGroupAttributes Mandatory = 1 : Public, Static, Literal, HasDefault
-    JobManagement.Security.SidGroupAttributes Owner = 8 : Public, Static, Literal, HasDefault
-    JobManagement.Security.SidGroupAttributes Resource = 536870912 : Public, Static, Literal, HasDefault
-    JobManagement.Security.SidGroupAttributes UseForDenyOnly = 16 : Public, Static, Literal, HasDefault
-Struct JobManagement.Security.PriviligesAttributes: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
-  :System.Enum
-  Fields:
-    UInt32 value__ : Public, SpecialName, RTSpecialName
-    JobManagement.Security.PriviligesAttributes Enabled = 2 : Public, Static, Literal, HasDefault
-    JobManagement.Security.PriviligesAttributes EnabledByDefault = 1 : Public, Static, Literal, HasDefault
-    JobManagement.Security.PriviligesAttributes Removed = 4 : Public, Static, Literal, HasDefault
-    JobManagement.Security.PriviligesAttributes UsedForAccess = 2147483648 : Public, Static, Literal, HasDefault

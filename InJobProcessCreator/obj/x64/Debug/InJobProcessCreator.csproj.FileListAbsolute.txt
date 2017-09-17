@@ -3,3 +3,8 @@ C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\x64\Debug\In
 C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\x64\Debug\InJobProcessCreator.pdb
 C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\x64\Debug\InJobProcessCreator.exe
 C:\Users\alon\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\x64\Debug\InJobProcessCreator.pdb
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\x64\Debug\InJobProcessCreator.exe.config
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\x64\Debug\InJobProcessCreator.exe
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\InJobProcessCreator\bin\x64\Debug\InJobProcessCreator.pdb
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\x64\Debug\InJobProcessCreator.exe
+C:\Users\alon.HOME\Source\Repos\JobObjectWrapper\InJobProcessCreator\obj\x64\Debug\InJobProcessCreator.pdb

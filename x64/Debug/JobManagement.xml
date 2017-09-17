@@ -4,177 +4,6 @@
         "JobManagement"
     </assembly>
     <members>
-        <member name="M:JobManagement.JobLimits.ClearAbsoluteTimer">
-            <summary>
-Stop the system timer and clear its values
-</summary>
-        </member>
-        <member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.TimeSpan)">
-            <summary>
-Set a system timer, that when it goes off, all the processes in the job are terminated
-</summary>
-            <param name="liveTimeSpan">The relative time to kill all processes</param>
-        </member>
-        <member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.DateTime)">
-            <summary>
-Set a system timer, that when it goes off, all the processes in the job are terminated
-</summary>
-            <param name="absoluteDateTime">The specific time to kill all processes</param>
-        </member>
-        <member name="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose">
-            <summary>
-When disposing the Job Object, this value determined whether to terminated all processes in the job
-</summary>
-            <remarks>
-You can also use the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" />. In cases when you share the job object handle 
-with other processes, you may want to terminate all the processes only when the last handle is closed.
-Using the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" /> will shutdown all processes even on abnormal termination of
-the process that hold the job handle.
-Use <see cref="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose" /> in those cases that you want to be sure the all processes are closed 
-when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
-</remarks>
-        </member>
-        <member name="M:JobManagement.JobLimits.UserHandleGrantAccess(System.IntPtr,System.Boolean)">
-            <summary>
-Grants or denies access to a handle to a User object to a job that has a user-interface restriction. 
-When access is granted, all processes associated with the job can subsequently recognize and use the handle.
-When access is denied, the processes can no longer use the handle
-</summary>
-            <param name="userHandle"> A handle to a User object</param>
-            <param name="bGrant">If this parameter is true, all processes associated with the job can recognize and use the handle.
-If the parameter is false, the processes cannot use the handle. </param>
-        </member>
-        <member name="P:JobManagement.JobLimits.CanWriteClipboard">
-            <summary>
-Prevents processes associated with the job from writing data to the clipboard.
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.CanChangeUISystemParameters">
-            <summary>
-Prevents processes associated with the job from changing system parameters by using the SystemParametersInfo function
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.CanReadClipboard">
-            <summary>
-Prevents processes associated with the job from reading data from the clipboard.
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.CanUseOutOfJobUserHandles">
-            <summary>
-Prevents processes associated with the job from using USER handles owned by processes not associated with the same job.
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.CanAccessAtomTable">
-            <summary>
-Prevents processes associated with the job from accessing global atoms. When this flag is used, each job has its own atom table
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.CanCallExitWindows">
-            <summary>
-Prevents processes associated with the job from calling the ExitWindows or ExitWindowsEx function.
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.IsLimitDisplaySettings">
-            <summary>
-Prevents processes associated with the job from calling the ChangeDisplaySettings function.
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.IsDesktopCreationAndSwitchingEnabled">
-            <summary>
-Prevents processes associated with the job from creating desktops and switching desktops using the CreateDesktop and SwitchDesktop functions
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.JobMemoryLimit">
-            <summary>
-specifies the limit for the virtual memory that can be committed for the job
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.ProcessMemoryLimit">
-            <summary>
-specifies the limit for the virtual memory that can be committed by a process
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.IsKillOnJobHandleClose">
-            <summary>
-Causes all processes associated with the job to terminate when the last handle to the job is closed
-</summary>
-            <remarks>
-Use the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" /> in cases when you share the job object handle 
-with other processes. this will terminate all the processes assigned to the job only when the last handle is closed.
-Using the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" /> will shutdown all processes even on abnormal termination of
-the process that hold the job handle.
-You can also use the <see cref="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose" /> for those cases that you want to be sure that all processes are closed 
-when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
-</remarks>
-        </member>
-        <member name="P:JobManagement.JobLimits.IsDieOnUnhandledException">
-            <summary>
-Forces a call to the SetErrorMode function with the SEM_NOGPFAULTERRORBOX flag for each process associated with the job. 
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.IsChildProcessBreakAway">
-            <summary>
-Allows any process associated with the job to create child processes that are not associated with the job.
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.CanChildProcessBreakAway">
-            <summary>
-Allow child process to use the CREATE_BREAKAWAY_FROM_JOB 
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.SchedulingClass">
-            <summary>
-The Scheduling Class is a number from 0 to 9  
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.PriorityClass">
-            <summary>
-The process priority class
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.Affinity">
-            <summary>
-The processesor affinity
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.ActiveProcessLimit">
-            <summary>
-The maximum number of active processes
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.MaximumWorkingSetSize">
-            <summary>
-The maximum size of a working-set
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.MinimumWorkingSetSize">
-            <summary>
-The minimum size of a working-set
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.PerJobUserTimeLimit">
-            <summary>
-The time limit for a job to run under
-</summary>
-        </member>
-        <member name="P:JobManagement.JobLimits.PerProcessUserTimeLimit">
-            <summary>
-The time limit for a process to run under
-</summary>
-        </member>
-        <member name="T:JobManagement.JobLimits">
-            <summary>
-JobLimits is a sealed class that wraps the Win32 Job Object Limits    
-which define the limits for the job and its processes. The limits are 
-the boundaries for the processes running under the job.
-Joblimits expands the Win32 limits with Absolute timer limit.
-</summary>
-            <remarks> You can limit processes in the Job in many areas, such as: 
-time limit (CPU time and absolute time), Memory limits, force priority &amp; scheduling class, set the process working set,
-and force several security related limits. 
-Security limits are deprecated on Windows Vista &amp; Server 2008. 
-We will try to find a solution on per process basis for those platforms</remarks>
-        </member>
         <member name="P:JobManagement.JobIOCounters.OtherTransferCount">
             <summary>
 The number of bytes transferred during operations other than read and write operations. 
@@ -862,6 +691,177 @@ Most of the time it is the related process id</param>
             <summary>
 The base class for all Job Object related event args
 </summary>
+        </member>
+        <member name="M:JobManagement.JobLimits.ClearAbsoluteTimer">
+            <summary>
+Stop the system timer and clear its values
+</summary>
+        </member>
+        <member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.TimeSpan)">
+            <summary>
+Set a system timer, that when it goes off, all the processes in the job are terminated
+</summary>
+            <param name="liveTimeSpan">The relative time to kill all processes</param>
+        </member>
+        <member name="M:JobManagement.JobLimits.SetAbsoluteTimer(System.DateTime)">
+            <summary>
+Set a system timer, that when it goes off, all the processes in the job are terminated
+</summary>
+            <param name="absoluteDateTime">The specific time to kill all processes</param>
+        </member>
+        <member name="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose">
+            <summary>
+When disposing the Job Object, this value determined whether to terminated all processes in the job
+</summary>
+            <remarks>
+You can also use the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" />. In cases when you share the job object handle 
+with other processes, you may want to terminate all the processes only when the last handle is closed.
+Using the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" /> will shutdown all processes even on abnormal termination of
+the process that hold the job handle.
+Use <see cref="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose" /> in those cases that you want to be sure the all processes are closed 
+when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
+</remarks>
+        </member>
+        <member name="M:JobManagement.JobLimits.UserHandleGrantAccess(System.IntPtr,System.Boolean)">
+            <summary>
+Grants or denies access to a handle to a User object to a job that has a user-interface restriction. 
+When access is granted, all processes associated with the job can subsequently recognize and use the handle.
+When access is denied, the processes can no longer use the handle
+</summary>
+            <param name="userHandle"> A handle to a User object</param>
+            <param name="bGrant">If this parameter is true, all processes associated with the job can recognize and use the handle.
+If the parameter is false, the processes cannot use the handle. </param>
+        </member>
+        <member name="P:JobManagement.JobLimits.CanWriteClipboard">
+            <summary>
+Prevents processes associated with the job from writing data to the clipboard.
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.CanChangeUISystemParameters">
+            <summary>
+Prevents processes associated with the job from changing system parameters by using the SystemParametersInfo function
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.CanReadClipboard">
+            <summary>
+Prevents processes associated with the job from reading data from the clipboard.
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.CanUseOutOfJobUserHandles">
+            <summary>
+Prevents processes associated with the job from using USER handles owned by processes not associated with the same job.
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.CanAccessAtomTable">
+            <summary>
+Prevents processes associated with the job from accessing global atoms. When this flag is used, each job has its own atom table
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.CanCallExitWindows">
+            <summary>
+Prevents processes associated with the job from calling the ExitWindows or ExitWindowsEx function.
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.IsLimitDisplaySettings">
+            <summary>
+Prevents processes associated with the job from calling the ChangeDisplaySettings function.
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.IsDesktopCreationAndSwitchingEnabled">
+            <summary>
+Prevents processes associated with the job from creating desktops and switching desktops using the CreateDesktop and SwitchDesktop functions
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.JobMemoryLimit">
+            <summary>
+specifies the limit for the virtual memory that can be committed for the job
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.ProcessMemoryLimit">
+            <summary>
+specifies the limit for the virtual memory that can be committed by a process
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.IsKillOnJobHandleClose">
+            <summary>
+Causes all processes associated with the job to terminate when the last handle to the job is closed
+</summary>
+            <remarks>
+Use the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" /> in cases when you share the job object handle 
+with other processes. this will terminate all the processes assigned to the job only when the last handle is closed.
+Using the <see cref="P:JobManagement.JobLimits.IsKillOnJobHandleClose" /> will shutdown all processes even on abnormal termination of
+the process that hold the job handle.
+You can also use the <see cref="P:JobManagement.JobLimits.IsTerminateJobProcessesOnDispose" /> for those cases that you want to be sure that all processes are closed 
+when the controling Job Object is disposed, no matter if other processes hold a handle to the same job.
+</remarks>
+        </member>
+        <member name="P:JobManagement.JobLimits.IsDieOnUnhandledException">
+            <summary>
+Forces a call to the SetErrorMode function with the SEM_NOGPFAULTERRORBOX flag for each process associated with the job. 
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.IsChildProcessBreakAway">
+            <summary>
+Allows any process associated with the job to create child processes that are not associated with the job.
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.CanChildProcessBreakAway">
+            <summary>
+Allow child process to use the CREATE_BREAKAWAY_FROM_JOB 
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.SchedulingClass">
+            <summary>
+The Scheduling Class is a number from 0 to 9  
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.PriorityClass">
+            <summary>
+The process priority class
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.Affinity">
+            <summary>
+The processesor affinity
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.ActiveProcessLimit">
+            <summary>
+The maximum number of active processes
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.MaximumWorkingSetSize">
+            <summary>
+The maximum size of a working-set
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.MinimumWorkingSetSize">
+            <summary>
+The minimum size of a working-set
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.PerJobUserTimeLimit">
+            <summary>
+The time limit for a job to run under
+</summary>
+        </member>
+        <member name="P:JobManagement.JobLimits.PerProcessUserTimeLimit">
+            <summary>
+The time limit for a process to run under
+</summary>
+        </member>
+        <member name="T:JobManagement.JobLimits">
+            <summary>
+JobLimits is a sealed class that wraps the Win32 Job Object Limits    
+which define the limits for the job and its processes. The limits are 
+the boundaries for the processes running under the job.
+Joblimits expands the Win32 limits with Absolute timer limit.
+</summary>
+            <remarks> You can limit processes in the Job in many areas, such as: 
+time limit (CPU time and absolute time), Memory limits, force priority &amp; scheduling class, set the process working set,
+and force several security related limits. 
+Security limits are deprecated on Windows Vista &amp; Server 2008. 
+We will try to find a solution on per process basis for those platforms</remarks>
         </member>
     </members>
 </doc>
