@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>JobObjectWrapper</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>.NET Job Object Wrapper</title>
         <authors>Alon Fliess</authors>
         <owners>CodeValue</owners>
@@ -47,10 +47,10 @@
         <file src="Examples\NumOfMaxProcessesReached\app.config" target="src\Examples\NumOfMaxProcessesReached\app.config"/>
         <file src="Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj" target="src\Examples\NumOfMaxProcessesReached\NumOfMaxProcessesReached.csproj"/>
         <file src="Examples\NumOfMaxProcessesReached\Program.cs" target="src\Examples\NumOfMaxProcessesReached\Program.cs"/>
-        <file src="x64\Release\InJobProcessCreator.*" target="build\x64"/>
-        <file src="x64\Release\JobManagement.*" target="build\x64"/>
-        <file src="Release\InJobProcessCreator.*" target="build\x86"/>
-        <file src="Release\JobManagement.*" target="build\x86"/>
-      <file src="JobObjectWrapper.props" target="build\net45" />
+        <file src="x64\Release\InJobProcessCreator.*" target="net40\x64"/>
+        <file src="x64\Release\JobManagement.*" target="net40\x64"/>
+        <file src="Release\InJobProcessCreator.*" target="net40\x86"/>
+        <file src="Release\JobManagement.*" target="net40\x86"/>
+      <file src="JobObjectWrapper.props" target="build\net40" />
     </files>
 </package>
