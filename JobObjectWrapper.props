@@ -2,18 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Reference Include="InJobProcessCreator" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\InJobProcessCreator.exe</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\x86\InJobProcessCreator.exe</HintPath>
     </Reference>
     <Reference Include="InJobProcessCreator" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\InJobProcessCreator.exe</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\x64\InJobProcessCreator.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="JobManagement" Condition="'$(Platform)' == 'x86'">
-      <HintPath>$(MSBuildThisFileDirectory)..\build\x86\JobManagement.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\x86\JobManagement.dll</HintPath>
     </Reference>
     <Reference Include="JobManagement" Condition="'$(Platform)' == 'x64'">
-      <HintPath>$(MSBuildThisFileDirectory)..\build\x64\JobManagement.dll</HintPath>
+      <HintPath>$(MSBuildThisFileDirectory)..\x64\JobManagement.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
