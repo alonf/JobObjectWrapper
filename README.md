@@ -9,38 +9,40 @@ using System.Diagnostics;
 
 namespace ConsoleApplicationTestJob
 {
-  class Program
-  {
-    static void Main(string[] args)
+    class Program
     {
-      JobObject jo = new JobObject();
-      jo.Events.OnExitProcess += new jobEventHandler<ExitProcessEventArgs>(OnExitProcess);
-      jo.Limits.ActiveProcessLimit = 4;
-      jo.Limits.Affinity = new IntPtr(1);
+        static void Main()
+        {
+            JobObject jo = new JobObject();
+            jo.Events.OnExitProcess += OnExitProcess;
+            jo.Limits.ActiveProcessLimit = 4;
+            jo.Limits.Affinity = new IntPtr(1);
 
-      ProcessStartInfo si = new ProcessStartInfo("whoami", "/all");
-      si.RedirectStandardOutput = true;
-      si.UseShellExecute = false;
-      si.CreateNoWindow = true;
+            ProcessStartInfo si = new ProcessStartInfo("whoami", "/all")
+            {
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
 
-      Process p = jo.CreateProcessSecured(si);
-      while (!p.StandardOutput.EndOfStream)
-      {
-        Console.WriteLine(p.StandardOutput.ReadLine());
-      }
+            Process p = jo.CreateProcessSecured(si);
+            while (!p.StandardOutput.EndOfStream)
+            {
+                Console.WriteLine(p.StandardOutput.ReadLine());
+            }
 
-      foreach (System.Diagnostics.Process process in jo.ConstructAssignedProcessList())
-      {
-        Console.WriteLine(process.ProcessName + " " + process.Id);
-      }
-      Console.ReadKey();
-      jo.TerminateAllProcesses(42); 
+            foreach (var process in jo.ConstructAssignedProcessList())
+            {
+                Console.WriteLine(process.ProcessName + " " + process.Id);
+            }
+            Console.ReadKey();
+            jo.TerminateAllProcesses(42);
+        }
+
+        static void OnExitProcess(object sender, ExitProcessEventArgs args)
+        {
+            Console.WriteLine($"Process {args.TheProcess?.ProcessName ?? args.TheProcessId.ToString()} has exited");
+        }
     }
-
-    static void OnExitProcess(object sender, ExitProcessEventArgs args)
-    {
-      Console.WriteLine("Process {0} has exited", args.TheProcess == null ? args.TheProcessId.ToString() : args.TheProcess.ProcessName);
-    }
-  }
 }
 ```
