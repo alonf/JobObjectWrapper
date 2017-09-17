@@ -2,9 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>JobObjectWrapper</id>
-        <version>1.9.3</version>
+        <version>1.9.4</version>
         <title>.NET Job Object Wrapper</title>
         <authors>Alon Fliess</authors>
+        <owners>CodeValue</owners>
         <licenseUrl>https://github.com/alonf/JobObjectWrapper/blob/master/License.txt</licenseUrl>
         <projectUrl>https://github.com/alonf/JobObjectWrapper</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
