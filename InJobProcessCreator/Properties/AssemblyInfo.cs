@@ -21,11 +21,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("InJobProcessCreator Beta 1")]
+[assembly: AssemblyTitle("InJobProcessCreator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("JobObjectWrapper Team")]
-[assembly: AssemblyCopyright("Copyright © The JobObjectWrapper Team 2017")]
+[assembly: AssemblyCompany("CodeValue")]
+[assembly: AssemblyCopyright("Copyright © CodeValue 2017")]
 [assembly: AssemblyProduct("InJobProcessCreator")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -23,9 +23,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ConsoleApplicationTestJob")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("JobObjectWrapper Team")]
+[assembly: AssemblyCompany("CodeValue")]
 [assembly: AssemblyProduct("ConsoleApplicationTestJob")]
-[assembly: AssemblyCopyright("Copyright © The JobObjectWrapper Team 2007")]
+[assembly: AssemblyCopyright("Copyright © CodeValue 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

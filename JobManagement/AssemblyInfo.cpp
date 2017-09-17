@@ -25,9 +25,9 @@ using namespace System::Security::Permissions;
 [assembly:AssemblyTitleAttribute("JobObjectWrapper 2017")];
 [assembly:AssemblyDescriptionAttribute(".NET Wrapper for Win32 Job Object")];
 [assembly:AssemblyConfigurationAttribute("")];
-[assembly:AssemblyCompanyAttribute("JobObjectWrapper Team")];
+[assembly:AssemblyCompanyAttribute("CodeValue")];
 [assembly:AssemblyProductAttribute("JobManagement")];
-[assembly:AssemblyCopyrightAttribute("Copyright (c) JobObjectWrapper Team 2017")];
+[assembly:AssemblyCopyrightAttribute("Copyright (c) CodeValue 2017")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];
 
