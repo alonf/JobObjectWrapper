@@ -23,6 +23,7 @@
 #include <msclr\lock.h>
 #include "JobException.h"
 #include <aclapi.h>
+#include <VersionHelpers.h>
 
 
 namespace JobManagement 
@@ -47,7 +48,10 @@ namespace JobManagement
 	//called by the ctor
 	void JobObject::CreateJob()
 	{
-		ProbeForRunningInJob();
+		if (!::IsWindows8OrGreater()) // Windows 8 added support for nested jobs
+		{
+			ProbeForRunningInJob();
+		}
 
 		MarshalingContext x;
 
